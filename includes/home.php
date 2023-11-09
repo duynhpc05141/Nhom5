@@ -18,7 +18,7 @@
                                     <li class="news-item">Rem ipsum dolor sit amet, consectetur adipisicing elit.</li>
                                 </ul>
                             </div>
-                            
+                                                   
                         </div>
                     </div>
                 </div>
@@ -27,7 +27,7 @@
                         <!-- Trending Top -->
                         <div class="trending-top mb-30">
                             <div class="trend-top-img">
-                                <img src="assets/img/trending/trending_top.jpg" alt="">
+                                <img src="./view/assets/img/trending/trending_top.jpg" alt="">
                                 <div class="trend-top-cap">
                                     <span>Appetizers</span>
                                     <h2><a href="details.html">Welcome To The Best Model Winner<br> Contest At Look of the year</a></h2>
@@ -40,7 +40,7 @@
                                 <div class="col-lg-4">
                                 <div class="single-bottom mb-35">
                                     <div class="trend-bottom-img mb-30">
-                                        <img src="assets/img/trending/trending_bottom1.jpg" alt="">
+                                        <img src="./view/assets/img/trending/trending_bottom1.jpg" alt="">
                                     </div>
                                     <div class="trend-bottom-cap">
                                         <span class="color1">Lifestyple</span>
@@ -51,7 +51,7 @@
                                 <div class="col-lg-4">
                                     <div class="single-bottom mb-35">
                                         <div class="trend-bottom-img mb-30">
-                                            <img src="assets/img/trending/trending_bottom2.jpg" alt="">
+                                            <img src="./view/assets/img/trending/trending_bottom2.jpg" alt="">
                                         </div>
                                         <div class="trend-bottom-cap">
                                             <span class="color2">Sports</span>
@@ -62,7 +62,7 @@
                                 <div class="col-lg-4">
                                     <div class="single-bottom mb-35">
                                         <div class="trend-bottom-img mb-30">
-                                            <img src="assets/img/trending/trending_bottom3.jpg" alt="">
+                                            <img src="./view/assets/img/trending/trending_bottom3.jpg" alt="">
                                         </div>
                                         <div class="trend-bottom-cap">
                                             <span class="color3">Travels</span>
@@ -77,7 +77,7 @@
                     <div class="col-lg-4">
                         <div class="trand-right-single d-flex">
                             <div class="trand-right-img">
-                                <img src="assets/img/trending/right1.jpg" alt="">
+                                <img src="./view/assets/img/trending/right1.jpg" alt="">
                             </div>
                             <div class="trand-right-cap">
                                 <span class="color1">Concert</span>
@@ -86,7 +86,7 @@
                         </div>
                         <div class="trand-right-single d-flex">
                             <div class="trand-right-img">
-                                <img src="assets/img/trending/right2.jpg" alt="">
+                                <img src="./view/assets/img/trending/right2.jpg" alt="">
                             </div>
                             <div class="trand-right-cap">
                                 <span class="color3">sea beach</span>
@@ -95,7 +95,7 @@
                         </div>
                         <div class="trand-right-single d-flex">
                             <div class="trand-right-img">
-                                <img src="assets/img/trending/right3.jpg" alt="">
+                                <img src="./view/assets/img/trending/right3.jpg" alt="">
                             </div>
                             <div class="trand-right-cap">
                                 <span class="color2">Bike Show</span>
@@ -104,7 +104,7 @@
                         </div> 
                         <div class="trand-right-single d-flex">
                             <div class="trand-right-img">
-                                <img src="assets/img/trending/right4.jpg" alt="">
+                                <img src="./view/assets/img/trending/right4.jpg" alt="">
                             </div>
                             <div class="trand-right-cap">
                                 <span class="color4">See beach</span>
@@ -113,7 +113,7 @@
                         </div>
                         <div class="trand-right-single d-flex">
                             <div class="trand-right-img">
-                                <img src="assets/img/trending/right5.jpg" alt="">
+                                <img src="./view/assets/img/trending/right5.jpg" alt="">
                             </div>
                             <div class="trand-right-cap">
                                 <span class="color1">Skeping</span>
@@ -143,7 +143,7 @@
                         <div class="weekly-news-active dot-style d-flex dot-style">
                             <div class="weekly-single">
                                 <div class="weekly-img">
-                                    <img src="assets/img/news/weeklyNews2.jpg" alt="">
+                                    <img src="./view/assets/img/news/weeklyNews2.jpg" alt="">
                                 </div>
                                 <div class="weekly-caption">
                                     <span class="color1">Strike</span>
@@ -152,7 +152,7 @@
                             </div> 
                             <div class="weekly-single active">
                                 <div class="weekly-img">
-                                        <img src="assets/img/news/weeklyNews1.jpg" alt="">
+                                        <img src="./view/assets/img/news/weeklyNews1.jpg" alt="">
                                 </div>
                                 <div class="weekly-caption">
                                     <span class="color1">Strike</span>
@@ -161,7 +161,7 @@
                             </div>
                             <div class="weekly-single">
                                 <div class="weekly-img">
-                                        <img src="assets/img/news/weeklyNews3.jpg" alt="">
+                                        <img src="./view/assets/img/news/weeklyNews3.jpg" alt="">
                                 </div>
                                 <div class="weekly-caption">
                                     <span class="color1">Strike</span>
@@ -170,7 +170,7 @@
                             </div>
                             <div class="weekly-single">
                                 <div class="weekly-img">
-                                    <img src="assets/img/news/weeklyNews1.jpg" alt="">
+                                    <img src="./view/assets/img/news/weeklyNews1.jpg" alt="">
                                 </div>
                                 <div class="weekly-caption">
                                     <span class="color1">Strike</span>
@@ -223,7 +223,7 @@
                                         <div class="col-lg-6 col-md-6">
                                             <div class="single-what-news mb-100">
                                                 <div class="what-img">
-                                                    <img src="assets/img/news/whatNews1.jpg" alt="">
+                                                    <img src="./view/assets/img/news/whatNews1.jpg" alt="">
                                                 </div>
                                                 <div class="what-cap">
                                                     <span class="color1">Night party</span>
@@ -234,7 +234,7 @@
                                         <div class="col-lg-6 col-md-6">
                                             <div class="single-what-news mb-100">
                                                 <div class="what-img">
-                                                    <img src="assets/img/news/whatNews2.jpg" alt="">
+                                                    <img src="./view/assets/img/news/whatNews2.jpg" alt="">
                                                 </div>
                                                 <div class="what-cap">
                                                     <span class="color1">Night party</span>
@@ -245,7 +245,7 @@
                                         <div class="col-lg-6 col-md-6">
                                             <div class="single-what-news mb-100">
                                                 <div class="what-img">
-                                                    <img src="assets/img/news/whatNews3.jpg" alt="">
+                                                    <img src="./view/assets/img/news/whatNews3.jpg" alt="">
                                                 </div>
                                                 <div class="what-cap">
                                                     <span class="color1">Night party</span>
@@ -256,7 +256,7 @@
                                         <div class="col-lg-6 col-md-6">
                                             <div class="single-what-news mb-100">
                                                 <div class="what-img">
-                                                    <img src="assets/img/news/whatNews4.jpg" alt="">
+                                                    <img src="./view/assets/img/news/whatNews4.jpg" alt="">
                                                 </div>
                                                 <div class="what-cap">
                                                     <span class="color1">Night party</span>
@@ -274,7 +274,7 @@
                                         <div class="col-lg-6 col-md-6">
                                             <div class="single-what-news mb-100">
                                                 <div class="what-img">
-                                                    <img src="assets/img/news/whatNews1.jpg" alt="">
+                                                    <img src="./view/assets/img/news/whatNews1.jpg" alt="">
                                                 </div>
                                                 <div class="what-cap">
                                                     <span class="color1">Night party</span>
@@ -285,7 +285,7 @@
                                         <div class="col-lg-6 col-md-6">
                                             <div class="single-what-news mb-100">
                                                 <div class="what-img">
-                                                    <img src="assets/img/news/whatNews2.jpg" alt="">
+                                                    <img src="./view/assets/img/news/whatNews2.jpg" alt="">
                                                 </div>
                                                 <div class="what-cap">
                                                     <span class="color1">Night party</span>
@@ -296,7 +296,7 @@
                                         <div class="col-lg-6 col-md-6">
                                             <div class="single-what-news mb-100">
                                                 <div class="what-img">
-                                                    <img src="assets/img/news/whatNews3.jpg" alt="">
+                                                    <img src="./view/assets/img/news/whatNews3.jpg" alt="">
                                                 </div>
                                                 <div class="what-cap">
                                                     <span class="color1">Night party</span>
@@ -307,7 +307,7 @@
                                         <div class="col-lg-6 col-md-6">
                                             <div class="single-what-news mb-100">
                                                 <div class="what-img">
-                                                    <img src="assets/img/news/whatNews4.jpg" alt="">
+                                                    <img src="./view/assets/img/news/whatNews4.jpg" alt="">
                                                 </div>
                                                 <div class="what-cap">
                                                     <span class="color1">Night party</span>
@@ -325,7 +325,7 @@
                                         <div class="col-lg-6 col-md-6">
                                             <div class="single-what-news mb-100">
                                                 <div class="what-img">
-                                                    <img src="assets/img/news/whatNews1.jpg" alt="">
+                                                    <img src="./view/assets/img/news/whatNews1.jpg" alt="">
                                                 </div>
                                                 <div class="what-cap">
                                                     <span class="color1">Night party</span>
@@ -336,7 +336,7 @@
                                         <div class="col-lg-6 col-md-6">
                                             <div class="single-what-news mb-100">
                                                 <div class="what-img">
-                                                    <img src="assets/img/news/whatNews2.jpg" alt="">
+                                                    <img src="./view/assets/img/news/whatNews2.jpg" alt="">
                                                 </div>
                                                 <div class="what-cap">
                                                     <span class="color1">Night party</span>
@@ -347,7 +347,7 @@
                                         <div class="col-lg-6 col-md-6">
                                             <div class="single-what-news mb-100">
                                                 <div class="what-img">
-                                                    <img src="assets/img/news/whatNews3.jpg" alt="">
+                                                    <img src="./view/assets/img/news/whatNews3.jpg" alt="">
                                                 </div>
                                                 <div class="what-cap">
                                                     <span class="color1">Night party</span>
@@ -358,7 +358,7 @@
                                         <div class="col-lg-6 col-md-6">
                                             <div class="single-what-news mb-100">
                                                 <div class="what-img">
-                                                    <img src="assets/img/news/whatNews4.jpg" alt="">
+                                                    <img src="./view/assets/img/news/whatNews4.jpg" alt="">
                                                 </div>
                                                 <div class="what-cap">
                                                     <span class="color1">Night party</span>
@@ -376,7 +376,7 @@
                                         <div class="col-lg-6 col-md-6">
                                             <div class="single-what-news mb-100">
                                                 <div class="what-img">
-                                                    <img src="assets/img/news/whatNews1.jpg" alt="">
+                                                    <img src="./view/assets/img/news/whatNews1.jpg" alt="">
                                                 </div>
                                                 <div class="what-cap">
                                                     <span class="color1">Night party</span>
@@ -387,7 +387,7 @@
                                         <div class="col-lg-6 col-md-6">
                                             <div class="single-what-news mb-100">
                                                 <div class="what-img">
-                                                    <img src="assets/img/news/whatNews2.jpg" alt="">
+                                                    <img src="./view/assets/img/news/whatNews2.jpg" alt="">
                                                 </div>
                                                 <div class="what-cap">
                                                     <span class="color1">Night party</span>
@@ -398,7 +398,7 @@
                                         <div class="col-lg-6 col-md-6">
                                             <div class="single-what-news mb-100">
                                                 <div class="what-img">
-                                                    <img src="assets/img/news/whatNews3.jpg" alt="">
+                                                    <img src="./view/assets/img/news/whatNews3.jpg" alt="">
                                                 </div>
                                                 <div class="what-cap">
                                                     <span class="color1">Night party</span>
@@ -409,7 +409,7 @@
                                         <div class="col-lg-6 col-md-6">
                                             <div class="single-what-news mb-100">
                                                 <div class="what-img">
-                                                    <img src="assets/img/news/whatNews4.jpg" alt="">
+                                                    <img src="./view/assets/img/news/whatNews4.jpg" alt="">
                                                 </div>
                                                 <div class="what-cap">
                                                     <span class="color1">Night party</span>
@@ -427,7 +427,7 @@
                                         <div class="col-lg-6 col-md-6">
                                             <div class="single-what-news mb-100">
                                                 <div class="what-img">
-                                                    <img src="assets/img/news/whatNews1.jpg" alt="">
+                                                    <img src="./view/assets/img/news/whatNews1.jpg" alt="">
                                                 </div>
                                                 <div class="what-cap">
                                                     <span class="color1">Night party</span>
@@ -438,7 +438,7 @@
                                         <div class="col-lg-6 col-md-6">
                                             <div class="single-what-news mb-100">
                                                 <div class="what-img">
-                                                    <img src="assets/img/news/whatNews2.jpg" alt="">
+                                                    <img src="./view/assets/img/news/whatNews2.jpg" alt="">
                                                 </div>
                                                 <div class="what-cap">
                                                     <span class="color1">Night party</span>
@@ -449,7 +449,7 @@
                                         <div class="col-lg-6 col-md-6">
                                             <div class="single-what-news mb-100">
                                                 <div class="what-img">
-                                                    <img src="assets/img/news/whatNews3.jpg" alt="">
+                                                    <img src="./view/assets/img/news/whatNews3.jpg" alt="">
                                                 </div>
                                                 <div class="what-cap">
                                                     <span class="color1">Night party</span>
@@ -460,7 +460,7 @@
                                         <div class="col-lg-6 col-md-6">
                                             <div class="single-what-news mb-100">
                                                 <div class="what-img">
-                                                    <img src="assets/img/news/whatNews4.jpg" alt="">
+                                                    <img src="./view/assets/img/news/whatNews4.jpg" alt="">
                                                 </div>
                                                 <div class="what-cap">
                                                     <span class="color1">Night party</span>
@@ -478,7 +478,7 @@
                                         <div class="col-lg-6 col-md-6">
                                             <div class="single-what-news mb-100">
                                                 <div class="what-img">
-                                                    <img src="assets/img/news/whatNews1.jpg" alt="">
+                                                    <img src="./view/assets/img/news/whatNews1.jpg" alt="">
                                                 </div>
                                                 <div class="what-cap">
                                                     <span class="color1">Night party</span>
@@ -489,7 +489,7 @@
                                         <div class="col-lg-6 col-md-6">
                                             <div class="single-what-news mb-100">
                                                 <div class="what-img">
-                                                    <img src="assets/img/news/whatNews2.jpg" alt="">
+                                                    <img src="./view/assets/img/news/whatNews2.jpg" alt="">
                                                 </div>
                                                 <div class="what-cap">
                                                     <span class="color1">Night party</span>
@@ -500,7 +500,7 @@
                                         <div class="col-lg-6 col-md-6">
                                             <div class="single-what-news mb-100">
                                                 <div class="what-img">
-                                                    <img src="assets/img/news/whatNews3.jpg" alt="">
+                                                    <img src="./view/assets/img/news/whatNews3.jpg" alt="">
                                                 </div>
                                                 <div class="what-cap">
                                                     <span class="color1">Night party</span>
@@ -511,7 +511,7 @@
                                         <div class="col-lg-6 col-md-6">
                                             <div class="single-what-news mb-100">
                                                 <div class="what-img">
-                                                    <img src="assets/img/news/whatNews4.jpg" alt="">
+                                                    <img src="./view/assets/img/news/whatNews4.jpg" alt="">
                                                 </div>
                                                 <div class="what-cap">
                                                     <span class="color1">Night party</span>
@@ -537,7 +537,7 @@
                     <div class="single-box">
                         <div class="follow-us d-flex align-items-center">
                             <div class="follow-social">
-                                <a href="#"><img src="assets/img/news/icon-fb.png" alt=""></a>
+                                <a href="#"><img src="./view/assets/img/news/icon-fb.png" alt=""></a>
                             </div>
                             <div class="follow-count">  
                                 <span>8,045</span>
@@ -546,7 +546,7 @@
                         </div> 
                         <div class="follow-us d-flex align-items-center">
                             <div class="follow-social">
-                                <a href="#"><img src="assets/img/news/icon-tw.png" alt=""></a>
+                                <a href="#"><img src="./view/assets/img/news/icon-tw.png" alt=""></a>
                             </div>
                             <div class="follow-count">
                                 <span>8,045</span>
@@ -555,7 +555,7 @@
                         </div>
                             <div class="follow-us d-flex align-items-center">
                             <div class="follow-social">
-                                <a href="#"><img src="assets/img/news/icon-ins.png" alt=""></a>
+                                <a href="#"><img src="./view/assets/img/news/icon-ins.png" alt=""></a>
                             </div>
                             <div class="follow-count">
                                 <span>8,045</span>
@@ -564,7 +564,7 @@
                         </div>
                         <div class="follow-us d-flex align-items-center">
                             <div class="follow-social">
-                                <a href="#"><img src="assets/img/news/icon-yo.png" alt=""></a>
+                                <a href="#"><img src="./view/assets/img/news/icon-yo.png" alt=""></a>
                             </div>
                             <div class="follow-count">
                                 <span>8,045</span>
@@ -575,7 +575,7 @@
                 </div>
                 <!-- New Poster -->
                 <div class="news-poster d-none d-lg-block">
-                    <img src="assets/img/news/news_card.jpg" alt="">
+                    <img src="./view/assets/img/news/news_card.jpg" alt="">
                 </div>
             </div>
             </div>
@@ -599,7 +599,7 @@
                         <div class="weekly2-news-active dot-style d-flex dot-style">
                             <div class="weekly2-single">
                                 <div class="weekly2-img">
-                                    <img src="assets/img/news/weekly2News1.jpg" alt="">
+                                    <img src="./view/assets/img/news/weekly2News1.jpg" alt="">
                                 </div>
                                 <div class="weekly2-caption">
                                     <span class="color1">Corporate</span>
@@ -609,7 +609,7 @@
                             </div> 
                             <div class="weekly2-single">
                                 <div class="weekly2-img">
-                                    <img src="assets/img/news/weekly2News2.jpg" alt="">
+                                    <img src="./view/assets/img/news/weekly2News2.jpg" alt="">
                                 </div>
                                 <div class="weekly2-caption">
                                     <span class="color1">Event night</span>
@@ -619,7 +619,7 @@
                             </div> 
                             <div class="weekly2-single">
                                 <div class="weekly2-img">
-                                    <img src="assets/img/news/weekly2News3.jpg" alt="">
+                                    <img src="./view/assets/img/news/weekly2News3.jpg" alt="">
                                 </div>
                                 <div class="weekly2-caption">
                                     <span class="color1">Corporate</span>
@@ -629,7 +629,7 @@
                             </div>
                              <div class="weekly2-single">
                                 <div class="weekly2-img">
-                                    <img src="assets/img/news/weekly2News4.jpg" alt="">
+                                    <img src="./view/assets/img/news/weekly2News4.jpg" alt="">
                                 </div>
                                 <div class="weekly2-caption">
                                     <span class="color1">Event time</span>
@@ -639,7 +639,7 @@
                             </div> 
                              <div class="weekly2-single">
                                 <div class="weekly2-img">
-                                    <img src="assets/img/news/weekly2News4.jpg" alt="">
+                                    <img src="./view/assets/img/news/weekly2News4.jpg" alt="">
                                 </div>
                                 <div class="weekly2-caption">
                                     <span class="color1">Corporate</span>
@@ -661,21 +661,21 @@
                 <div class="col-12">
                     <div class="video-items-active">
                         <div class="video-items text-center">
-                            <iframe src="https://www.youtube.com/embed/CicQIuG8hBo" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            <img src="./view/" alt="">
                         </div>
                         <div class="video-items text-center">
-                            <iframe  src="https://www.youtube.com/embed/rIz00N40bag" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            <img src="" alt="">>
                         </div>
                         <div class="video-items text-center">
-                            <iframe src="https://www.youtube.com/embed/CONfhrASy44" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            <img src="" alt="">
 
                         </div>
                         <div class="video-items text-center">
-                            <iframe src="https://www.youtube.com/embed/lq6fL2ROWf8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            <img src="" alt="">
                          
                         </div>
                         <div class="video-items text-center">
-                            <iframe src="https://www.youtube.com/embed/0VxlQlacWV4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            <img src="" alt="">
                         </div>
                     </div>
                 </div>
@@ -696,32 +696,27 @@
                     <div class="col-lg-6">
                         <div class="testmonial-nav text-center">
                             <div class="single-video">
-                                <iframe  src="https://www.youtube.com/embed/CicQIuG8hBo" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                                <div class="video-intro">
+                                                              <div class="video-intro">
                                     <h4>Welcotme To The Best Model Winner Contest</h4>
                                 </div>
                             </div>
                             <div class="single-video">
-                                <iframe  src="https://www.youtube.com/embed/rIz00N40bag" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                                <div class="video-intro">
+                                                              <div class="video-intro">
                                     <h4>Welcotme To The Best Model Winner Contest</h4>
                                 </div>
                             </div>
                             <div class="single-video">
-                                <iframe src="https://www.youtube.com/embed/CONfhrASy44" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                                <div class="video-intro">
+                                                             <div class="video-intro">
                                     <h4>Welcotme To The Best Model Winner Contest</h4>
                                 </div>
                             </div>
                             <div class="single-video">
-                                <iframe src="https://www.youtube.com/embed/lq6fL2ROWf8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                                <div class="video-intro">
+                                                             <div class="video-intro">
                                     <h4>Welcotme To The Best Model Winner Contest</h4>
                                 </div>
                             </div>
                             <div class="single-video">
-                                <iframe src="https://www.youtube.com/embed/0VxlQlacWV4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                                <div class="video-intro">
+                                                             <div class="video-intro">
                                     <h4>Welcotme To The Best Model Winner Contest</h4>
                                 </div>
                             </div>

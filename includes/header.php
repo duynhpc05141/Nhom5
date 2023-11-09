@@ -8,7 +8,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="manifest" href="site.webmanifest">
 		<link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
-
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 		<!-- CSS here -->
             <link rel="stylesheet" href="./view/assets/css/bootstrap.min.css">
             <link rel="stylesheet" href="./view/assets/css/owl.carousel.min.css">
@@ -70,7 +70,7 @@
                             <!-- Logo -->
                             <div class="col-xl-3 col-lg-3 col-md-3">
                                 <div class="logo">
-                                    <a href="index.html"><p class="text-capitalize fs-2">Fast News</p></a>
+                                    <a href="index.html"><p class="text-primary fs-2 fw-bolder fst-italic">Fast News</p></a>
                                 </div>
                             </div>
                             <div class="col-xl-9 col-lg-9 col-md-9">
@@ -93,8 +93,8 @@
                                 <div class="main-menu d-none d-md-block">
                                     <nav>                  
                                         <ul id="navigation">    
-                                            <li><a href="index.html">Home</a></li>
-                                            <li><a href="categori.html">Category</a></li>
+                                            <li><a href="index.php?act=home">Home</a></li>
+                                            <li><a href="index.php?act=category">Category</a></li>
                                             <li><a href="about.html">About</a></li>
                                             <li><a href="latest_news.html">Latest News</a></li>
                                             <li><a href="contact.html">Contact</a></li>
