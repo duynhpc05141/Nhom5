@@ -13,6 +13,15 @@ if (isset($_GET['act']) && ($_GET['act'] !== "")) {
     case 'category':
       include "view/categori.php";
       break;
+    case 'about':
+      include "view/about.php";
+      break;
+    case 'latest':
+      include "view/latest_news.php";
+      break;
+    case 'contact':
+      include "view/contact.php";
+      break;
    
     default:
 

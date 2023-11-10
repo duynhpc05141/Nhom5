@@ -8,11 +8,16 @@
                             <div class="single-footer-caption">
                                 <!-- logo -->
                                 <div class="footer-logo">
-                                    <a href="index.html"><img src="assets/img/logo/logo2_footer.png" alt=""></a>
+                                
+                                    <a href="index.html"><p class="text-primary fs-2 fw-bolder fst-italic">Fast News</p></a>
+                               
                                 </div>
                                 <div class="footer-tittle">
                                     <div class="footer-pera">
-                                        <p>Suscipit mauris pede for con sectetuer sodales adipisci for cursus fames lectus tempor da blandit gravida sodales  Suscipit mauris pede for con sectetuer sodales adipisci for cursus fames lectus tempor da blandit gravida sodales  Suscipit mauris pede for sectetuer.</p>
+                                        <p>Địa chỉ: P.Hưng Lợi, Q.Ninh Kiều TP.Cần Thơ</p>
+                                        <p>SĐT: 0976415140</p>
+                                        <p>Email: fastnews@gmail.com</p>
+                                        <p>Trang thông tin điện tử fastnews.com</p>
                                     </div>
                                 </div>
                                 <!-- social -->
@@ -27,8 +32,8 @@
                     <div class="col-xl-3 col-lg-3 col-md-4  col-sm-6">
                         <div class="single-footer-caption mt-60">
                             <div class="footer-tittle">
-                                <h4>Newsletter</h4>
-                                <p>Heaven fruitful doesn't over les idays appear creeping</p>
+                                <h4>KHÁC</h4>
+                                <p>Hỗ trợ</p>
                                 <!-- Form -->
                                 <div class="footer-form" >
                                     <div id="mc_embed_signup">
@@ -51,16 +56,16 @@
                     <div class="col-xl-3 col-lg-3 col-md-5 col-sm-6">
                         <div class="single-footer-caption mb-50 mt-60">
                             <div class="footer-tittle">
-                                <h4>Instagram Feed</h4>
+                                <h4>Đối tác</h4>
                             </div>
                             <div class="instagram-gellay">
                                 <ul class="insta-feed">
-                                    <li><a href="#"><img src="./view/assets/img/post/instra1.jpg" alt=""></a></li>
-                                    <li><a href="#"><img src="./view/assets/img/post/instra2.jpg" alt=""></a></li>
-                                    <li><a href="#"><img src="./view/assets/img/post/instra3.jpg" alt=""></a></li>
-                                    <li><a href="#"><img src="./view/assets/img/post/instra4.jpg" alt=""></a></li>
-                                    <li><a href="#"><img src="./view/assets/img/post/instra5.jpg" alt=""></a></li>
-                                    <li><a href="#"><img src="./view/assets/img/post/instra6.jpg" alt=""></a></li>
+                                    <li><a href="#"><img src="./view/assets/img/post/f.png" alt=""></a></li>
+                                    <li><a href="#"><img src="./view/assets/img/post/f.png" alt=""></a></li>
+                                    <li><a href="#"><img src="./view/assets/img/post/f.png" alt=""></a></li>
+                                    <li><a href="#"><img src="./view/assets/img/post/f.png" alt=""></a></li>
+                                    <li><a href="#"><img src="./view/assets/img/post/f.png" alt=""></a></li>
+                                    <li><a href="#"><img src="./view/assets/img/post/f.png" alt=""></a></li>
                                 </ul>
                             </div>
                         </div>
@@ -76,16 +81,18 @@
                         <div class="col-lg-6">
                             <div class="footer-copy-right">
                                 <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+
   Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Design by<i class="ti-heart" aria-hidden="true"></i> by <a href="" target="_blank">Group 5</a>
+
   <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
                             </div>
                         </div>
                         <div class="col-lg-6">
                             <div class="footer-menu f-right">
                                 <ul>                             
-                                    <li><a href="#">Terms of use</a></li>
-                                    <li><a href="#">Privacy Policy</a></li>
-                                    <li><a href="#">Contact</a></li>
+                                    <li><a href="#">Điều khoản sử dụng</a></li>
+                                    <li><a href="#">Chính sách bảo mật</a></li>
+                                    <li><a href="#">Liên hệ</a></li>
                                 </ul>
                             </div>
                         </div>

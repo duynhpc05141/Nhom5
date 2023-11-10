@@ -70,7 +70,7 @@
                             <!-- Logo -->
                             <div class="col-xl-3 col-lg-3 col-md-3">
                                 <div class="logo">
-                                    <a href="index.html"><p class="text-primary fs-2 fw-bolder fst-italic">Fast News</p></a>
+                                    <a href="index.php"><p class="text-primary fs-2 fw-bolder fst-italic">Fast News</p></a>
                                 </div>
                             </div>
                             <div class="col-xl-9 col-lg-9 col-md-9">
@@ -93,11 +93,11 @@
                                 <div class="main-menu d-none d-md-block">
                                     <nav>                  
                                         <ul id="navigation">    
-                                            <li><a href="index.php?act=home">Home</a></li>
-                                            <li><a href="index.php?act=category">Category</a></li>
-                                            <li><a href="about.html">About</a></li>
-                                            <li><a href="latest_news.html">Latest News</a></li>
-                                            <li><a href="contact.html">Contact</a></li>
+                                            <li><a href="index.php?act=home">Trang chủ</a></li>
+                                            <li><a href="index.php?act=category">Danh mục</a></li>
+                                            <li><a href="index.php?act=about">Giới thiệu</a></li>
+                                            <li><a href="index.php?act=latest">Tin mới nhất</a></li>
+                                            <li><a href="index.php?act=contact">Liên hệ</a></li>
                                             <li><a href="#">Pages</a>
                                                 <ul class="submenu">
                                                     <li><a href="elements.html">Element</a></li>
