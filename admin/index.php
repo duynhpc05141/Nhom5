@@ -16,40 +16,20 @@ if (isset($_GET['act'])) {
          /** 
          * TODO:Category 
          * */
-        case 'category-add':
-            if (isset($_POST['add']) && ($_POST['add'])) {
-                $name = $_POST['name'];
-                loai_insert($name);
-                $alert = '<div class="alert alert-success" role="alert">
-                Thêm thành công!
-              </div>';
-            }
+        case 'category_add':
+            
             include "category/add.php";
             break;
-        case 'list':
-            $listCategory = loai_select_all();
+        case 'category_list':
+            
             include "category/list.php";
             break;
-        case 'delete':
-            if (isset($_GET['id']) && ($_GET['id'] > 0)) {
-                loai_delete($_GET['id']);
-            }
-            $listCategory = loai_select_all();
+        case 'category_delete':
+            
             include "category/list.php";
             break;
-        case 'edit':
-            if (isset($_GET['id']) && ($_GET['id'] > 0)) {
-                $result = loai_select_by_id($_GET['id']);
-            }
-            include "category/edit.php";
-            break;
-        case 'update':
-            if (isset($_POST['update']) && ($_POST['update'])) {
-                $name = $_POST['name'];
-                $id = $_POST['id'];
-                loai_update($id, $name);
-            }
-            $listCategory = loai_select_all();
+        case 'category_update':
+            
             include "category/list.php";
             break;
             /** 

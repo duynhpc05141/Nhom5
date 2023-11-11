@@ -27,35 +27,23 @@
             <tr>
               <th scope="col">ID</th>
               <th scope="col">Tên danh mục</th>
-              <th>Action </th>
+              <th>Chức năng</th>
             </tr>
           </thead>
           <tbody>
-            <?php
-            foreach ($listCategory as $row) {
-              extract($row);
-              $edit = 'index.php?act=edit&id=' . $row['id'];
-              $delete = 'index.php?act=delete&id=' . $row['id'];
-              echo ' 
-    <tr>  
-      <td>' . $id . '</td>
-      <td>' . $name . '</td>
-     <td> 
-     <a  href="' . $edit . '"><i class="fa-regular fa-pen-to-square"></i></a>
-     <a onclick="return confirm(\'Bạn có muốn xóa?\');" href="' . $delete . '" ><i class="fa-solid fa-trash-can text-danger"></i></a>
-
-
-     </td>
-    </tr>
-    ';
-            }
-            ?>
-
+              <tr>  
+                <td></td>
+                <td></td>
+              <td> 
+                <a  href="#"><i class="fa-regular fa-pen-to-square"></i></a>
+                <a onclick="return confirm(\'Bạn có muốn xóa?\');" href="#" ><i class="fa-solid fa-trash-can text-danger"></i></a>
+              </td>
+              </tr>
           </tbody>
           <input class="btn btn-danger btn-sm " type="button" value="Xóa các mục đã chọn">
           <input class="btn btn-warning btn-sm " type="button" value="Chọn tất cả">
           <input class="btn btn-secondary btn-sm " type="button" value="Bỏ chọn tất cả">
-          <a href="index.php?act=category-add"><input class="btn btn-primary btn-sm" type="button" value="Nhập thêm"></a>
+          <a href="index.php?act=category_add"><input class="btn btn-primary btn-sm" type="button" value="Nhập thêm"></a>
         </table>
 
       </div>

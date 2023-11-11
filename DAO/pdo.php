@@ -3,7 +3,7 @@
  * Establish a database connection using PDO.
  */
 function pdo_get_connection(){
-    $dburl = "mysql:host=localhost;dbname=hieulmpc05108;charset=utf8";
+    $dburl = "mysql:host=localhost;dbname=fastnews;charset=utf8";
     $username = 'root';
     $password = 'mysql';
     $conn = new PDO($dburl, $username, $password);
