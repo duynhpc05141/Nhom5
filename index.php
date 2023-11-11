@@ -38,4 +38,5 @@ if (isset($_GET['act']) && ($_GET['act'] !== "")) {
   include "./includes/footer.php";
 }
 ob_end_flush();
+?>
   
