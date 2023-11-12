@@ -27,18 +27,28 @@
             <tr>
               <th scope="col">ID</th>
               <th scope="col">Tên danh mục</th>
-              <th>Chức năng</th>
+              <th scope="col">Chức năng</th>
             </tr>
           </thead>
           <tbody>
+            <?php
+            foreach ($list_loai as $list) {
+              extract($list);
+              $delect_category = "index.php?act=category_delete&category_id=".$category_id;
+              $edit = 'index.php?act=category_edit&&category_id='.$category_id;
+            ?>
               <tr>  
-                <td></td>
-                <td></td>
+                <td><?= $category_id ?></td>
+                <td><?= $category_name ?></td>
               <td> 
-                <a  href="#"><i class="fa-regular fa-pen-to-square"></i></a>
-                <a onclick="return confirm(\'Bạn có muốn xóa?\');" href="#" ><i class="fa-solid fa-trash-can text-danger"></i></a>
+                <a  href="<?= $edit ?>"><i class="fa-regular fa-pen-to-square"></i></a>
+                <a onclick="return confirm(\'Bạn có muốn xóa?\');" href="<?= $delect_category ?>" ><i class="fa-solid fa-trash-can text-danger"></i></a>
               </td>
               </tr>
+            <?php  
+            }
+            ?>
+              
           </tbody>
           <input class="btn btn-danger btn-sm " type="button" value="Xóa các mục đã chọn">
           <input class="btn btn-warning btn-sm " type="button" value="Chọn tất cả">

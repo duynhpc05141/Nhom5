@@ -1,6 +1,7 @@
 <?php
 
 include "header.php";
+include "../DAO/loai.php";
 
 
 if (isset($_GET['act'])) {
@@ -17,20 +18,41 @@ if (isset($_GET['act'])) {
          * TODO:Category 
          * */
         case 'category_add':
-            
-            include "category/add.php";
+            if ((isset($_POST['add'])) && ($_POST['add'])) {
+                $ten_loai = $_POST['name'];
+                loai_insert($ten_loai);
+                $alert = '<div class="alert alert-success" role="alert">
+                Thêm thành công!
+              </div>';
+            }
+            include "./category/add.php";
             break;
         case 'category_list':
-            
-            include "category/list.php";
+            $list_loai = loai_select_all();
+            include "./category/list.php";
             break;
         case 'category_delete':
-            
-            include "category/list.php";
+            if (isset($_GET['category_id']) && ($_GET['category_id'] > 0)) {
+                loai_delete($_GET['category_id']);
+            }
+            $list_loai = loai_select_all();
+            include "./category/list.php";
             break;
+        case 'category_edit':
+            if (isset($_GET['category_id']) && ($_GET['category_id'] > 0)) {
+                $edit = loai_select_by_id($_GET['category_id']);
+            }
+            include "./category/edit.php";
+            break;
+
         case 'category_update':
-            
-            include "category/list.php";
+            if (isset($_POST['update']) && ($_POST['update'])) {
+                $name = $_POST['category_name'];
+                $id = $_POST['category_id'];
+                loai_update($id, $name);
+            }
+            $list_loai = loai_select_all();
+            include "./category/list.php";
             break;
             /** 
              * TODO: Product 
