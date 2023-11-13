@@ -7,7 +7,7 @@ require_once 'pdo.php';
  * @throws PDOException lỗi thêm mới
  */
 function loai_insert($name){
-    $sql = "INSERT INTO category(name) VALUES(?)";
+    $sql = "INSERT INTO category(category_name) VALUES(?)";
     pdo_execute($sql, $name);
 }
 /**
@@ -17,7 +17,7 @@ function loai_insert($name){
  * @throws PDOException lỗi cập nhật
  */
     function loai_update($id, $name){
-    $sql = "UPDATE category SET name=? WHERE id=?";
+    $sql = "UPDATE category SET category_name=? WHERE category_id=?";
     pdo_execute($sql, $name, $id);
 }
 /**
@@ -26,7 +26,7 @@ function loai_insert($name){
  * @throws PDOException lỗi xóa
  */
 function loai_delete($id){
-    $sql = "DELETE FROM category WHERE id=?";
+    $sql = "DELETE FROM category WHERE category_id=?";
     if(is_array($id)){
         foreach ($id as $ma) {
             pdo_execute($sql, $ma);
@@ -43,7 +43,8 @@ function loai_delete($id){
  */
 function loai_select_all(){
     $sql = "SELECT * FROM category";
-    return pdo_query($sql);
+    $list_loai = pdo_query($sql);
+    return $list_loai;
 }
 /**
  * Truy vấn một loại theo mã
@@ -52,8 +53,9 @@ function loai_select_all(){
  * @throws PDOException lỗi truy vấn
  */
 function loai_select_by_id($id){
-    $sql = "SELECT * FROM category WHERE id=?";
-    return pdo_query_one($sql, $id);
+    $sql = "SELECT * FROM category WHERE category_id=".$id;
+    $edit = pdo_query_one($sql);
+    return $edit;
 }
 /**
  * Kiểm tra sự tồn tại của một loại
