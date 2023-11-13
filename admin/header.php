@@ -23,7 +23,7 @@
                 <a class="nav-link text-white" href="index.php?act=category_list">Danh mục</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link text-white" href="index.php?act=product-list">Bài viết</a>
+                <a class="nav-link text-white" href="index.php?act=article-list">Bài viết</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link text-white" href="index.php?act=customer-list">Khách hàng</a>

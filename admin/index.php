@@ -1,5 +1,6 @@
 <?php
 
+include "../DAO/article.php";
 include "header.php";
 
 
@@ -33,9 +34,9 @@ if (isset($_GET['act'])) {
             include "category/list.php";
             break;
             /** 
-             * TODO: Product 
+             * TODO: Articles 
              * */
-        case 'product-add':
+        case 'article-add':
             if (isset($_POST['add']) && ($_POST['add'])) {
                 $category_id = $_POST['category_id'];
                 $namePro = $_POST['name'];
@@ -58,7 +59,7 @@ if (isset($_GET['act'])) {
             }
             include "product/add.php";
             break;
-        case 'product-list':
+        case 'article-list':
             if (isset($_POST['go']) && ($_POST['go'])) {
                 $keyword=$_POST['keyword'];
                 $category_id=$_POST['category_id'];
@@ -69,7 +70,7 @@ if (isset($_GET['act'])) {
             };
             $listCategory = loai_select_all();
             $listProduct = product_select_all($keyword,$category_id);
-            include "product/list.php";
+            include "artical/list.php";
             break;
         case 'product-delete':
             if (isset($_GET['id']) && ($_GET['id'] > 0)) {
