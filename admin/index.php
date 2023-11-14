@@ -3,6 +3,7 @@
 include "../DAO/article.php";
 include "header.php";
 include "../DAO/loai.php";
+include "../DAO/binh-luan.php";
 
 
 if (isset($_GET['act'])) {
@@ -205,41 +206,41 @@ if (isset($_GET['act'])) {
             $listComment = comment_select_all(0);
             include "comment/list.php";
             break;
-        case 'deletecm':
-            if (isset($_GET['id']) && ($_GET['id'] > 0)) {
-                binh_luan_delete($_GET['id']);
-            }
-            $listComment = comment_select_all(0);
-
-            include "comment/list.php";
-            break;
-            /** 
-             * TODO: Static
-             * */
-        case 'static':
-            $listStatic = stactic_all();
-            include "static/list.php";
-            break;
-        case 'chart':
-            $listStatic = stactic_all();
-            include "static/chart.php";
-            break;
-            /** 
-             * TODO: Bill
-             * */
-        case 'bill':
-            $listBill = loadall_bill(0);
-            include "bill/list.php";
-            break;
-        case 'bill-delete':
-            if (isset($_GET['id']) && ($_GET['id'] > 0)) {
-                bill_delete($_GET['id']);
-            }
-            $listBill = loadall_bill(0);
-            include "bill/list.php";
-            break;
-        case 'bill-edit':
-            if (isset($_GET['id']) && ($_GET['id'] > 0)) {
+            case 'deletecm':
+                if (isset($_GET['id']) && ($_GET['id'] > 0)) {
+                    binh_luan_delete($_GET['id']);
+                }
+                $listComment = comment_select_all(0);
+               
+                include "comment/list.php";
+                break;
+                 /** 
+       * TODO: Static
+       * */
+      case 'static':
+        $listStatic= stactic_all();
+         include "static/list.php";
+         break;
+      case 'chart':
+        $listStatic= stactic_all();
+         include "static/chart.php";
+         break;
+                 /** 
+       * TODO: Bill
+       * */
+      case 'bill':
+      $listBill=loadall_bill(0);
+         include "bill/list.php";
+         break;
+      case 'bill-delete':
+        if (isset($_GET['id']) && ($_GET['id'] > 0)) {
+            bill_delete($_GET['id']);
+        }
+        $listBill=loadall_bill(0);
+         include "bill/list.php";
+         break;
+      case 'bill-edit':
+        if (isset($_GET['id']) && ($_GET['id'] > 0)) {
 
                 $bill = bill_select_by_id($_GET['id']);
             }

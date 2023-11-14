@@ -25,26 +25,24 @@
         <table class="table table-bordered border-primary  text-center table-hover ">
           <thead>
             <tr>
-              <th scope="col">Tin tức</th>
-              <th scope="col">Số bình luận</th>
-              <th>Mới nhất</th>
-              <th>Cũ nhất</th>
-              <th>Chi tiết</th>
+              <th scope="col">Người bình luận</th>
+              <th scope="col">Nội dung</th>
+              <th>Ngày</th>
+              <th>Chức năng</th>
             </tr>
           </thead>
           <tbody>
             <?php
             foreach ($list_comment as $cm) {
               extract($cm);
-              $comment_detail = 'index.php?act=comment_detail&article_id='.$article_id;
+              $comment_delete = "index.php?act=comment_delete&comment_id=".$comment_id."&article_id=".$article_id;
               echo ' 
               <tr>  
-                <td>' . $article_name. '</td>
-                <td>' . $so_luong.'</td>
-                <td>' . $moi_nhat . '</td>
-                <td>' . $cu_nhat . '</td>
+                <td>' . $user_name. '</td>
+                <td>' . $comment_content.'</td>
+                <td>' . $created_at. '</td>
               <td> 
-                <a href="' . $comment_detail . '" ><i class="fa-regular fa-pen-to-square"></i></a>
+              <a onclick="return confirm(\'Bạn có muốn xóa?\');" href="'.$comment_delete.'" ><i class="fa-solid fa-trash-can text-danger"></i></a>
               </td>
               </tr>
               ';
@@ -52,6 +50,8 @@
             ?>
 
           </tbody>
+          <a href="index.php?act=comment_list"><input class="btn btn-secondary btn-sm " type="button" value="Danh sách"></a>
+          
           
         </table>
 

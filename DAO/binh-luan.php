@@ -11,49 +11,28 @@ function binh_luan_update($ma_bl, $ma_kh, $ma_hh, $noi_dung, $ngay_bl){
     pdo_execute($sql, $ma_kh, $ma_hh, $noi_dung, $ngay_bl, $ma_bl);
 }
 
-function binh_luan_delete($id){
-    $sql = "DELETE FROM comment WHERE id=?";
-     $deleted =0;
-    if(is_array($id)){
-       
-        foreach ($id as $ma) {
-            
-            if(pdo_execute($sql, $ma)){
-                $deleted++;
-            }
+function comment_delete($comment_id)
+{
+    $sql = "delete from comment where comment_id=? ";
+    if (is_array($comment_id)) {
+        foreach ($comment_id as $ma) {
+            pdo_execute($sql, $ma);
         }
-
+    } else {
+        pdo_execute($sql, $comment_id);
     }
-    else{
-        if(pdo_execute($sql, $id)){
-            $deleted++;
-        }
-    }
-
-
-    if($deleted>0){
-        return true;
-    }
-    return false;
 }
 
 
 
-
-function comment_select_all($product_id){
-    $sql = "SELECT c.*, cu.user, cu.img
-    FROM comment c
-    INNER JOIN customer cu ON cu.id = c.user_id";
-
-if ($product_id > 0) {
-$sql .= " WHERE c.product_id = '".$product_id."'";
-}
-
-$sql .= " ORDER BY c.id DESC";
-
-
-   $listComment= pdo_query($sql);
-    return $listComment;
+function comment_select_all()
+{
+    $sql = "
+    SELECT hh.article_id as article_id, hh.article_name as article_name, COUNT(*) as so_luong, MIN(bl.created_at) as cu_nhat, MAX(bl.created_at) as moi_nhat
+    FROM comment bl
+    JOIN article hh ON hh.article_id = bl.article_id
+    GROUP BY  hh.article_id, hh.article_name";
+    return pdo_query($sql);
 }
 
 // binh-luan.php
@@ -72,7 +51,12 @@ function comment_select_paged($product_id, $offset, $commentsPerPage) {
     // Trả về danh sách bình luận
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
-
+// select binh luan theo san pham
+function comment_select_by_article($article_id)
+{
+    $sql = "SELECT b.*, h.article_name, kh.user_name from comment b join article h on h.article_id=b.article_id join user kh on kh.user_id=b.user_id where b.article_id='" . $article_id . "' order by created_at DESC ";
+    return pdo_query($sql);
+}
 
 
 
