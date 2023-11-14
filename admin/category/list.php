@@ -42,7 +42,8 @@
                 <td><?= $category_name ?></td>
               <td> 
                 <a  href="<?= $edit ?>"><i class="fa-regular fa-pen-to-square"></i></a>
-                <a onclick="return confirm(\'Bạn có muốn xóa?\');" href="<?= $delect_category ?>" ><i class="fa-solid fa-trash-can text-danger"></i></a>
+                <a onclick="return confirm('Bạn có muốn xóa?');" href="<?= $delete_category ?>"><i class="fa-solid fa-trash-can text-danger"></i></a>
+
               </td>
               </tr>
             <?php  
@@ -50,9 +51,6 @@
             ?>
               
           </tbody>
-          <input class="btn btn-danger btn-sm " type="button" value="Xóa các mục đã chọn">
-          <input class="btn btn-warning btn-sm " type="button" value="Chọn tất cả">
-          <input class="btn btn-secondary btn-sm " type="button" value="Bỏ chọn tất cả">
           <a href="index.php?act=category_add"><input class="btn btn-primary btn-sm" type="button" value="Nhập thêm"></a>
         </table>
 

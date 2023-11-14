@@ -8,16 +8,16 @@ include "../DAO/loai.php";
 if (isset($_GET['act'])) {
     $act = $_GET['act'];
     switch ($act) {
-         /** 
+            /** 
          * TODO:Pages 
          * */
         case 'home':
-          
+
             include "home.php";
             break;
-         /** 
-         * TODO:Category 
-         * */
+            /** 
+             * TODO:Category 
+             * */
         case 'category_add':
             if ((isset($_POST['add'])) && ($_POST['add'])) {
                 $ten_loai = $_POST['name'];
@@ -61,74 +61,84 @@ if (isset($_GET['act'])) {
         case 'article-add':
             if (isset($_POST['add']) && ($_POST['add'])) {
                 $category_id = $_POST['category_id'];
-                $namePro = $_POST['name'];
-                $price = $_POST['price'];
-                $description = $_POST['description'];
-                 $filename = $_FILES['img']['name'];
-                 $target_dir="img/";
-                 $target_file=$target_dir . basename($_FILES["img"]['name']);
-                 if (move_uploaded_file($_FILES["img"]["tmp_name"], $target_file)) {
-                  //  echo "The file ". htmlspecialchars( basename( $_FILES["fileToUpload"]["name"])). " has been uploaded.";
-                  } else {
-                  //  echo "Sorry, there was an error uploading your file.";
-                  };
-                  product_insert($namePro,$price,$filename,$description,$category_id);
-                  $listCategory = loai_select_all();
-                  
+                $content = $_POST['editor1'];
+                $name = $_POST['article_name']; // Lấy tiêu đề bài viết
+
+
+
+                $filename = "";
+                if (isset($_FILES['img']) && $_FILES['img']['error'] == 0) {
+                    $filename = $_FILES['img']['name'];
+                    $target_dir = "img/";
+                    $target_file = $target_dir . basename($_FILES["img"]["name"]);
+
+                    if (move_uploaded_file($_FILES["img"]["tmp_name"], $target_file)) {
+                        // Hình ảnh đã được tải lên thành công
+                    } else {
+                        // Lỗi khi tải hình ảnh lên
+                        echo "Sorry, there was an error uploading your file.";
+                    }
+                }
+
+                article_insert_from_editor($name, $content, $filename, $category_id);
+
+                // Các bước tiếp theo (nếu cần)
+                $list_loai = loai_select_all();
                 $alert = '<div class="alert alert-success" role="alert">
-                    Thêm thành công!
-                  </div>';
+                            Thêm thành công!
+                          </div>';
             }
-            include "product/add.php";
+
+
+
+            include "article/add.php";
             break;
         case 'article-list':
             if (isset($_POST['go']) && ($_POST['go'])) {
-                $keyword=$_POST['keyword'];
-                $category_id=$_POST['category_id'];
-               
-            }else{
-                $keyword='';
-                $category_id=0;
+                $keyword = $_POST['keyword'];
+                $category_id = $_POST['category_id'];
+            } else {
+                $keyword = '';
+                $category_id = 0;
             };
-            $listCategory = loai_select_all();
-            $listProduct = product_select_all($keyword,$category_id);
-            include "artical/list.php";
+            $list_loai = loai_select_all();
+            $listArticle = article_select_all($keyword, $category_id);
+            include "article/list.php";
             break;
-        case 'product-delete':
+        case 'article-delete':
             if (isset($_GET['id']) && ($_GET['id'] > 0)) {
-                product_delete($_GET['id']);
+                article_delete($_GET['id']);
             }
-            $listProduct = product_select_all("",0);
-            include "product/list.php";
+            $listArticle = article_select_all("", 0);
+            include "article/list.php";
             break;
-        case 'product-edit':
+        case 'article-edit':
             if (isset($_GET['id']) && ($_GET['id'] > 0)) {
-                $product = product_select_by_id($_GET['id']);
+                $article = article_select_by_id($_GET['id']);
             }
-            $listCategory = loai_select_all();
-            include "product/edit.php";
+            $list_loai = loai_select_all();
+            include "article/edit.php";
             break;
-        case 'product-update':
+        case 'article-update':
             if (isset($_POST['update']) && ($_POST['update'])) {
                 $category_id = $_POST['category_id'];
-                $id = $_POST['id'];
-                $namePro = $_POST['name'];
-                $price = $_POST['price'];
-                $description = $_POST['description'];
-                $filename = $_FILES['img']['name'];
-                $target_dir="img/";
-                $target_file=$target_dir . basename($_FILES["img"]['name']);
+                $content = $_POST['editor1'];
+                $id = $_POST['article_id'];
+                $name = $_POST['article_name']; // Lấy tiêu đề bài viết
+
+                $filename = "";
+                $target_dir = "img/";
+                $target_file = $target_dir . basename($_FILES["img"]['name']);
                 if (move_uploaded_file($_FILES["img"]["tmp_name"], $target_file)) {
-                 //  echo "The file ". htmlspecialchars( basename( $_FILES["fileToUpload"]["name"])). " has been uploaded.";
-                 } else {
-                 //  echo "Sorry, there was an error uploading your file.";
-                 };
-                product_update($id,$namePro,$price,$filename,$description,$category_id);
-                
+                    $filename = basename($_FILES["img"]['name']); // Gán tên tệp tin đã tải lên vào $filename
+                }
+
+                article_update($id, $name, $content, $filename, $category_id);
             }
-            
-            $listProduct = product_select_all("",0);
-            include "product/list.php";
+
+
+            $listArticle = article_select_all("", 0);
+            include "article/list.php";
             break;
             /** 
              * TODO: Customer
@@ -141,10 +151,10 @@ if (isset($_GET['act'])) {
                 $address = $_POST['address'];
                 $phone = $_POST['phone'];
                 $role_id = $_POST['role_id'];
-                 
-                 customer_insert_admin($user,$password,$email,$address,$phone,$role_id);
-                
-                  
+
+                customer_insert_admin($user, $password, $email, $address, $phone, $role_id);
+
+
                 $alert = '<div class="alert alert-success" role="alert">
                     Thêm thành công!
                   </div>';
@@ -152,9 +162,9 @@ if (isset($_GET['act'])) {
             include "customer/add.php";
             break;
         case 'customer-list':
-            
+
             $listCustomer = customer_select_all();
-           
+
             include "customer/list.php";
             break;
         case 'ac-delete':
@@ -162,19 +172,19 @@ if (isset($_GET['act'])) {
                 customer_delete($_GET['id']);
             }
             $listCustomer = customer_select_all();
-           
+
             include "customer/list.php";
             break;
         case 'ac-edit':
             if (isset($_GET['id']) && ($_GET['id'] > 0)) {
                 $customer = customer_select_by_id_admin($_GET['id']);
             }
-           
+
             include "customer/edit.php";
             break;
         case 'customer-update':
             if (isset($_POST['ac-update']) && ($_POST['ac-update'])) {
-               
+
                 $id = $_POST['id'];
                 $user = $_POST['user'];
                 $password = $_POST['password'];
@@ -182,81 +192,78 @@ if (isset($_GET['act'])) {
                 $address = $_POST['address'];
                 $phone = $_POST['phone'];
                 $role_id = $_POST['role_id'];
-                customer_update($id,$user,$password,$email,$address,$phone,$role_id);
-                
+                customer_update($id, $user, $password, $email, $address, $phone, $role_id);
             }
-            
+
             $listCustomer = customer_select_all();
             include "customer/list.php";
             break;
-             /** 
+            /** 
              * TODO: Comment
              * */
         case 'comment':
             $listComment = comment_select_all(0);
             include "comment/list.php";
             break;
-            case 'deletecm':
-                if (isset($_GET['id']) && ($_GET['id'] > 0)) {
-                    binh_luan_delete($_GET['id']);
-                }
-                $listComment = comment_select_all(0);
-               
-                include "comment/list.php";
-                break;
-                 /** 
-       * TODO: Static
-       * */
-      case 'static':
-        $listStatic= stactic_all();
-         include "static/list.php";
-         break;
-      case 'chart':
-        $listStatic= stactic_all();
-         include "static/chart.php";
-         break;
-                 /** 
-       * TODO: Bill
-       * */
-      case 'bill':
-      $listBill=loadall_bill(0);
-         include "bill/list.php";
-         break;
-      case 'bill-delete':
-        if (isset($_GET['id']) && ($_GET['id'] > 0)) {
-            bill_delete($_GET['id']);
-        }
-        $listBill=loadall_bill(0);
-         include "bill/list.php";
-         break;
-      case 'bill-edit':
-        if (isset($_GET['id']) && ($_GET['id'] > 0)) {
+        case 'deletecm':
+            if (isset($_GET['id']) && ($_GET['id'] > 0)) {
+                binh_luan_delete($_GET['id']);
+            }
+            $listComment = comment_select_all(0);
 
-         $bill= bill_select_by_id($_GET['id']);
-        }
-        
-        
-         include "bill/edit.php";
-         break;
-      case 'update-bill':
+            include "comment/list.php";
+            break;
+            /** 
+             * TODO: Static
+             * */
+        case 'static':
+            $listStatic = stactic_all();
+            include "static/list.php";
+            break;
+        case 'chart':
+            $listStatic = stactic_all();
+            include "static/chart.php";
+            break;
+            /** 
+             * TODO: Bill
+             * */
+        case 'bill':
+            $listBill = loadall_bill(0);
+            include "bill/list.php";
+            break;
+        case 'bill-delete':
+            if (isset($_GET['id']) && ($_GET['id'] > 0)) {
+                bill_delete($_GET['id']);
+            }
+            $listBill = loadall_bill(0);
+            include "bill/list.php";
+            break;
+        case 'bill-edit':
+            if (isset($_GET['id']) && ($_GET['id'] > 0)) {
 
-        if (isset($_POST['update-bill']) && ($_POST['update-bill'])) {
-            $id = $_POST['id'];
-            $billStatus = $_POST['bill_status'];
-            bill_update($id, $billStatus);
-            
-        }
-        
-        
-        $listBill=loadall_bill(0);
-         include "bill/list.php";
-         break;
-     
-               
+                $bill = bill_select_by_id($_GET['id']);
+            }
+
+
+            include "bill/edit.php";
+            break;
+        case 'update-bill':
+
+            if (isset($_POST['update-bill']) && ($_POST['update-bill'])) {
+                $id = $_POST['id'];
+                $billStatus = $_POST['bill_status'];
+                bill_update($id, $billStatus);
+            }
+
+
+            $listBill = loadall_bill(0);
+            include "bill/list.php";
+            break;
     }
-}else{
+} else {
     include "home.php";
 }
 
 include "footer.php";
 ?>
+<script src="https://kit.fontawesome.com/55a9fa42b8.js" crossorigin="anonymous"></script>
