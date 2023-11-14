@@ -2,6 +2,7 @@
 
 include "header.php";
 include "../DAO/loai.php";
+include "../DAO/binh-luan.php";
 
 
 if (isset($_GET['act'])) {
@@ -192,16 +193,28 @@ if (isset($_GET['act'])) {
              * TODO: Comment
              * */
         case 'comment':
-            $listComment = comment_select_all(0);
-            include "comment/list.php";
-            break;
-            case 'deletecm':
-                if (isset($_GET['id']) && ($_GET['id'] > 0)) {
-                    binh_luan_delete($_GET['id']);
+            case 'comment_list':
+                extract($_REQUEST);
+                if (isset($_REQUEST)) {
+                    $list_comment = comment_select_all();
+                    include "./comment/list.php";
                 }
-                $listComment = comment_select_all(0);
-               
-                include "comment/list.php";
+                break;
+            case "comment_detail":
+                extract($_REQUEST);
+                if (isset( $_GET["article_id"]) && ($_GET["article_id"])) {
+                    $list_comment = comment_select_by_article($article_id);
+                    include "./comment/detail.php";
+                }
+                break;
+
+            case 'comment_delete':
+                if (isset($_GET['article_id']) && ($_GET['comment_id'] > 0) && ($_GET['article_id'])) {
+                    $article_id = $_GET['article_id'];
+                    comment_delete($_GET['comment_id']);
+                }
+                $list_comment = comment_select_by_article($article_id);
+                include "./comment/detail.php";
                 break;
                  /** 
        * TODO: Static
