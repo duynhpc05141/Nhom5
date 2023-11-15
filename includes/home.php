@@ -42,7 +42,7 @@
                                         </div>
                                         <div class="trend-bottom-cap">
                                             <span class="color1">Kinh tế</span>
-                                            <h4><a href="details.html">Tương lai nào cho kinh tế Trung Đông trong xung đột?</a></h4>
+                                            <h4><a href="index.php?act=detail">Tương lai nào cho kinh tế Trung Đông trong xung đột?</a></h4>
                                         </div>
                                     </div>
                                 </div>

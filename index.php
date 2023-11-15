@@ -22,6 +22,10 @@ if (isset($_GET['act']) && ($_GET['act'] !== "")) {
     case 'contact':
       include "view/contact.php";
       break;
+
+    case 'detail':
+      include "./view/details.php";
+      break;  
    
     default:
 
