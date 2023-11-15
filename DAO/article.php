@@ -14,14 +14,14 @@ function article_get_image_paths_by_id($id)
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if ($result && isset($result['img'])) {
-            return $result['img']; // Trả về chuỗi đường dẫn ảnh
+            return $result['img'];
         }
-
-        return ''; // Trả về chuỗi rỗng nếu không tìm thấy hình ảnh
+        
+        return ''; 
     } catch (PDOException $e) {
-        // Xử lý lỗi kết nối hoặc truy vấn
+    
         echo "Connection failed: " . $e->getMessage();
-        return ''; // Trả về chuỗi rỗng trong trường hợp lỗi
+        return ''; 
     }
 }
 

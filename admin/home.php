@@ -1,8 +1,4 @@
 <style>
-    body {
-  /* Created with https://www.css-gradient.com */
-  background: #161616;
-}
 
 h1 {
   color: #fff;
@@ -124,7 +120,7 @@ h1 {
   <div class="container">
     <div class="row">
       <div class="col text-center mb-5">
-         <h1 class="display-4 font-weight-bolder">Chào mừng bạn đến với trang quản trị</h1>
+         <h1 class="display-4 font-weight-bolder text-dark">Chào mừng bạn đến với trang quản trị</h1>
   <p class="lead">Fast News </p>
       </div>
     </div>
