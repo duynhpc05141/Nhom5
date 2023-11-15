@@ -21,7 +21,7 @@
     </div>
     <div class="row justify-content-center ">
       <div class="col-10">
-        <table class="table table-bordered border-primary  text-center table-hover ">
+        <table class="table table-bordered   text-center table-hover ">
           <thead>
             <tr>
               <th scope="col">Chọn</th> <!-- Thêm cột checkbox -->

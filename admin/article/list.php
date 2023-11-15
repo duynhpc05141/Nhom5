@@ -1,96 +1,90 @@
-<style>
-  .btn {
-    margin: 0.5rem 0.5rem;
-  }
-</style>
 
 
-  <div class="container ">
-    <div class="alert alert-light shadow text-center " role="alert">
-      <h4>Danh sách bài viết</h4>
-    </div>
-    <div class="row justify-content-center ">
-      <div class="col-10">
+<!DOCTYPE html>
+<html lang="en">
 
-        <form action="index.php?act=article-list" class="d-flex justify-center w-50" role="search" method="post">
-          <input class="form-control me-2 btn-sm" name="keyword" type="text" placeholder="Enter category id" style="height: 40px;">
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+</head>
 
+<body>
+    <div class="container ">
+        <div class="alert alert-light shadow text-center " role="alert">
+            <h4>Danh sách bài viết</h4>
+        </div>
 
+        <table class="table table-bordered text-center table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Danh mục</th>
+                    <th scope="col">Tên bài viết</th>
+                    <th scope="col">Nội dung</th>
+                    <th scope="col">Hình ảnh </th>
+                    <th scope="col">Lượt xem </th>
+                    <th scope="col">Ngày đăng </th>
+                    <th scope="col">Cập nhật gần nhất </th>
+                    <th>Action </th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($listArticle as $row) : ?>
+                    <?php
+                    extract($row);
+                    $editArt = 'index.php?act=article-edit&id=' . $row['article_id'];
+                    $deleteArt = 'index.php?act=article-delete&id=' . $row['article_id'];
+                    $anh = '../img/' . $img;
+                    $image_paths_array = explode(',', $img);
 
-          <select name="category_id" id="" class="form-select " style="height: 40px;">
+                    $categoryInfo = loai_select_by_id($category_id);
+                    ?>
+                    <tr>
+                        <td><?= $article_id ?></td>
+                        <td><?= $categoryInfo['category_name'] ?></td>
+                        <td><?= $article_name ?></td>
+                        <td><?= $article_content ?></td>
+                        <td>
+                            <?php foreach ($image_paths_array as $image_path) : ?>
+                                <?php if (file_exists('../img/' . $image_path)) : ?>
+                                    <img src="../img/<?= $image_path ?>" alt="Hình ảnh bài viết" height="50px">
+                                <?php else : ?>
+                                    Chưa có ảnh được chọn
+                                <?php endif; ?>
+                            <?php endforeach; ?>
+                        </td>
+                        <td><?= $view ?></td>
+                        <td><?= $created_at ?></td>
+                        <td><?= $updated_at ?></td>
+                        <td>
+                            <a href="<?= $editArt ?>"><i class="fa-regular fa-pen-to-square"></i></a>
+                            <a onclick="return confirm('Bạn có muốn xóa?');" href="<?= $deleteArt ?>"><i class="fa-solid fa-trash-can text-danger"></i></a>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+
+            <div class="d-flex  align-items-center">
+    <a href="index.php?act=article-add" class="btn btn-primary btn-sm mb-1">Nhập thêm</a>
+    <form action="index.php?act=article-list" role="search" method="post" class="d-flex" style="margin-right: 2rem; ">
+        <select name="category_id" class="form-select mr-2 mb-1" style="height: 40px; width: 100px; margin-right: 0.3rem;">
             <option value="" selected>All</option>
             <?php
-           $list_loai = loai_select_all();
+            $list_loai = loai_select_all();
             foreach ($list_loai as $category) {
-
-              extract($category);
-              echo '
-              <option value="' . $category_id . '">' . $category_name . '</option> 
-              ';
+                extract($category);
+                echo '<option value="' . $category_id . '">' . $category_name . '</option>';
             }
             ?>
+        </select>
+        <input type="submit" name="go" class="btn btn-outline-success btn-sm" value="Thực hiện">
+    </form>
+</div>
 
-          </select>
 
-          <input type="submit" name="go" class="btn btn-outline-success " value="G" style="margin-top: 2px;">
-        </form>
-        <table class="table table-bordered border-primary  text-center table-hover ">
-          <thead>
-            <tr>
-
-              <th scope="col">ID</th>
-              <th scope="col">Danh mục</th>
-              <th scope="col">Tên bài viết</th>
-              <th scope="col">Nội dung</th>
-              <th scope="col">Hình ảnh </th>
-              <th>Action </th>
-            </tr>
-          </thead>
-          <tbody>
-            <?php
-
-            foreach ($listArticle as $row) {
-              extract($row);
-              $editArt = 'index.php?act=article-edit&id=' . $row['article_id'];
-              $deleteArt = 'index.php?act=article-delete&id=' . $row['article_id'];
-              $anh = 'img/' . $img;
-
-              if (file_exists($anh)) {
-                $hinh = '<img src=" ' . $anh . '" alt="Hình ảnh bài viết" height="50px">';
-              } else {
-                $hinh = 'Chưa có ảnh được chọn';
-              };
-              $categoryInfo = loai_select_by_id($category_id);
-              echo ' 
-    <tr>  
-   
-      <td>' . $article_id . '</td>
-      <td>' . $categoryInfo['category_name'] . '</td>
-      <td>' . $article_name . '</td>
-      <td>' . $article_content . '</td>
-      <td>' . $hinh . '</td>
-     
-     <td> 
-     <a  href="' . $editArt . '"><i class="fa-regular fa-pen-to-square"></i></a>
-     <a onclick="return confirm(\'Bạn có muốn xóa?\');" href="' . $deleteArt . '"><i class="fa-solid fa-trash-can text-danger"></i></a>
-     
-    
-     </td>
-    </tr>
-    ';
-            }
-
-            ?>
-
-          </tbody>
-          <a href="index.php?act=article-add"><input class="btn btn-primary btn-sm" type="button" value="Nhập thêm"></a>
         </table>
 
-      </div>
     </div>
-  </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+</body>
 
-
-
-
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+</html>

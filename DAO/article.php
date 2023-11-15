@@ -1,6 +1,32 @@
 <?php
 require_once 'pdo.php';
 
+function article_get_image_paths_by_id($id)
+{
+    try {
+        $sql = "SELECT img FROM article WHERE article_id = :id";
+
+        $conn = pdo_get_connection();
+        $stmt = $conn->prepare($sql);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($result && isset($result['img'])) {
+            return $result['img']; // Trả về chuỗi đường dẫn ảnh
+        }
+
+        return ''; // Trả về chuỗi rỗng nếu không tìm thấy hình ảnh
+    } catch (PDOException $e) {
+        // Xử lý lỗi kết nối hoặc truy vấn
+        echo "Connection failed: " . $e->getMessage();
+        return ''; // Trả về chuỗi rỗng trong trường hợp lỗi
+    }
+}
+
+
+
 function article_insert_from_editor($name, $content, $filename, $category_id)
 {
     $sql = "INSERT INTO article(article_name, article_content, img, category_id) VALUES (?,?,?,?)";
@@ -12,10 +38,10 @@ function article_insert_from_editor($name, $content, $filename, $category_id)
 function article_update($id, $name, $content, $filename, $category_id)
 {
     if ($filename !== "") {
-        $sql = "UPDATE article SET article_name=?, article_content=?, img=?, category_id=? WHERE article_id=?";
+        $sql = "UPDATE article SET article_name=?, article_content=?, img=?, category_id=?, updated_at=NOW() WHERE article_id=?";
         pdo_execute($sql, $name, $content, $filename, $category_id, $id);
     } else {
-        $sql = "UPDATE article SET article_name=?, article_content=?, category_id=? WHERE article_id=?";
+        $sql = "UPDATE article SET article_name=?, article_content=?, category_id=?, updated_at=NOW() WHERE article_id=?";
         pdo_execute($sql, $name, $content, $category_id, $id);
     }
 }
@@ -33,13 +59,11 @@ function article_delete($id)
     }
 }
 
-function article_select_all($keyword, $category_id)
+function article_select_all( $category_id)
 {
     $sql = "SELECT * FROM article WHERE 1";
 
-    if ($keyword != "") {
-        $sql .= " AND name LIKE '%" . $keyword . "%'";
-    }
+  
 
     if ($category_id > 0) {
         $sql .= " AND category_id =  '" . $category_id . "'";
