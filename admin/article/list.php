@@ -36,27 +36,35 @@
                     $image_paths_array = explode(',', $img);
 
                     $categoryInfo = loai_select_by_id($category_id);
-                    $maxLines = 1; // Số dòng tối đa muốn hiển thị
+                    $maxSentences = 1; // Số câu tối đa muốn hiển thị
                     $content = $article_content; // Nội dung của bài viết
-
-                    // Tách nội dung thành các dòng
-                    $lines = explode("\n", $content);
-
-                    // Kiểm tra số dòng
-                    if (count($lines) > $maxLines) {
-                        // Nếu số dòng vượt quá giới hạn, chỉ hiển thị 3 dòng và thêm dấu '...'
-                        $content = implode("\n", array_slice($lines, 0, $maxLines)) . '...';
+                    
+                    // Tách nội dung thành các câu
+                    $sentences = preg_split('/(?<=[.?!])\s+(?=[a-zA-Z])/u', $content);
+                    
+                    // Kiểm tra số câu
+                    if (count($sentences) > $maxSentences) {
+                        // Nếu số câu vượt quá giới hạn, chỉ hiển thị số câu đã chọn và thêm dấu '...'
+                        $limitedContent = implode(' ', array_slice($sentences, 0, $maxSentences)) . '...';
+                    } else {
+                        // Nếu số câu không vượt quá giới hạn, không thêm dấu '...'
+                        $limitedContent = $content;
                     }
+                    
+                  
+                    
+                    
+                    
                     ?>
                     <tr>
                         <td><?= $article_id ?></td>
                         <td><?= $categoryInfo['category_name'] ?></td>
                         <td><?= $article_name ?></td>
-                        <td><?= $content ?></td>
+                        <td><?= $limitedContent ?></td>
                         <td>
                             <?php foreach ($image_paths_array as $image_path) : ?>
                                 <?php if (file_exists('../img/' . $image_path)) : ?>
-                                    <img src="../img/<?= $image_path ?>" alt="Hình ảnh bài viết" height="50px">
+                                    <img src="../img/<?= $image_path ?>" alt="Hình ảnh bài viết" height="70px" class="p-1">
                                 <?php else : ?>
                                     Chưa có ảnh được chọn
                                 <?php endif; ?>
@@ -66,9 +74,9 @@
                         <td><?= $created_at ?></td>
                         <td><?= $updated_at ?></td>
                         <td>
-                            <a href="<?= $editArt ?>"><i class="fa-regular fa-pen-to-square"></i></a>
+                            <a title="Sửa" href="<?= $editArt ?>"><i class="fa-regular fa-pen-to-square"></i></a>
                             <a onclick="return confirm('Bạn có muốn xóa?');" href="<?= $deleteArt ?>"><i class="fa-solid fa-trash-can text-danger"></i></a>
-                            <a href="<?= $reviewArt ?>"><i class="fa-solid fa-eye text-success"></i></a>
+                            <a title="Xem trước" href="<?= $reviewArt ?>"><i class="fa-solid fa-eye text-success"></i></a>
                         </td>
                     </tr>
                 <?php endforeach; ?>
