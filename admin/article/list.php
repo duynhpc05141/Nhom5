@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -33,16 +31,28 @@
                     extract($row);
                     $editArt = 'index.php?act=article-edit&id=' . $row['article_id'];
                     $deleteArt = 'index.php?act=article-delete&id=' . $row['article_id'];
+                    $reviewArt = 'index.php?act=article-review&id=' . $row['article_id'];
                     $anh = '../img/' . $img;
                     $image_paths_array = explode(',', $img);
 
                     $categoryInfo = loai_select_by_id($category_id);
+                    $maxLines = 1; // Số dòng tối đa muốn hiển thị
+                    $content = $article_content; // Nội dung của bài viết
+
+                    // Tách nội dung thành các dòng
+                    $lines = explode("\n", $content);
+
+                    // Kiểm tra số dòng
+                    if (count($lines) > $maxLines) {
+                        // Nếu số dòng vượt quá giới hạn, chỉ hiển thị 3 dòng và thêm dấu '...'
+                        $content = implode("\n", array_slice($lines, 0, $maxLines)) . '...';
+                    }
                     ?>
                     <tr>
                         <td><?= $article_id ?></td>
                         <td><?= $categoryInfo['category_name'] ?></td>
                         <td><?= $article_name ?></td>
-                        <td><?= $article_content ?></td>
+                        <td><?= $content ?></td>
                         <td>
                             <?php foreach ($image_paths_array as $image_path) : ?>
                                 <?php if (file_exists('../img/' . $image_path)) : ?>
@@ -58,27 +68,28 @@
                         <td>
                             <a href="<?= $editArt ?>"><i class="fa-regular fa-pen-to-square"></i></a>
                             <a onclick="return confirm('Bạn có muốn xóa?');" href="<?= $deleteArt ?>"><i class="fa-solid fa-trash-can text-danger"></i></a>
+                            <a href="<?= $reviewArt ?>"><i class="fa-solid fa-eye text-success"></i></a>
                         </td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>
 
             <div class="d-flex  align-items-center">
-    <a href="index.php?act=article-add" class="btn btn-primary btn-sm mb-1">Nhập thêm</a>
-    <form action="index.php?act=article-list" role="search" method="post" class="d-flex" style="margin-right: 2rem; ">
-        <select name="category_id" class="form-select mr-2 mb-1" style="height: 40px; width: 100px; margin-right: 0.3rem;">
-            <option value="" selected>All</option>
-            <?php
-            $list_loai = loai_select_all();
-            foreach ($list_loai as $category) {
-                extract($category);
-                echo '<option value="' . $category_id . '">' . $category_name . '</option>';
-            }
-            ?>
-        </select>
-        <input type="submit" name="go" class="btn btn-outline-success btn-sm" value="Thực hiện">
-    </form>
-</div>
+                <a href="index.php?act=article-add" class="btn btn-primary btn-sm mb-1">Nhập thêm</a>
+                <form action="index.php?act=article-list" role="search" method="post" class="d-flex" style="margin-right: 2rem; ">
+                    <select name="category_id" class="form-select mr-2 mb-1 " style="height: 40px; width: 100px; margin-right: 0.3rem;">
+                        <option value="" selected>All</option>
+                        <?php
+                        $list_loai = loai_select_all();
+                        foreach ($list_loai as $category) {
+                            extract($category);
+                            echo '<option value="' . $category_id . '">' . $category_name . '</option>';
+                        }
+                        ?>
+                    </select>
+                    <input type="submit" name="go" class="btn btn-outline-secondary btn-sm" value="Filter">
+                </form>
+            </div>
 
 
         </table>

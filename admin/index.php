@@ -146,11 +146,10 @@ if (isset($_GET['act'])) {
                 $category_id = $_POST['category_id'];
                 $content = $_POST['editor1'];
                 $id = $_POST['article_id'];
-                $name = $_POST['article_name']; // Lấy tiêu đề bài viết
+                $name = $_POST['article_name'];
 
-                $image_paths = array(); // Khởi tạo mảng lưu trữ đường dẫn ảnh
+                $image_paths = array();
 
-                // Lấy số lượng ảnh đã tải lên trên form
                 $file_count = count($_FILES['files']['name']);
 
                 // Chỉ xử lý khi có tải lên ít nhất một ảnh
@@ -162,39 +161,39 @@ if (isset($_GET['act'])) {
                         $file_tmp = $_FILES['files']['tmp_name'][$i];
                         $file_error = $_FILES['files']['error'][$i];
 
-                        // Kiểm tra loại tệp tin
+
                         $file_extension = pathinfo($file_name, PATHINFO_EXTENSION);
                         if (!in_array(strtolower($file_extension), $allowed_types)) {
                             echo "File " . $file_name . " is not an image.";
-                            continue; // Bỏ qua tệp tin không phải là hình ảnh
+                            continue;
                         }
 
-                        // Đảm bảo tên tệp tin duy nhất
+
                         $target_dir = "../img/";
                         $target_file = $target_dir . uniqid() . "_" . basename($file_name);
 
                         if (move_uploaded_file($file_tmp, $target_file)) {
-                            // Xử lý khi tải ảnh lên thành công
-                            $image_paths[] = $target_file; // Thêm đường dẫn ảnh vào mảng
+
+                            $image_paths[] = $target_file;
                         } else {
-                            // Xử lý lỗi khi di chuyển file
+
                             echo "Sorry, there was an error uploading your file.";
                         }
                     }
                 }
 
-                // Lấy các đường dẫn ảnh cũ đã lưu trong CSDL
+
                 $old_image_paths = article_get_image_paths_by_id($id);
 
-                // Thay thế hoàn toàn ảnh cũ nếu có tải lên ảnh mới
+
                 if (!empty($image_paths)) {
                     $image_paths_string = implode(',', $image_paths);
                 } else {
-                    // Nếu không có tải lên ảnh mới, giữ nguyên ảnh cũ
+
                     $image_paths_string = implode(',', $old_image_paths);
                 }
 
-                // Cập nhật thông tin bài viết với các thay đổi mới
+
                 article_update($id, $name, $content, $image_paths_string, $category_id);
             }
 
@@ -203,6 +202,15 @@ if (isset($_GET['act'])) {
 
 
             include "article/list.php";
+            break;
+        case 'article-review':
+            if (isset($_GET['id']) && ($_GET['id'])) {
+                $id = $_GET['id'];
+            } else {
+                $id = 0;
+            }
+            $reviewArt = article_select_by_id($id);
+            include "article/review.php";
             break;
             /** 
              * TODO: Customer

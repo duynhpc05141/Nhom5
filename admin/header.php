@@ -17,21 +17,25 @@
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="index.php?act=home">Trang chủ</a>
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="index.php?act=category_list">Danh mục</a>
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="index.php?act=article-list">Bài viết</a>
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="index.php?act=home">Người dùng</a>
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="index.php?act=home">Bình luận</a>
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="index.php?act=home">Yêu thích</a>
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="index.php?act=home">Thống kê</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="index.php?act=">Người dùng</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="index.php?act=">Bình luận</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="index.php?act=">Yêu thích</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="index.php?act=">Thống kê</a>
                 </div>
             </div>
             <!-- Page content wrapper-->
             <div id="page-content-wrapper">
                 <!-- Top navigation-->
-                <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+                  <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
                     <div class="container-fluid">
-                        <button class="btn " id="sidebarToggle"><i class="fa-solid fa-backward  text-secondary"></i></button>
+                        <i id="sidebarToggle" class="fa-solid fa-backward text-secondary" ></i>
                         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                           <!-- login -->
+                            <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
+                                <li class="nav-item active"><a class="nav-link" href="#!">Login</a></li>
+                                
+                               
+                            </ul>
                         </div>
                     </div>
                 </nav>
