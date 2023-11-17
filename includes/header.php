@@ -96,7 +96,7 @@
                                             <li><a href="index.php?act=home">Trang chủ</a></li>
                                             <li><a href="index.php?act=category">Danh mục</a></li>
                                             <li><a href="index.php?act=about">Giới thiệu</a></li>
-                                            <li><a href="index.php?act=latest">Tin mới nhất</a></li>
+                                            <li><a href="index.php?act=articles">Tin mới nhất</a></li>
                                             <li><a href="index.php?act=contact">Liên hệ</a></li>
                                             <li><a href="#">Pages</a>
                                                 <ul class="submenu">

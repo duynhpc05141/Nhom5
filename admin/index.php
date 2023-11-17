@@ -4,6 +4,7 @@ include "../DAO/article.php";
 include "header.php";
 include "../DAO/loai.php";
 include "../DAO/binh-luan.php";
+include "../DAO/thong-ke.php";
 
 
 if (isset($_GET['act'])) {

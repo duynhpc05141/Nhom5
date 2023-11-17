@@ -19,7 +19,7 @@
                 <?php
                 foreach ($listStatic as $static) {
                     extract($static);
-                    echo "['".$namecategory."', ".$countproduct."],";
+                    echo "['".$namecategory."', ".$countarticle."],";
                 }
                 ?>
             ]);
@@ -33,30 +33,7 @@
             chart.draw(data, options);
         }
 
-        google.charts.setOnLoadCallback(drawLineChart);
-
-        function drawLineChart() {
-            // Set Data
-            const data = google.visualization.arrayToDataTable([
-                ['Price', 'Size'],
-                <?php
-                foreach ($listStatic as $static) {
-                    extract($static);
-                    echo "[".$avgprice.", ".$countproduct."],";
-                }
-                ?>
-            ]);
-            // Set Options
-            const options = {
-                title: 'Số lượng sản phẩm vs. Giá trung bình',
-                hAxis: { title: 'Giá trung bình' },
-                vAxis: { title: 'Số lượng sản phẩm' },
-                legend: 'none'
-            };
-            // Draw
-            const chart = new google.visualization.LineChart(document.getElementById('myLine'));
-            chart.draw(data, options);
-        }
+        
     </script>
 </body>
 </html>

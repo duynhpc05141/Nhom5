@@ -41,6 +41,8 @@ foreach ($image_paths_array as $image_path) {
     }
 }
 
+$article_id = $id; 
+$article_url = "https://652e-171-246-70-20.ngrok-free.app/Nhom5/article.php?id=$article_id"; 
 
 ?>
 <main>
@@ -107,7 +109,7 @@ foreach ($image_paths_array as $image_path) {
                                 <h3 class="mr-20">Chia sẻ:</h3>
                                 <ul>
                                     <li><a href="#"><img src="../view/assets/img/news/icon-ins.png" alt=""></a></li>
-                                    <li><a href="#"><img src="../view/assets/img/news/icon-fb.png" alt=""></a></li>
+                                    <li><a href="https://www.facebook.com/sharer/sharer.php?u=<?= urlencode($article_url) ?>"><img src="../view/assets/img/news/icon-fb.png" alt=""></a></li>
                                     <li><a href="#"><img src="../view/assets/img/news/icon-tw.png" alt=""></a></li>
                                     <li><a href="#"><img src="../view/assets/img/news/icon-yo.png" alt=""></a></li>
 

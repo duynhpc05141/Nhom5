@@ -19,8 +19,8 @@ if (isset($_GET['act']) && ($_GET['act'] !== "")) {
     case 'about':
       include "view/about.php";
       break;
-    case 'latest':
-      include "view/latest_news.php";
+    case 'articles':
+      include "view/articles.php";
       break;
     case 'contact':
       include "view/contact.php";

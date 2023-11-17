@@ -42,7 +42,7 @@
                 <td><?= $category_name ?></td>
               <td> 
                 <a  href="<?= $edit ?>"><i class="fa-regular fa-pen-to-square"></i></a>
-                <a onclick="return confirm('Bạn có muốn xóa?');" href="<?= $delete_category ?>"><i class="fa-solid fa-trash-can text-danger"></i></a>
+                <a onclick="return confirm('Bạn có muốn xóa?');" href="<?=$delect_category ?>"><i class="fa-solid fa-trash-can text-danger"></i></a>
 
               </td>
               </tr>
