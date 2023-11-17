@@ -1,13 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.0/xlsx.full.min.js"></script>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-    <script src="https://kit.fontawesome.com/55a9fa42b8.js" crossorigin="anonymous"></script>
-    <title>Document</title>
-</head>
 <style>
     .btn {
         margin: 0.5rem 0.5rem;
@@ -15,6 +7,7 @@
 </style>
 
 <body>
+
     <div class="container ">
         <div class="alert alert-light shadow text-center " role="alert">
             <h4>Thống kê</h4>
@@ -22,16 +15,15 @@
         <div class="row justify-content-center ">
             <div class="col-10">
 
-                <table class="table table-bordered border-primary  text-center table-hover ">
+                <table class="table table-bordered text-center table-hover " id="myTable" border="1">
                     <thead>
                         <tr>
-                            <th scope="col">Chọn</th> <!-- Thêm cột checkbox -->
+
                             <th scope="col">ID danh mục</th>
                             <th scope="col">Tên danh mục</th>
-                            <th scope="col">Số lượng</th>
-                            <th scope="col">Giá cao nhất </th>
-                            <th scope="col">Giá thấp nhất </th>
-                            <th scope="col">Giá trung bình</th>
+                            <th scope="col">Số lượng bài viết</th>
+
+
                         </tr>
                     </thead>
                     <tbody>
@@ -40,34 +32,121 @@
                         foreach ($listStatic as $static) {
                             extract($static);
 
-                            echo ' 
-    <tr>  
-    <td><input type="checkbox" class="select-checkbox"></td> <!-- Thêm checkbox -->
-      <td>' . $idcategory . '</td>
-      <td>' . $namecategory . '</td>
-      <td>' . $countproduct . '</td>
-      <td>' . $maxprice . '</td>
-      <td>' . $minprice . '</td>
-      <td>' . $avgprice . '</td>
-    </tr>
-    ';
+                                 echo ' 
+                                <tr>  
+                                
+                                <td>' . $idcategory . '</td>
+                                <td>' . $namecategory . '</td>
+                                <td>' . $countarticle . '</td>
+                                
+                                </tr>
+                                ';
                         }
 
                         ?>
 
                     </tbody>
 
-
                     <a href="index.php?act=chart"><input class="btn btn-primary btn-sm" type="button" value="Xem biểu đồ"></a>
+                    <button onclick="exportTableToExcel()" class="btn"><img src="../img/ex.png" alt="" width="50px"></button>
+
+                    <button onclick="exportTableToCSV()" class="btn"><img src="../img/cs.png" alt="" width="40px"></button>
                 </table>
 
             </div>
         </div>
     </div>
-</body>
-
-</html>
 
 
+<script>
+    function downloadCSV(csv, filename) {
+        var csvFile;
+        var downloadLink;
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+        csvFile = new Blob([csv], {
+            type: "text/csv"
+        });
+        downloadLink = document.createElement("a");
+        downloadLink.download = filename;
+        downloadLink.href = window.URL.createObjectURL(csvFile);
+        downloadLink.style.display = "none";
+        document.body.appendChild(downloadLink);
+        downloadLink.click();
+    }
+
+    function exportTableToCSV() {
+        var table = document.getElementById("myTable");
+        var rows = table.querySelectorAll("tr");
+        var csv = [];
+
+        for (var i = 0; i < rows.length; i++) {
+            var row = [],
+                cols = rows[i].querySelectorAll("td, th");
+
+            for (var j = 0; j < cols.length; j++)
+                row.push(cols[j].innerText);
+
+            csv.push(row.join(","));
+        }
+
+        var currentDate = new Date();
+        var filename = "thongke_" + currentDate.toISOString().slice(0, 10) + ".csv";
+        downloadCSV(csv.join("\n"), filename);
+    }
+
+
+    //Export Excel Table
+
+    function exportTableToExcel() {
+        var table = document.getElementById("myTable");
+        var rows = table.querySelectorAll("tr");
+        var data = [];
+
+        for (var i = 0; i < rows.length; i++) {
+            var cols = rows[i].querySelectorAll("td, th");
+            var rowData = [];
+
+            for (var j = 0; j < cols.length; j++) {
+                rowData.push(cols[j].innerText);
+            }
+
+            data.push(rowData);
+        }
+
+        var ws = XLSX.utils.aoa_to_sheet(data);
+        var wb = XLSX.utils.book_new();
+        XLSX.utils.book_append_sheet(wb, ws, "Sheet1");
+
+        var wbout = XLSX.write(wb, {
+            bookType: "xlsx",
+            type: "binary"
+        });
+
+        function s2ab(s) {
+            var buf = new ArrayBuffer(s.length);
+            var view = new Uint8Array(buf);
+            for (var i = 0; i < s.length; i++) view[i] = s.charCodeAt(i) & 0xff;
+            return buf;
+        }
+        var blob = new Blob([s2ab(wbout)], {
+            type: "application/octet-stream"
+        });
+
+        var currentDate = new Date();
+        var filename = "thongke_" + currentDate.toISOString().slice(0, 10) + ".xlsx";
+        if (navigator.msSaveBlob) {
+            navigator.msSaveBlob(blob, filename);
+        } else {
+            var link = document.createElement("a");
+            if (link.download !== undefined) {
+                var url = URL.createObjectURL(blob);
+                link.setAttribute("href", url);
+                link.setAttribute("download", filename);
+                link.style.visibility = "hidden";
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            }
+        }
+    }
+</script>

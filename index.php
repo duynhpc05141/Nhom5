@@ -10,14 +10,17 @@ if (isset($_GET['act']) && ($_GET['act'] !== "")) {
     case 'home':
       include "./includes/home.php";
       break;
+    case 'detail':
+      include "./view/details.php";
+      break;
     case 'category':
       include "view/categori.php";
       break;
     case 'about':
       include "view/about.php";
       break;
-    case 'latest':
-      include "view/latest_news.php";
+    case 'articles':
+      include "view/articles.php";
       break;
     case 'contact':
       include "view/contact.php";

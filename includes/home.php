@@ -81,7 +81,7 @@
                             </div>
                             <div class="trand-right-cap">
                                 <span class="color1">Phim</span>
-                                <h4><a href="details.html">10 phim hay nhất của Martin Scorsese</a></h4>
+                                <h4><a href="index.php?act=detail">10 phim hay nhất của Martin Scorsese</a></h4>
                             </div>
                         </div>
                         <div class="trand-right-single d-flex">
@@ -90,7 +90,7 @@
                             </div>
                             <div class="trand-right-cap">
                                 <span class="color3">Cẩm nang</span>
-                                <h4><a href="details.html">7 phố đi bộ ấn tượng nhất thế giới</a></h4>
+                                <h4><a href="index.php?act=detail">7 phố đi bộ ấn tượng nhất thế giới</a></h4>
                             </div>
                         </div>
                         <div class="trand-right-single d-flex">
@@ -99,7 +99,7 @@
                             </div>
                             <div class="trand-right-cap">
                                 <span class="color2">Xe</span>
-                                <h4><a href="details.html">Dịch vụ gọi xe máy điện Xanh SM Bike đến TP HCM</a></h4>
+                                <h4><a href="index.php?act=detail">Dịch vụ gọi xe máy điện Xanh SM Bike đến TP HCM</a></h4>
                             </div>
                         </div>
                         <div class="trand-right-single d-flex">
@@ -108,7 +108,7 @@
                             </div>
                             <div class="trand-right-cap">
                                 <span class="color4">Mạo hiểm</span>
-                                <h4><a href="details.html">10 ôtô bán nhiều nhất quý III</a></h4>
+                                <h4><a href="index.php?act=detail">10 ôtô bán nhiều nhất quý III</a></h4>
                             </div>
                         </div>
                         <div class="trand-right-single d-flex">
@@ -117,7 +117,7 @@
                             </div>
                             <div class="trand-right-cap">
                                 <span class="color1">Thể thao</span>
-                                <h4><a href="details.html">10 ôtô bán nhiều nhất quý III</a></h4>
+                                <h4><a href="index.php?act=detail">10 ôtô bán nhiều nhất quý III</a></h4>
                             </div>
                         </div>
                     </div>
