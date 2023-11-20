@@ -35,41 +35,44 @@
                         <!-- Trending Bottom -->
                         <div class="trending-bottom">
                             <div class="row">
-                                <div class="col-lg-4">
+                          
+                    <?php
+                  
+                      foreach ($listArticle as $row) {
+                        
+                        extract($row);
+                        $anh = '../img/' . $img;
+                        $image_paths_array = explode(',', $img);
+
+                        $categoryInfo = loai_select_by_id($category_id);
+                        $anh = '../img/' . $img;
+                        $image_paths_array = explode(',', $img);
+                        $image_html_locations = []; // Khởi tạo mảng chứa thẻ hình ảnh hoặc thông báo
+
+                        foreach ($image_paths_array as $image_path) {
+                            $full_image_path = './img/' . trim($image_path);
+
+                            if (file_exists($full_image_path)) {
+                                $image_html_locations[] = '<img class="card-img" src="' . $full_image_path . '" alt="Hình ảnh bài viết" style="max-height: 400px;">';
+                            } else {
+                                $image_html_locations[] = 'Chưa có ảnh được chọn';
+                            }
+                            
+                        }
+                        $detail="index.php?act=detail&id=".$article_id;
+                              echo'  <div class="col-lg-4">
                                     <div class="single-bottom mb-35">
                                         <div class="trend-bottom-img mb-30">
-                                            <img src="./view/assets/img/trending/trending_bottom1.jpg" alt="">
+                                            '.$image_html_locations[0].'
                                         </div>
                                         <div class="trend-bottom-cap">
-                                            <span class="color1">Kinh tế</span>
-                                            <h4><a href="index.php?act=detail">Tương lai nào cho kinh tế Trung Đông trong xung đột?</a></h4>
+                                            <span class="color1">'.$category_name.'</span>
+                                            <h4><a href="'.$detail.'">'.$article_name.'</a></h4>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="single-bottom mb-35">
-                                        <div class="trend-bottom-img mb-30">
-                                            <img src="./view/assets/img/trending/trending_bottom2.jpg" alt="">
-                                        </div>
-                                        <div class="trend-bottom-cap">
-                                            <span class="color2">Thể thao</span>
-                                            <h4>
-                                                <h4><a href="details.html">Những thứ đang tuyệt chủng ở Ngoại hạng Anh</a></h4>
-                                            </h4>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="single-bottom mb-35">
-                                        <div class="trend-bottom-img mb-30">
-                                            <img src="./view/assets/img/trending/trending_bottom3.jpg" alt="">
-                                        </div>
-                                        <div class="trend-bottom-cap">
-                                            <span class="color3">Du lịch</span>
-                                            <h4><a href="details.html">Hàn Quốc vật lộn diệt rệp trong mùa cao điểm khách</a></h4>
-                                        </div>
-                                    </div>
-                                </div>
+                                </div>';
+                                
+                    }?>  
                             </div>
                         </div>
                     </div>
@@ -150,7 +153,7 @@
                                     <h4><a href="#">Giá điện tăng 4,5% lên hơn 2.000 đồng/kWh từ hôm nay</a></h4>
                                 </div>
                             </div>
-                            <div class="weekly-single active">
+                            <div class="weekly-single ">
                                 <div class="weekly-img">
                                     <img src="./view/assets/img/news/weeklyNews1.jpg" alt="">
                                 </div>

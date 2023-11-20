@@ -75,9 +75,11 @@ function article_select_all( $category_id)
 }
 function article_select_all_home()
 {
-    $sql = "SELECT * FROM article WHERE 1 ORDER BY id desc limit 0,9";
-    $listProduct = pdo_query($sql);
-    return $listProduct;
+    $sql = "SELECT article.*, category.category_name 
+    FROM article 
+    JOIN category ON article.category_id = category.category_id";
+    $listArticle = pdo_query($sql);
+    return $listArticle;
 }
 
 function article_select_by_id($id)

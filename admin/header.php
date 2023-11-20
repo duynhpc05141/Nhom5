@@ -19,7 +19,7 @@
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="index.php?act=article-list">Bài viết</a>
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="index.php?act=">Người dùng</a>
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="index.php?act=">Bình luận</a>
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="index.php?act=">Yêu thích</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="index.php?act=favourite">Yêu thích</a>
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="index.php?act=static">Thống kê bài viết</a>
                     
                 </div>
@@ -41,7 +41,7 @@
                     </div>
                 </nav>
                 <!-- Page content-->
-                <div class="container-fluid shadow" >
+                <div class="container-fluid shadow p-3" >
 
                    
               

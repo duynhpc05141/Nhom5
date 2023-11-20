@@ -65,8 +65,8 @@ if (isset($_GET['act'])) {
                 $category_id = $_POST['category_id'];
                 $content = $_POST['editor1'];
                 $name = $_POST['article_name'];
-                $image_paths = array(); // Khởi tạo mảng lưu trữ đường dẫn ảnh
-                $allowed_image_count = 2; // Số lượng ảnh tối đa được tải lên
+                $image_paths = array(); 
+                $allowed_image_count = 2; 
                 if (empty($content)) {
                     $alert = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
         Nội dung không được để trống.
@@ -86,18 +86,18 @@ if (isset($_GET['act'])) {
                             $file_extension = pathinfo($file_name, PATHINFO_EXTENSION);
                             if (!in_array(strtolower($file_extension), $allowed_types)) {
                                 echo "File " . $file_name . " is not an image.";
-                                continue; // Bỏ qua tệp tin không phải là hình ảnh
+                                continue; 
                             }
 
-                            // Đảm bảo tên tệp tin duy nhất
+                         
                             $target_dir = "../img/";
                             $target_file = $target_dir . uniqid() . "_" . basename($file_name);
 
                             if (move_uploaded_file($file_tmp, $target_file)) {
-                                // Xử lý khi tải ảnh lên thành công
-                                $image_paths[] = $target_file; // Thêm đường dẫn ảnh vào mảng
+                                
+                                $image_paths[] = $target_file;
                             } else {
-                                // Xử lý lỗi khi di chuyển file
+                             
                                 echo "Sorry, there was an error uploading your file.";
                             }
                         }
@@ -298,39 +298,15 @@ if (isset($_GET['act'])) {
             include "static/chart.php";
             break;
             /** 
-             * TODO: Bill
+             * TODO: Favourite
              * */
-        case 'bill':
-            $listBill = loadall_bill(0);
-            include "bill/list.php";
+        case 'favourite':
+            $favo = stactic_favourite_articles();
+            include "static/favourite.php";
             break;
-        case 'bill-delete':
-            if (isset($_GET['id']) && ($_GET['id'] > 0)) {
-                bill_delete($_GET['id']);
-            }
-            $listBill = loadall_bill(0);
-            include "bill/list.php";
-            break;
-        case 'bill-edit':
-            if (isset($_GET['id']) && ($_GET['id'] > 0)) {
-
-                $bill = bill_select_by_id($_GET['id']);
-            }
-
-
-            include "bill/edit.php";
-            break;
-        case 'update-bill':
-
-            if (isset($_POST['update-bill']) && ($_POST['update-bill'])) {
-                $id = $_POST['id'];
-                $billStatus = $_POST['bill_status'];
-                bill_update($id, $billStatus);
-            }
-
-
-            $listBill = loadall_bill(0);
-            include "bill/list.php";
+        case 'chartFavourite':
+            $favo = stactic_favourite_articles();
+            include "static/chartFavourite.php";
             break;
     }
 } else {
