@@ -5,6 +5,7 @@ include "header.php";
 include "../DAO/loai.php";
 include "../DAO/binh-luan.php";
 include "../DAO/thong-ke.php";
+include "../DAO/khach-hang.php";
 
 
 if (isset($_GET['act'])) {
@@ -216,60 +217,57 @@ if (isset($_GET['act'])) {
             /** 
              * TODO: Customer
              * */
-        case 'customer-add':
+        case 'user_add':
+            $target_dir = "../img/";
             if (isset($_POST['addCus']) && ($_POST['addCus'])) {
-                $user = $_POST['user'];
-                $password = $_POST['password'];
+                $user = $_POST['user_name'];
+                $password = $_POST['user_password'];
                 $email = $_POST['email'];
-                $address = $_POST['address'];
-                $phone = $_POST['phone'];
+                $phone = $_POST['user_phone'];
                 $role_id = $_POST['role_id'];
-
-                customer_insert_admin($user, $password, $email, $address, $phone, $role_id);
-
-
+                $avatar = save_file('avatar', $target_dir);
+                user_insert_admin($user, $email, $avatar, $phone,$password ,$role_id);
                 $alert = '<div class="alert alert-success" role="alert">
                     Thêm thành công!
                   </div>';
             }
-            include "customer/add.php";
+            include "./user/add.php";
             break;
-        case 'customer-list':
-
-            $listCustomer = customer_select_all();
-
-            include "customer/list.php";
+        case 'user_list':
+            $listUser = user_select_all();
+            include "./user/list.php";
             break;
-        case 'ac-delete':
-            if (isset($_GET['id']) && ($_GET['id'] > 0)) {
-                customer_delete($_GET['id']);
+        case 'user_delete':
+            if (isset($_GET['user_id']) && ($_GET['user_id'] > 0)) {
+                customer_delete($_GET['user_id']);
             }
-            $listCustomer = customer_select_all();
-
-            include "customer/list.php";
+            $listUser = user_select_all();
+            include "./user/list.php";
             break;
-        case 'ac-edit':
-            if (isset($_GET['id']) && ($_GET['id'] > 0)) {
-                $customer = customer_select_by_id_admin($_GET['id']);
+        case 'user_edit':
+            if (isset($_GET['user_id']) && ($_GET['user_id'] > 0)) {
+                $customer = customer_select_by_id_admin($_GET['user_id']);
             }
-
-            include "customer/edit.php";
+            include "./user/edit.php";
             break;
-        case 'customer-update':
+        case 'user_update':
+            $target_dir = "../img/";
             if (isset($_POST['ac-update']) && ($_POST['ac-update'])) {
-
                 $id = $_POST['id'];
                 $user = $_POST['user'];
                 $password = $_POST['password'];
                 $email = $_POST['email'];
-                $address = $_POST['address'];
+                $img = save_file('avatar', $target_dir);
                 $phone = $_POST['phone'];
                 $role_id = $_POST['role_id'];
-                customer_update($id, $user, $password, $email, $address, $phone, $role_id);
+                user_update($id, $user, $password, $email, $img, $phone, $role_id);
+                $alert = '<div class="alert alert-success" role="alert">
+                    Cập nhật thành công!
+                  </div>';
             }
 
-            $listCustomer = customer_select_all();
-            include "customer/list.php";
+            $listUser = user_select_all();
+            include "./user/list.php";
             break;
             /** 
              * TODO: Comment

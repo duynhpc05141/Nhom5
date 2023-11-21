@@ -12,6 +12,12 @@
   .btn {
     margin: 0.5rem 0.5rem;
   }
+  .limited-text {
+    max-width: 15ch; /* Số lượng ký tự bạn muốn giới hạn */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 </style>
 
 <body>
@@ -24,16 +30,13 @@
         <table class="table table-bordered   text-center table-hover ">
           <thead>
             <tr>
-              <th scope="col">Chọn</th> <!-- Thêm cột checkbox -->
-              <th scope="col">ID</th>
-              <th scope="col">Tên</th>
+              <th scope="col">Tên khách hàng</th>
               <th scope="col">Ảnh đại diện</th>
               <th scope="col">Mật khẩu</th>
-              <th scope="col">Email </th>
-              <th scope="col">Địa chỉ </th>
+              <th scope="col">Email</th>
               <th scope="col">Số điện thoại</th>
               <th scope="col">Vai trò</th>
-              <th>Action </th>
+              <th scope="col">Thao tác</th>
             </tr>
           </thead>
           <tbody>
@@ -43,50 +46,40 @@
               return $role_id == 1 ? "Admin" : "User";
             }
 
-            foreach ($listCustomer as $row) {
+            foreach ($listUser as $row) {
               extract($row);
-              $editAc = 'index.php?act=ac-edit&id=' . $row['id'];
-              $deleteAc = 'index.php?act=ac-delete&id=' . $row['id'];
-              $anh = 'img/' . $img;
+              $editAc = 'index.php?act=user_edit&user_id=' . $user_id;
+              $deleteAc = 'index.php?act=user_delete&user_id=' . $user_id;
+              $img = '../img/' . $avatar;
+              $hashed_password = password_hash($user_password, PASSWORD_DEFAULT);
 
-              if (file_exists($anh)) {
-                $hinh = '<img src=" ' . $anh . '" alt="Hình ảnh đại diện" height="100px">';
+              if (file_exists($img)) {
+                $hinh = '<img src=" ' . $img . '" alt="Hình ảnh đại diện" height="50px" style="border-radius:10px;">';
               } else {
                 $hinh = '0';
               };
               echo ' 
-    <tr>  
-    <td><input type="checkbox" class="select-checkbox"></td> <!-- Thêm checkbox -->
-      <td>' . $id . '</td>
-      <td>' . $user . '</td>
-      <td>' . $hinh . '</td>
-      <td>' . $password . '</td>
-      <td>' . $email . '</td>
-      <td>' . $address . '</td>
-      <td>' . $phone . '</td>
-
-      <td>' . getRole($role_id) . '</td>
-     <td> 
-     <a  href="' . $editAc . '"><i class="fa-regular fa-pen-to-square"></i></a>
-     <a onclick="return confirm(\'Bạn có muốn xóa?\');"  href="' . $deleteAc . '"><i class="fa-solid fa-trash-can text-danger"></i></a>
-     
-    
-     </td>
-    </tr>
-    ';
-            }
+              <tr>  
+                <td>' . $user_name . '</td>
+                <td>' . $hinh . '</td>
+                <td class="limited-text">' . $hashed_password . '</td>
+                <td>' . $email . '</td>
+                <td>' . $user_phone . '</td>
+                <td>' . getRole($role_id) . '</td>
+                <td>
+                  <a  href="' . $editAc . '"><i class="fa-regular fa-pen-to-square"></i></a>
+                  <a onclick="return confirm(\'Bạn có muốn xóa?\');"  href="' . $deleteAc . '"><i class="fa-solid fa-trash-can text-danger"></i></a>
+                </td>
+              </tr>
+              ';
+              }
 
             ?>
 
           </tbody>
-          <!-- Thêm mã HTML cho các nút -->
-          <input id="delete-selected" class="btn btn-danger btn-sm" type="button" value="Xóa các mục đã chọn">
-          <input id="select-all" class="btn btn-warning btn-sm" type="button" value="Chọn tất cả">
-          <input id="deselect-all" class="btn btn-secondary btn-sm" type="button" value="Bỏ chọn tất cả">
-          <input id="export-csv" class="btn btn-success btn-sm" type="button" value="Xuất CSV">
-
-          <a href="index.php?act=customer-add"><input class="btn btn-primary btn-sm" type="button" value="Nhập thêm"></a>
+          <a href="index.php?act=user_add"><input class="btn btn-primary btn-sm" type="button" value="Nhập thêm"></a>
         </table>
+        
 
       </div>
     </div>
