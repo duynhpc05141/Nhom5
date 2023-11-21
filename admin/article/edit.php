@@ -1,4 +1,10 @@
 
+  <style>
+    label.error {
+        color: red;
+    }
+
+</style>
   <div class="container">
     <?php
     if (is_array($article)) {
@@ -13,11 +19,11 @@
 
     <div class="row justify-content-center">
       <div class="col-12">
-        <form action="index.php?act=article-update" class="row g-3 product mx-auto shadow p-5" method="post" enctype="multipart/form-data">
+        <form id="article-form"  action="index.php?act=article-update" class="row g-3 product mx-auto shadow p-5" method="post" enctype="multipart/form-data">
           <div class="col-md-12">
             <label for="validationCustom02" class="form-label">Tên loại</label>
             <select name="category_id" class="form-select" style="height: 40px;">
-            <option value="" selected>All</option>
+            <option value="" selected >All</option>
               <?php
               $list_loai = loai_select_all();
               foreach ($list_loai as $row) {
@@ -68,7 +74,6 @@
           <div class="col-12">
             <input type="hidden" name="article_id" value="<?= $article_id ?>">
             <input class="btn btn-primary" type="submit" value="Cập nhật" name="update"></input>
-            <input class="btn btn-primary" type="reset" value="Nhập lại"></input>
             <a href="index.php?act=article-list"><input class="btn btn-primary" type="button" value="Danh sách"></input></a>
           </div>
         </form>
@@ -76,9 +81,11 @@
     </div>
   </div>
 
-
+  
   <script src="https://cdn.ckeditor.com/4.17.1/standard/ckeditor.js"></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/additional-methods.min.js"></script>
   <script>
     CKEDITOR.replace('editor1', {
       // Cấu hình CKEditor
@@ -114,6 +121,32 @@
         }
     }
 }
+
+$(document).ready(function() {
+     $('#article-form').validate({
+         rules: {
+             category_id: {
+                 required: true
+             },
+             article_name: {
+                 required: true
+             },
+             // Add other validation rules for remaining fields if needed
+         },
+         messages: {
+             category_id: {
+                 required: "Vui lòng chọn danh mục"
+             },
+             article_name: {
+                 required: "Vui lòng nhập tiêu đề"
+             },
+             // Add messages for other fields if needed
+         },
+         submitHandler: function(form) {
+             form.submit();
+         }
+     });
+ });
 
   </script>
  

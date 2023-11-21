@@ -80,20 +80,20 @@
                     <div class="col-lg-4">
                         <div class="trand-right-single d-flex">
                             <div class="trand-right-img">
-                                <img src="./view/assets/img/trending/right1.jpg" alt="">
+                                <img src="./view/assets/img/trending/sport.png" alt="" width="120px" height="100px">
                             </div>
                             <div class="trand-right-cap">
-                                <span class="color1">Phim</span>
-                                <h4><a href="index.php?act=detail">10 phim hay nhất của Martin Scorsese</a></h4>
+                                <span class="color1">Thể thao</span>
+                                <h4><a href="index.php?act=rankings">Tin bóng đá mới nhất</a></h4>
                             </div>
                         </div>
                         <div class="trand-right-single d-flex">
                             <div class="trand-right-img">
-                                <img src="./view/assets/img/trending/right2.jpg" alt="">
+                                <img src="./view/assets/img/trending/w.jpg" alt="" width="120px" height="100px">
                             </div>
                             <div class="trand-right-cap">
                                 <span class="color3">Cẩm nang</span>
-                                <h4><a href="index.php?act=detail">7 phố đi bộ ấn tượng nhất thế giới</a></h4>
+                                <h4><a href="../view/weather.php">Thời tiết hôm nay </a></h4>
                             </div>
                         </div>
                         <div class="trand-right-single d-flex">

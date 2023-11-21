@@ -152,7 +152,7 @@ if (isset($_GET['act'])) {
                 $image_paths = array();
 
                 $file_count = count($_FILES['files']['name']);
-
+             
                 // Chỉ xử lý khi có tải lên ít nhất một ảnh
                 if ($file_count > 0) {
                     $allowed_types = array('jpg', 'jpeg', 'png', 'gif');
@@ -274,17 +274,24 @@ if (isset($_GET['act'])) {
             /** 
              * TODO: Comment
              * */
-        case 'comment':
-            $list_comment = comment_select_all(0);
+        case 'comment_list':
+            $list_comment = comment_select_all();
             include "comment/list.php";
             break;
-        case 'deletecm':
-            if (isset($_GET['id']) && ($_GET['id'] > 0)) {
-                comment_delete($_GET['id']);
+        case 'comment_detail':
+            if (isset($_GET['article_id']) && ($_GET['article_id'] > 0)) {
+                $list_comment = comment_select_by_article($_GET['article_id']);
             }
-            $list_comment = comment_select_all(0);
 
-            include "comment/list.php";
+            include './comment/detail.php';
+            break;    
+        case 'comment_delete':
+            if (isset($_GET['comment_id']) && ($_GET['comment_id'] > 0) && ($_GET['article_id'])) {
+                $article_id = $_GET['article_id'];
+                comment_delete($_GET['comment_id']);
+            }
+            $list_comment = comment_select_by_article($article_id);
+            include './comment/detail.php';
             break;
             /** 
              * TODO: Static
