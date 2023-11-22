@@ -60,13 +60,14 @@
                             
                         }
                         $detail="index.php?act=detail&id=".$article_id;
+                        $category="index.php?act=category&id=".$category_id;
                               echo'  <div class="col-lg-4">
                                     <div class="single-bottom mb-35">
                                         <div class="trend-bottom-img mb-30">
                                             '.$image_html_locations[0].'
                                         </div>
                                         <div class="trend-bottom-cap">
-                                            <span class="color1">'.$category_name.'</span>
+                                           <a href="'.$category.'"> <span class="color1">'.$category_name.'</span></a>
                                             <h4><a href="'.$detail.'">'.$article_name.'</a></h4>
                                         </div>
                                     </div>
@@ -187,7 +188,6 @@
         </div>
     </div>
     <!-- End Weekly-News -->
-    <?php include "view/categori.php"; ?>
     <!--   Weekly2-News start -->
     <div class="weekly2-news-area  weekly2-pading gray-bg">
         <div class="container">

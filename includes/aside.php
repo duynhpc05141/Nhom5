@@ -22,7 +22,7 @@
                         echo'    <li>
                                 <a href="'.$category.'" class="d-flex">
                                     <p>'.$category_name.'</p>
-                                    <p>(37)</p>
+                                  
                                 </a>
                             </li>';
                       }?>

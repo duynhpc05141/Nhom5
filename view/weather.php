@@ -3547,7 +3547,7 @@ body{
 
     
     <script>
-       async function getWeather(city = 'Hanoi') {
+       async function getWeather(city = 'cần thơ') {
     try {
         const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=5947df254d70b95fd860ebb5761dbf8b&units=metric&lang=vi`);
         const data = await response.json();
