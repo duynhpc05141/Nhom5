@@ -23,11 +23,11 @@ if (isset($_GET['act']) && ($_GET['act'] !== "")) {
                 $_SESSION['user_name'] = $check_user;
                 ob_end_clean();
                 header('Location: index.php');
-            } else {
-                $alert = "Đăng nhập thất bại";
-            }
+            } 
         } else {
-            $alert = "Tên người dùng hoặc mật khẩu không đúng";
+            $alert = '<div class="alert alert-error" role="alert">
+            Tên người dùng hoặc mật khẩu không đúng
+            </div>';
         }
     }
       
