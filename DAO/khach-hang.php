@@ -18,11 +18,12 @@ function customer_forgot($user_email, $new_password){
 
 
 function user_update($id, $user, $password, $email, $img, $phone, $role_id) {
+    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
     if ($img!="") {
-        $sql = "UPDATE user SET user_name='".$user."', user_password='".$password."', email='".$email."', avatar='".$img."', user_phone='".$phone."', role_id='".$role_id."' WHERE user_id=".$id;
+        $sql = "UPDATE user SET user_name='".$user."', user_password='".$hashed_password."', email='".$email."', avatar='".$img."', user_phone='".$phone."', role_id='".$role_id."' WHERE user_id=".$id;
     }else
     {
-        $sql = "UPDATE user SET user_name='".$user."', user_password='".$password."', email='".$email."', user_phone='".$phone."', role_id='".$role_id."' WHERE user_id=".$id;
+        $sql = "UPDATE user SET user_name='".$user."', user_password='".$hashed_password."', email='".$email."', user_phone='".$phone."', role_id='".$role_id."' WHERE user_id=".$id;
     }
     
     pdo_execute($sql);
@@ -83,5 +84,12 @@ function save_file($fieldname, $target_dir)
     $target_path = $target_dir . $file_name;
     move_uploaded_file($file_upload['tmp_name'], $target_path);
     return $file_name;
+}
+
+function check_kh($ten_kh, $mat_khau)
+{
+    $sql = "select * from khach_hang where ten_kh='" . $ten_kh . "' and mat_khau='" . $mat_khau . "' ";
+    $check_kh = pdo_query_one($sql);
+    return $check_kh;
 }
     
