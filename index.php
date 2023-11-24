@@ -3,6 +3,7 @@ ob_start();
 session_start();
 include "./DAO/pdo.php";
 include "./DAO/login.php";
+include "./DAO/khach-hang.php";
 
 
 if (isset($_GET['act']) && ($_GET['act'] !== "")) {
@@ -40,7 +41,44 @@ if (isset($_GET['act']) && ($_GET['act'] !== "")) {
       break;  
 
     case 'register':
+      $target_dir = "./img/";
+      if (isset($_POST['register']) && ($_POST['register'])) {
+          $user = $_POST['user'];
+          $password = $_POST['password'];
+          $email = $_POST['email'];
+          $phone = $_POST['phone'];
+          $role_id = 0;
+          $avatar = save_file('avatar', $target_dir);
+          if (!is_username_exists($user)) {
+            user_insert_admin($user, $email, $avatar, $phone,$password ,$role_id);
+            $alert = '<div class="alert alert-success" role="alert">
+              Đăng ký thành công!
+            </div>';
+        } else {
+            $alert = '<div class="alert alert-danger" role="alert">
+                Tên người dùng đã tồn tại. Vui lòng chọn tên khác.
+              </div>';
+        }
+      }
       include './view/account/register.php';
+      break;  
+    case 'user_edit':
+      $target_dir = "./img/";
+      if (isset($_POST['updateAc']) && ($_POST['updateAc'])) {
+          $id = $_POST['id'];
+          $user = $_POST['user'];
+          $email = $_POST['email'];
+          $img = save_file('avatar', $target_dir);
+          $phone = $_POST['phone'];
+          $role_id =0;
+          user_update_admin($id, $user,  $email, $img, $phone, $role_id);
+          $check_user = check_user($user);
+          $_SESSION['user_name'] = $check_user;
+          $alert = '<div class="alert alert-success" role="alert">
+              Cập nhật thành công!
+            </div>';
+      }
+      include './view/account/update-account.php';
       break;  
     case 'home':
       include "./includes/home.php";
