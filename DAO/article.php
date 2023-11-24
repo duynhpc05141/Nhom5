@@ -75,9 +75,11 @@ function article_select_all( $category_id)
 }
 function article_select_all_home()
 {
-    $sql = "SELECT * FROM article WHERE 1 ORDER BY id desc limit 0,9";
-    $listProduct = pdo_query($sql);
-    return $listProduct;
+    $sql = "SELECT article.*, category.category_name 
+    FROM article 
+    JOIN category ON article.category_id = category.category_id LIMIT 3";
+    $listArticle = pdo_query($sql);
+    return $listArticle;
 }
 
 function article_select_by_id($id)
@@ -91,7 +93,7 @@ function article_name_select_by_id($category_id)
         $sql = "SELECT * FROM category WHERE category_id=" . $category_id;
         $category = pdo_query_one($sql);
         extract($category);
-        return $name;
+        return $category_name;
     } else {
         return "";
     }
@@ -103,9 +105,9 @@ function article_exist($id)
     return pdo_query_value($sql, $id) > 0;
 }
 
-function article_tang_so_luot_xem($id)
+function article_count_view($id)
 {
-    $sql = "UPDATE article SET so_luot_xem = so_luot_xem + 1 WHERE id=?";
+    $sql = "UPDATE article SET view = view + 1 WHERE article_id=?";
     pdo_execute($sql, $id);
 }
 
@@ -121,11 +123,11 @@ function product_select_dac_biet()
     return pdo_query($sql);
 }
 
-function product_select_by_loai($id, $category_id)
+function  article_select_by_loai($id, $category_id)
 {
-    $sql = "SELECT * FROM product WHERE category_id=" . $category_id . " AND  id <>" . $id;
-    $listProduct = pdo_query($sql);
-    return $listProduct;
+     $sql = "SELECT * FROM article WHERE category_id=".$category_id." AND  article_id <>".$id;
+    $listarticle = pdo_query($sql);
+    return $listarticle;
 }
 
 function product_select_keyword($keyword)

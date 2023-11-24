@@ -71,8 +71,8 @@
                             <?php endforeach; ?>
                         </td>
                         <td><?= $view ?></td>
-                        <td><?= $created_at ?></td>
-                        <td><?= $updated_at ?></td>
+                        <td style="font-size: 0.8rem; font-style: italic;"><?= $created_at ?></td>
+                        <td style="font-size: 0.8rem; font-style: italic;" ><?= $updated_at ?></td>
                         <td>
                             <a title="Sửa" href="<?= $editArt ?>"><i class="fa-regular fa-pen-to-square"></i></a>
                             <a onclick="return confirm('Bạn có muốn xóa?');" href="<?= $deleteArt ?>"><i class="fa-solid fa-trash-can text-danger"></i></a>
