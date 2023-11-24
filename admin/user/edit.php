@@ -46,12 +46,6 @@
                         <span id="name-error" class="text-danger"></span>
                     </div>
                     <div class="col-md-12">
-                        <label for="validationCustom02" class="form-label">Mật khẩu</label>
-                        <input type="password" class="form-control" id="validationDefault02" required name="password" value="<?= isset($user_password) && $user_password != "" ? $user_password : "" ?>">
-                        <span id="password-error" class="text-danger"></span>
-                        <span id="password-strength" class="text-success"></span>
-                    </div>
-                    <div class="col-md-12">
                         <label for="validationCustom02" class="form-label">Email</label>
                         <input type="email" class="form-control" id="email" name="email" value="<?= isset($email) ? $email : "" ?>">
                         <span id="email-error" class="text-danger"></span>

@@ -135,7 +135,7 @@
                                                     <a class="dropdown-item" href="#">Thông tin</a>
                                                 </li>
                                                 <li>
-                                                    <a class="dropdown-item" href="index.php?act=login">Cập nhật thông tin</a>
+                                                    <a class="dropdown-item" href="index.php?act=user_edit">Cập nhật thông tin</a>
                                                 </li>
                                                 <li>
                                                     <a class="dropdown-item" href="index.php?act=forgot-pass">Quên mật khẩu</a>

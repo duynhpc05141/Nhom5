@@ -17,13 +17,13 @@ function customer_forgot($user_email, $new_password){
 
 
 
-function user_update($id, $user, $password, $email, $img, $phone, $role_id) {
-    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+function user_update_admin($id, $user,  $email, $img, $phone, $role_id) {
+
     if ($img!="") {
-        $sql = "UPDATE user SET user_name='".$user."', user_password='".$hashed_password."', email='".$email."', avatar='".$img."', user_phone='".$phone."', role_id='".$role_id."' WHERE user_id=".$id;
+        $sql = "UPDATE user SET user_name='".$user."',  email='".$email."', avatar='".$img."', user_phone='".$phone."', role_id='".$role_id."' WHERE user_id=".$id;
     }else
     {
-        $sql = "UPDATE user SET user_name='".$user."', user_password='".$hashed_password."', email='".$email."', user_phone='".$phone."', role_id='".$role_id."' WHERE user_id=".$id;
+        $sql = "UPDATE user SET user_name='".$user."',  email='".$email."', user_phone='".$phone."', role_id='".$role_id."' WHERE user_id=".$id;
     }
     
     pdo_execute($sql);
@@ -93,3 +93,27 @@ function check_kh($ten_kh, $mat_khau)
     return $check_kh;
 }
     
+function is_username_exists($user)
+{
+    // Kết nối đến cơ sở dữ liệu 
+    $conn = new mysqli("localhost", "root", "mysql", "fastnews");
+
+    // Kiểm tra kết nối
+    if ($conn->connect_error) {
+        die("Kết nối đến cơ sở dữ liệu thất bại: " . $conn->connect_error);
+    }
+
+    // Sử dụng câu truy vấn SQL với tham số được bảo vệ để tránh SQL injection
+    $query = "SELECT * FROM user WHERE user_name = ?";
+    $stmt = $conn->prepare($query);
+
+    // Bảo vệ tham số truy vấn
+    $stmt->bind_param("s", $user);
+
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    // Trả về true nếu có ít nhất một dòng dữ liệu trả về (user_name đã tồn tại)
+    // Trả về false nếu không có dòng dữ liệu nào trả về (user_name chưa tồn tại)
+    return $result->num_rows > 0;
+}
