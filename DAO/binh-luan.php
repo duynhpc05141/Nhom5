@@ -1,12 +1,29 @@
 <?php
 require_once 'pdo.php';
 
-function comment_insert($content,$user_id,$product_id,$date){
-    $sql = "INSERT INTO comment(content,user_id,product_id,date) VALUES (?,?,?,?)";
-    pdo_execute($sql,$content,$user_id,$product_id,$date);
+function comment_insert($user_id, $article_id, $comment_content)
+{
+    $sql = "INSERT INTO comment(user_id,article_id,comment_content) VALUES (?,?,?)";
+    pdo_execute($sql, $user_id, $article_id, $comment_content);
+}
+function reply_comment($user_id, $article_id, $comment_content, $parent_comment_id)
+{
+    $sql = "INSERT INTO comment(user_id, article_id, comment_content, parent_comment_id) VALUES (?,?, ?, ?)";
+    pdo_execute($sql, $user_id, $article_id, $comment_content, $parent_comment_id);
 }
 
-function binh_luan_update($ma_bl, $ma_kh, $ma_hh, $noi_dung, $ngay_bl){
+function getRepliesForComment($comment_id)
+{
+    $sql = "SELECT c.*, cu.user_name AS reply_user_name, cu.avatar AS reply_user_avatar
+            FROM comment c
+            INNER JOIN user cu ON cu.user_id = c.user_id
+            WHERE c.parent_comment_id = " . $comment_id;
+    $replies = pdo_query($sql);
+    return $replies;
+}
+
+function binh_luan_update($ma_bl, $ma_kh, $ma_hh, $noi_dung, $ngay_bl)
+{
     $sql = "UPDATE binh_luan SET ma_kh=?,ma_hh=?,noi_dung=?,ngay_bl=? WHERE ma_bl=?";
     pdo_execute($sql, $ma_kh, $ma_hh, $noi_dung, $ngay_bl, $ma_bl);
 }
@@ -23,20 +40,45 @@ function comment_delete($comment_id)
     }
 }
 
+function comment_select_all_1($article_id)
+{
+    $sql = "SELECT c.*, cu.user_name, cu.avatar
+    FROM comment c
+    INNER JOIN user cu ON cu.user_id = c.user_id
+    WHERE c.parent_comment_id = 0";
+
+    if ($article_id > 0) {
+        $sql .= " AND c.article_id = '" . $article_id . "'";
+    }
+
+    $sql .= " ORDER BY c.comment_id DESC";
+
+    $listComment = pdo_query($sql);
+    return $listComment;
+}
 
 
 function comment_select_all()
 {
     $sql = "
-    SELECT hh.article_id as article_id, hh.article_name as article_name, COUNT(*) as so_luong, MIN(bl.created_at) as cu_nhat, MAX(bl.created_at) as moi_nhat
+    SELECT ar.article_id as article_id, ar.article_name as article_name, COUNT(*) as so_luong, MIN(bl.created_at) as cu_nhat, MAX(bl.created_at) as moi_nhat
     FROM comment bl
-    JOIN article hh ON hh.article_id = bl.article_id
-    GROUP BY  hh.article_id, hh.article_name";
+    JOIN article ar ON ar.article_id = bl.article_id
+    GROUP BY  ar.article_id, ar.article_name";
     return pdo_query($sql);
 }
 
+function count_comment($id)
+{
+    $sql = "SELECT COUNT(comment_id) as comments FROM comment WHERE article_id = " . $id;
+    $result = pdo_query($sql);
+    $comment = $result[0]['comments'];
+    return $comment;
+}
+
 // binh-luan.php
-function comment_select_paged($product_id, $offset, $commentsPerPage) {
+function comment_select_paged($product_id, $offset, $commentsPerPage)
+{
     // Kết nối CSDL và thực hiện truy vấn để lấy danh sách bình luận
     include "pdo.php"; // Đảm bảo file pdo.php được bao gồm và có kết nối đến CSDL
 

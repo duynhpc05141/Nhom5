@@ -2,8 +2,10 @@
 include "./DAO/pdo.php";
 include "./DAO/article.php";
 include "./DAO/loai.php";
+include "./DAO/binh-luan.php";
 
-
+$list_loai = loai_select_all();
+      $listArticle = article_select_all_home();
 if (isset($_GET['act']) && ($_GET['act'] !== "")) {
 
   $act = $_GET['act'];
@@ -19,9 +21,12 @@ if (isset($_GET['act']) && ($_GET['act'] !== "")) {
         $id = $_GET['id'];
         $detail = article_select_by_id($id);
          $view= article_count_view($id);
+         $comment=count_comment($id);
         extract($detail);
         $sameKind = article_select_by_loai($id, $category_id);
         include "view/single-blog.php";
+      }else{
+        include "./includes/home.php";
       }
     
       break;
