@@ -32,7 +32,6 @@
             <tr>
               <th scope="col">Tên khách hàng</th>
               <th scope="col">Ảnh đại diện</th>
-              <th scope="col">Mật khẩu</th>
               <th scope="col">Email</th>
               <th scope="col">Số điện thoại</th>
               <th scope="col">Vai trò</th>
@@ -62,7 +61,6 @@
               <tr>  
                 <td>' . $user_name . '</td>
                 <td>' . $hinh . '</td>
-                <td class="limited-text">' . $hashed_password . '</td>
                 <td>' . $email . '</td>
                 <td>' . $user_phone . '</td>
                 <td>' . getRole($role_id) . '</td>

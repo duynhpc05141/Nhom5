@@ -58,6 +58,7 @@
                     <div class="col-md-12">
                         <label for="validationCustom02" class="form-label">Số điện thoại</label>
                         <input type="number" class="form-control" id="phone" name="phone" value="<?= isset($user_phone) ? $user_phone : "" ?>">
+                        <span id="phone-error" class="text-danger"></span>
                     </div>
                     <div class="col-md-12">
                         <label for="role">Vai trò:</label>
@@ -101,11 +102,11 @@
                   
                 },
                 messages: {
-                    email: "Vui lòng nhập email",
+                    email: "Email không hợp lệ",
                     user: "Vui lòng nhập tên khách hàng",
                     password:"Vui lòng nhập mật khẩu",
                     role_id: "Vui lòng nhập vai trò",
-                    phone: "Vui lòng nhập SĐT"
+                    phone: ""
                 },
                 // Xử lý khi biểu mẫu được gửi đi
                 submitHandler: function (form) {
@@ -121,6 +122,7 @@
                 var nameValue = $('#name').val();
                 var emailValue = $('#email').val();
                 var passwordValue = $('#validationDefault02').val();
+                var phone = $('#phone').val();
 
                 if (nameValue.trim() === "") {
                     e.preventDefault(); // Ngăn form nộp đi nếu tên rỗng
@@ -138,7 +140,22 @@
                     $('#email-error').text('');
                 }
             });
+            $(document).ready(function() {
+                var phoneInput = $('#phone');
+                var phoneError = $('#phone-error');
 
+                phoneInput.on('input', function() {
+                    var phoneValue = $(this).val();
+
+                    if (phoneValue.length !== 10) {
+                        phoneError.text('SĐT phải nhập đúng 10 chữ số').css('color', 'red');
+                    } else {
+                        phoneError.text('');
+                    }
+                });
+
+                // Rest of your form validation logic...
+            });
             $('#validationDefault02').on('input', function() {
                 var passwordValue = $(this).val();
 

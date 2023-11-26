@@ -48,14 +48,15 @@
                 <input type="file" class="form-control" id="avatar" name="avatar" >
             </div>
             <div class="col-md-12">
-                <label for="user_phone" class="form-label">Số điện thoại</label>
+                <label for="phone" class="form-label">Số điện thoại</label>
                 <input type="number" class="form-control" id="phone" name="user_phone" required>
+                <span id="phone-error" class="text-danger"></span>
                 
             </div>
             <div class="col-md-12">
                 <label>Vai trò:</label>
                 <div class="form-check">
-                    <input type="radio" class="form-check-input" name="role_id" value="0"  required>
+                    <input type="radio" class="form-check-input" name="role_id" value="0" <?php  echo 'checked';  ?> required>
                     <label class="form-check-label" for="role">User</label>
                 </div>
                 <div class="form-check">
@@ -86,18 +87,16 @@
             $("#customer-form").validate({
                 rules: {
                     user_name: "required",
-                    email: "required",
                     user_password: "required",
                     role_id: "required",
                     user_phone: "required",
                   
                 },
                 messages: {
-                    email: "Vui lòng nhập email",
                     user_name: "Vui lòng nhập tên khách hàng",
                     user_password:"Vui lòng nhập mật khẩu",
                     role_id: "Vui lòng nhập vai trò",
-                    user_phone: "Vui lòng nhập SĐT"
+                    user_phone: "SĐT không được để trống!"
                 },
                 // Xử lý khi biểu mẫu được gửi đi
                 submitHandler: function (form) {
@@ -113,6 +112,7 @@
                 var nameValue = $('#name').val();
                 var emailValue = $('#email').val();
                 var passwordValue = $('#validationDefault02').val();
+                var phone = $('#phone').val();
 
                 if (nameValue.trim() === "") {
                     e.preventDefault(); // Ngăn form nộp đi nếu tên rỗng
@@ -129,6 +129,23 @@
                 } else {
                     $('#email-error').text('');
                 }
+            });
+
+            $(document).ready(function() {
+                var phoneInput = $('#phone');
+                var phoneError = $('#phone-error');
+
+                phoneInput.on('input', function() {
+                    var phoneValue = $(this).val();
+
+                    if (phoneValue.length !== 10) {
+                        phoneError.text('SĐT phải nhập đúng 10 chữ số').css('color', 'red');
+                    } else {
+                        phoneError.text('');
+                    }
+                });
+
+                // Rest of your form validation logic...
             });
 
             $('#validationDefault02').on('input', function() {
