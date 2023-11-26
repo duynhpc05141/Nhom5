@@ -36,9 +36,15 @@ if (isset($_GET['act'])) {
             include "./category/list.php";
             break;
         case 'category_delete':
-            if (isset($_GET['category_id']) && ($_GET['category_id'] > 0)) {
-                loai_delete($_GET['category_id']);
+            try {
+                if (isset($_GET['category_id']) && ($_GET['category_id'] > 0)) {
+                    loai_delete($_GET['category_id']);
+                    $alert = 'Xóa thành công!';
+                }
+            } catch (Exception $e) {
+                $alert = 'không thể xóa!';
             }
+            
             $list_loai = loai_select_all();
             include "./category/list.php";
             break;
