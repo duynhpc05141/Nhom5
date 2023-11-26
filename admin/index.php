@@ -66,8 +66,8 @@ if (isset($_GET['act'])) {
                 $category_id = $_POST['category_id'];
                 $content = $_POST['editor1'];
                 $name = $_POST['article_name'];
-                $image_paths = array(); 
-                $allowed_image_count = 2; 
+                $image_paths = array();
+                $allowed_image_count = 2;
                 if (empty($content)) {
                     $alert = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
         Nội dung không được để trống.
@@ -87,34 +87,31 @@ if (isset($_GET['act'])) {
                             $file_extension = pathinfo($file_name, PATHINFO_EXTENSION);
                             if (!in_array(strtolower($file_extension), $allowed_types)) {
                                 echo "File " . $file_name . " is not an image.";
-                                continue; 
+                                continue;
                             }
 
-                         
+
                             $target_dir = "../img/";
                             $target_file = $target_dir . uniqid() . "_" . basename($file_name);
 
                             if (move_uploaded_file($file_tmp, $target_file)) {
-                                
+
                                 $image_paths[] = $target_file;
                             } else {
-                             
+
                                 echo "Sorry, there was an error uploading your file.";
                             }
                         }
                     }
 
                     if (!empty($image_paths)) {
-                        // Chuyển mảng đường dẫn ảnh thành một chuỗi để lưu vào cột trong CSDL
                         $image_paths_string = implode(',', $image_paths);
                         article_insert_from_editor($name, $content, $image_paths_string, $category_id);
                     } else {
-                        // Không có file nào được tải lên
                         article_insert_from_editor($name, $content, "", $category_id);
                     }
                 }
             }
-
             include "article/add.php";
             break;
         case 'article-list':
@@ -149,12 +146,8 @@ if (isset($_GET['act'])) {
                 $content = $_POST['editor1'];
                 $id = $_POST['article_id'];
                 $name = $_POST['article_name'];
-
                 $image_paths = array();
-
                 $file_count = count($_FILES['files']['name']);
-             
-                // Chỉ xử lý khi có tải lên ít nhất một ảnh
                 if ($file_count > 0) {
                     $allowed_types = array('jpg', 'jpeg', 'png', 'gif');
 
@@ -162,48 +155,38 @@ if (isset($_GET['act'])) {
                         $file_name = $_FILES['files']['name'][$i];
                         $file_tmp = $_FILES['files']['tmp_name'][$i];
                         $file_error = $_FILES['files']['error'][$i];
-
-
                         $file_extension = pathinfo($file_name, PATHINFO_EXTENSION);
-                        if (!in_array(strtolower($file_extension), $allowed_types)) {
-                            echo "File " . $file_name . " is not an image.";
-                            continue;
+
+                        if (!empty($file_name)) {
+                            if (!in_array(strtolower($file_extension), $allowed_types)) {
+                                echo "File " . $file_name . " is not an image.";
+                                continue;
+                            }
                         }
-
-
                         $target_dir = "../img/";
                         $target_file = $target_dir . uniqid() . "_" . basename($file_name);
 
                         if (move_uploaded_file($file_tmp, $target_file)) {
 
                             $image_paths[] = $target_file;
-                        } else {
-
-                            echo "Sorry, there was an error uploading your file.";
                         }
                     }
                 }
 
-
                 $old_image_paths = article_get_image_paths_by_id($id);
+                if (($file_count > 0 && !empty($image_paths)) || empty($image_paths)) {
 
-
-                if (!empty($image_paths)) {
                     $image_paths_string = implode(',', $image_paths);
                 } else {
 
                     $image_paths_string = implode(',', $old_image_paths);
                 }
-
-
                 article_update($id, $name, $content, $image_paths_string, $category_id);
             }
 
             $listArticle = article_select_all("", 0);
-
-
-
             include "article/list.php";
+
             break;
         case 'article-review':
             if (isset($_GET['id']) && ($_GET['id'])) {
@@ -227,7 +210,7 @@ if (isset($_GET['act'])) {
                 $role_id = $_POST['role_id'];
                 $avatar = save_file('avatar', $target_dir);
                 if (!is_username_exists($user)) {
-                    user_insert_admin($user, $email, $avatar, $phone,$password ,$role_id);
+                    user_insert_admin($user, $email, $avatar, $phone, $password, $role_id);
                     $alert = '<div class="alert alert-success" role="alert">
                     Thêm thành công!
                   </div>';
@@ -293,7 +276,7 @@ if (isset($_GET['act'])) {
             }
 
             include './comment/detail.php';
-            break;    
+            break;
         case 'comment_delete':
             if (isset($_GET['comment_id']) && ($_GET['comment_id'] > 0) && ($_GET['article_id'])) {
                 $article_id = $_GET['article_id'];
