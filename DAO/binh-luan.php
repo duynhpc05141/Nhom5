@@ -75,6 +75,13 @@ function count_comment($id)
     $comment = $result[0]['comments'];
     return $comment;
 }
+function count_comment_all()
+{
+    $sql = "SELECT COUNT(comment_id) as comments FROM comment ";
+    $result = pdo_query($sql);
+    $comment = $result[0]['comments'];
+    return $comment;
+}
 
 // binh-luan.php
 function comment_select_paged($product_id, $offset, $commentsPerPage)

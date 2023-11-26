@@ -99,10 +99,10 @@ function article_name_select_by_id($category_id)
     }
 }
 
-function article_exist($id)
+function article_exist()
 {
-    $sql = "SELECT count(*) FROM article WHERE id=?";
-    return pdo_query_value($sql, $id) > 0;
+    $sql = "SELECT count(*) FROM article";
+    return pdo_query_value($sql);
 }
 
 function article_count_view($id)
@@ -110,6 +110,12 @@ function article_count_view($id)
     $sql = "UPDATE article SET view = view + 1 WHERE article_id=?";
     pdo_execute($sql, $id);
 }
+function article_count_avg_view_all()
+{
+    $sql = "SELECT AVG(view) AS average_view FROM article";
+    return pdo_query_value($sql);
+}
+
 
 function product_select_top10()
 {

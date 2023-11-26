@@ -15,8 +15,10 @@ if (isset($_GET['act'])) {
          * TODO:Pages 
          * */
         case 'home':
-
-            include "home.php";
+           $article_exist= article_exist();
+          $avg_views= article_count_avg_view_all();
+         $comments= count_comment_all();
+             include "home.php";
             break;
             /** 
              * TODO:Category 

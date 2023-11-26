@@ -44,7 +44,7 @@
                     </div>
                 </nav>
                 <!-- Page content-->
-                <div class="container-fluid shadow p-3" >
+                <div class="container-fluid " >
 
                    
               
