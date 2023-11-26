@@ -42,20 +42,18 @@
                 <form action="index.php?act=user_update" id="customer-form" class="row g-3 mx-auto shadow p-3" method="post" enctype="multipart/form-data">
                     <div class="col-md-12">
                         <label for="validationCustom02" class="form-label">Tên khách hàng</label>
-                        <input type="text" class="form-control" id="user" required name="user" value="<?=$user_name?>">
-                    </div>
-                    <div class="col-md-12">
-                        <label for="validationCustom02" class="form-label">Mật khẩu</label>
-                        <input type="password" class="form-control" id="password" required name="password" value="<?= isset($user_password) && $user_password != "" ? $user_password : "" ?>">
+                        <input type="text" class="form-control" id="name" required name="user" value="<?=$user_name?>">
+                        <span id="name-error" class="text-danger"></span>
                     </div>
                     <div class="col-md-12">
                         <label for="validationCustom02" class="form-label">Email</label>
                         <input type="email" class="form-control" id="email" name="email" value="<?= isset($email) ? $email : "" ?>">
+                        <span id="email-error" class="text-danger"></span>
                     </div>
                     <div class="col-md-12">
                         <label for="validationCustom02" class="form-label">Avatar:</label> <br>
                         <?= $hinh ?>
-                        <input type="file" class="form-control" id="validationCustom02" name="avatar" value="<?= isset($img) ? $img : "" ?>">
+                        <input type="file" class="form-control"  name="avatar" value="<?= isset($img) ? $img : "" ?>">
                     </div>
                     <div class="col-md-12">
                         <label for="validationCustom02" class="form-label">Số điện thoại</label>
@@ -114,6 +112,84 @@
                     form.submit();
                 }
             });
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+            // Gắn sự kiện kiểm tra khi người dùng nộp biểu mẫu
+            $('#customer-form').on('submit', function(e) {
+                var nameValue = $('#name').val();
+                var emailValue = $('#email').val();
+                var passwordValue = $('#validationDefault02').val();
+
+                if (nameValue.trim() === "") {
+                    e.preventDefault(); // Ngăn form nộp đi nếu tên rỗng
+                    $('#name-error').text('Họ tên không được trống');
+                } else {
+                    $('#name-error').text('');
+                }
+
+                // Kiểm tra email hợp lệ
+                var emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+                if (!emailRegex.test(emailValue) || emailValue.trim() === "") {
+                    e.preventDefault(); // Ngăn form nộp đi nếu email không hợp lệ hoặc rỗng
+                    $('#email-error').text('Email không hợp lệ');
+                } else {
+                    $('#email-error').text('');
+                }
+            });
+
+            $('#validationDefault02').on('input', function() {
+                var passwordValue = $(this).val();
+
+                // Kiểm tra mật khẩu đủ dài và đủ mạnh
+                if (passwordValue.length <= 5) {
+                    $('#password-error').text('Mật khẩu phải lớn hơn 5 kí tự');
+                    $('#password-strength').text('');
+                } else {
+                    $('#password-error').text('');
+
+                    // Kiểm tra sự mạnh của mật khẩu
+                    var passwordStrength = calculatePasswordStrength(passwordValue);
+                    var strengthMessage = '';
+                    if (passwordStrength >= 11) {
+                        strengthMessage = 'Mạnh';
+                        $('#password-error').css('color', 'green');
+                    } else if (passwordStrength >= 9) {
+                        strengthMessage = 'Trung bình';
+                        $('#password-error').css('color', 'orange');
+                    } else if (passwordStrength >= 7) {
+                        strengthMessage = 'Yếu';
+                        $('#password-error').css('color', 'red');
+                    }
+                    $('#password-strength').text('Độ mạnh mật khẩu: ' + strengthMessage);
+                }
+
+            });
+
+            function calculatePasswordStrength(password) {
+                // Tính độ mạnh của mật khẩu dựa trên các tiêu chí như độ dài, ký tự đặc biệt, chữ hoa, chữ thường, số, v.v.
+                // Bạn có thể tùy chỉnh logic tính toán độ mạnh mật khẩu ở đây.
+
+                // Dưới đây là một ví dụ đơn giản:
+                var strength = 0;
+                if (password.length >= 8) {
+                    strength += 10;
+                }
+                if (/[!@#$%^&*()_+{}\[\]:;<>,.?~\\-]/.test(password)) {
+                    strength += 10;
+                }
+                if (/[A-Z]/.test(password)) {
+                    strength += 10;
+                }
+                if (/[a-z]/.test(password)) {
+                    strength += 10;
+                }
+                if (/[0-9]/.test(password)) {
+                    strength += 10;
+                }
+                return strength;
+            }
         });
     </script>
 </body>

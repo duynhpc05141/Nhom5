@@ -135,17 +135,60 @@
                             <div class="col-xl-2 col-lg-2 col-md-4">
                                 <div class="header-right-btn f-right d-none d-lg-block">
                                     <div class="dropdown">
+                                        <?php 
+                                        if (isset($_SESSION['user_name'])) {
+                                            extract($_SESSION['user_name']);
+                                            $img = './img/' . $avatar;
+                                            if (file_exists($img)) {
+                                                $hinh = '<img src=" ' . $img . '" alt="Hình ảnh đại diện" height="40px" style="border-radius:10px;">';
+                                              } else {
+                                                $hinh = '0';
+                                              };
+                                        ?>
+                                            <div data-bs-toggle="dropdown">
+                                                <?= $hinh ?>
+                                                <?= $user_name ?>
+                                            </div>
+                                            <ul class="dropdown-menu">
+                                                <?php
+                                                if ($role_id == 0) {
+                                                ?>
+                                                <li>
+                                                    <a class="dropdown-item" href="#">Thông tin</a>
+                                                </li>
+                                                <li>
+                                                    <a class="dropdown-item" href="index.php?act=user_edit">Cập nhật thông tin</a>
+                                                </li>
+                                                <li>
+                                                    <a class="dropdown-item" href="index.php?act=forgot-pass">Quên mật khẩu</a>
+                                                </li>
+                                                <?php } ?>
+                                                <?php   
+                                                if ($role_id == 1) {
+                                                ?>
+                                                <li>
+                                                    <a class="dropdown-item" href="index.php?act=forgot-pass">Quản trị</a>
+                                                </li>
+                                                <?php }?>    
+                                                <li>
+                                                    <a class="dropdown-item" href="index.php?act=logout">Đăng xuất</a>
+                                                </li>
+                                            </ul>
+                                            <?php 
+                                        }else {?>
                                         <div data-bs-toggle="dropdown">
                                             <i class="fas fa-user"></i>
                                         </div>
+                                        
                                         <ul class="dropdown-menu">
                                             <li>
-                                                <a class="dropdown-item" href="#">Đăng nhập</a>
+                                                <a class="dropdown-item" href="index.php?act=login">Đăng nhập</a>
                                             </li>
                                             <li>
-                                                <a class="dropdown-item" href="#">Đăng Ký</a>
+                                                <a class="dropdown-item" href="index.php?act=register">Đăng Ký</a>
                                             </li>
                                         </ul>
+                                       <?php }?>
                                     </div>
                                     
                                 </div>

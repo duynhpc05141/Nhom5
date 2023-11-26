@@ -226,10 +226,16 @@ if (isset($_GET['act'])) {
                 $phone = $_POST['user_phone'];
                 $role_id = $_POST['role_id'];
                 $avatar = save_file('avatar', $target_dir);
-                user_insert_admin($user, $email, $avatar, $phone,$password ,$role_id);
-                $alert = '<div class="alert alert-success" role="alert">
+                if (!is_username_exists($user)) {
+                    user_insert_admin($user, $email, $avatar, $phone,$password ,$role_id);
+                    $alert = '<div class="alert alert-success" role="alert">
                     Thêm thành công!
                   </div>';
+                } else {
+                    $alert = '<div class="alert alert-danger" role="alert">
+                        Tên người dùng đã tồn tại. Vui lòng chọn tên khác.
+                      </div>';
+                }
             }
             include "./user/add.php";
             break;
@@ -255,15 +261,20 @@ if (isset($_GET['act'])) {
             if (isset($_POST['ac-update']) && ($_POST['ac-update'])) {
                 $id = $_POST['id'];
                 $user = $_POST['user'];
-                $password = $_POST['password'];
                 $email = $_POST['email'];
                 $img = save_file('avatar', $target_dir);
                 $phone = $_POST['phone'];
                 $role_id = $_POST['role_id'];
-                user_update($id, $user, $password, $email, $img, $phone, $role_id);
-                $alert = '<div class="alert alert-success" role="alert">
+                if (!is_username_exists($user)) {
+                    user_update_admin($id, $user,  $email, $img, $phone, $role_id);
+                    $alert = '<div class="alert alert-success" role="alert">
                     Cập nhật thành công!
                   </div>';
+                } else {
+                    $alert = '<div class="alert alert-danger" role="alert">
+                        Tên người dùng đã tồn tại. Vui lòng chọn tên khác.
+                      </div>';
+                }
             }
 
             $listUser = user_select_all();
