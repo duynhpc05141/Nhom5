@@ -7,7 +7,9 @@ include "../DAO/binh-luan.php";
 include "../DAO/thong-ke.php";
 include "../DAO/khach-hang.php";
 
-
+$article_exist= article_exist();
+$avg_views= article_count_avg_view_all();
+$comments= count_comment_all();
 if (isset($_GET['act'])) {
     $act = $_GET['act'];
     switch ($act) {
@@ -78,9 +80,9 @@ if (isset($_GET['act'])) {
                 $allowed_image_count = 2;
                 if (empty($content)) {
                     $alert = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-        Nội dung không được để trống.
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>';
+                                Nội dung không được để trống.
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>';
                 } else {
                     if (!empty($_FILES['files']['name'][0])) {
                         $file_count = count($_FILES['files']['name']);
