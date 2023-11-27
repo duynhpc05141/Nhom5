@@ -36,7 +36,31 @@
                         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
-                                <li class="nav-item active"><a class="nav-link" href="#!">Login</a></li>
+                            <div class="dropdown" >
+                                        <?php 
+                                        if (isset($_SESSION['user_name'])) {
+                                            extract($_SESSION['user_name']);
+                                            $img = './img/' . $avatar;
+                                            if (file_exists($img)) {
+                                                $hinh = '<img src=" ' . $img . '" alt="Hình ảnh đại diện" height="40px" style="border-radius:10px;">';
+                                              } else {
+                                                $hinh = '0';
+                                              };
+                                        ?>
+                                            <div data-bs-toggle="dropdown">
+                                                <?= $hinh ?>
+                                                <?= $user_name ?>
+                                            </div>
+                                            <ul class="dropdown-menu" style="margin-left: -110px; margin-top: 9px;">
+                                                
+                                               
+                                                <li>
+                                                    <a class="dropdown-item" href="index.php?act=logout">Đăng xuất</a>
+                                                </li>
+                                            </ul>
+                                            
+                                       <?php }?>
+                                    </div>
                                 
                                
                             </ul>
