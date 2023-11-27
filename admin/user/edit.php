@@ -20,8 +20,6 @@
         }
 </style>
     <?php
-
-    session_start();
     
     if (is_array($customer)) {
         extract($customer);
