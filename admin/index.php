@@ -1,7 +1,8 @@
 <?php
-
+ob_start();
+session_start();
+include "../DAO/login.php";
 include "../DAO/article.php";
-include "header.php";
 include "../DAO/loai.php";
 include "../DAO/binh-luan.php";
 include "../DAO/thong-ke.php";
@@ -11,16 +12,50 @@ $article_exist= article_exist();
 $avg_views= article_count_avg_view_all();
 $comments= count_comment_all();
 if (isset($_GET['act'])) {
+    
     $act = $_GET['act'];
+
     switch ($act) {
             /** 
          * TODO:Pages 
          * */
+
+
+        case 'login':
+            if (isset($_POST['login']) && ($_POST['login'])) {
+                $user = $_POST['user_name'];
+                $password = $_POST['user_password'];
+                // Lấy mật khẩu đã băm từ cơ sở dữ liệu dựa trên tên người dùng
+                // Ví dụ, sử dụng một câu lệnh chuẩn bị
+                $dbHashedPassword = fetch_hashed_password_from_database($user);
+                if ($dbHashedPassword && password_verify($password, $dbHashedPassword)) {
+                    $check_admin = check_admin($user);
+                    if (is_array($check_admin)) {
+                        $_SESSION['user_name'] = $check_admin;
+                        ob_end_clean();
+                        header('Location: index.php?act=home');
+                    }
+                } else {
+                    $alert = '<div class="alert alert-error" role="alert">
+                      không có quên admin
+                      </div>';
+                }
+            }
+            include 'login.php';
+            break;
+
+        case 'logout':
+            session_unset();
+            header('Location: index.php?act=login');
+            break;
+               
         case 'home':
-           $article_exist= article_exist();
-          $avg_views= article_count_avg_view_all();
-         $comments= count_comment_all();
-             include "home.php";
+            $article_exist = article_exist();
+            $avg_views = article_count_avg_view_all();
+            $comments = count_comment_all();
+            include "header.php";
+            include "home.php";
+             
             break;
             /** 
              * TODO:Category 
@@ -48,7 +83,7 @@ if (isset($_GET['act'])) {
             } catch (Exception $e) {
                 $alert = 'không thể xóa!';
             }
-            
+
             $list_loai = loai_select_all();
             include "./category/list.php";
             break;

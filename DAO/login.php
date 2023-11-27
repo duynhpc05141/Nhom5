@@ -6,6 +6,13 @@ function check_user($user)
     return $check_user;
 }
 
+function check_admin($user)
+{
+    $sql = "select * from user where user_name='" . $user . "'and role_id=1 ";
+    $check_user = pdo_query_one($sql);
+    return $check_user;
+}
+
 function fetch_hashed_password_from_database($user) {
     
     // Kết nối đến cơ sở dữ liệu 
