@@ -3,11 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
- 
+    <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <title>Document</title>
 </head>
 <body>
     <?php
+    session_start();
   ob_start();
 include "../../DAO/pdo.php";
 include "../../DAO/binh-luan.php";
@@ -73,6 +75,24 @@ foreach($listComment as $item){
 
 
 <script>
+$(document).ready(function() {
+    $("#commentForm").submit(function(event) {
+        var commentContent = $("#comment_content").val().trim(); 
+        if (commentContent === "" || !<?php echo isset($_SESSION['user_name']) ? 'true' : 'false'; ?>) {
+            event.preventDefault(); 
+            var mes = <?php echo isset($_SESSION['user_name']) ? '\'Nội dung bình luận không được trống.\'' : '\'Bạn cần đăng nhập để bình luận\''; ?>;
+
+            Toastify({
+                text: mes,
+                duration: 3000, 
+                close: true,
+                gravity: "top", 
+                position: "center", 
+                backgroundColor: "#fc3f00",
+            }).showToast(); 
+        }
+    });
+});
 
 $('#commentForm').submit(function(e) {
     e.preventDefault(); 

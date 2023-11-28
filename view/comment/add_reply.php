@@ -1,11 +1,12 @@
 <?php
+session_start();
 include "../../DAO/pdo.php";
 include "../../DAO/binh-luan.php";
 include "../../DAO/article.php";
 
 if (isset($_POST['comment_content']) && ($_POST['parent_comment_id'])) {
     $comment_content = $_POST['comment_content'];
-    $user_id = 2; 
+    $user_id = $_SESSION['user_name']['user_id']; 
     
     $article_id = $_POST['article_id'];
     $parent_comment_id = $_POST['parent_comment_id'];
