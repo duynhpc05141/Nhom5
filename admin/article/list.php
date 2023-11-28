@@ -14,7 +14,7 @@
         <table class="table table-bordered text-center table-hover">
             <thead>
                 <tr>
-                    <th scope="col">ID</th>
+                    <th scope="col">STT</th>
                     <th scope="col">Danh mục</th>
                     <th scope="col">Tên bài viết</th>
                     <th scope="col">Nội dung</th>

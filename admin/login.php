@@ -61,6 +61,7 @@
         </form>
     </div>
     <?php
+    
     if (isset($_POST['login']) && ($_POST['login'])) {
         $user = $_POST['user_name'];
         $password = $_POST['user_password'];
@@ -69,10 +70,10 @@
         if ($dbHashedPassword && password_verify($password, $dbHashedPassword)) {
             $check_admin = check_admin($user);
 
-            if (is_array($check_admin)) {
-                $_SESSION['user_name'] = $check_admin;
+            if (is_array($check_admin) ) {
+                $_SESSION['admin'] = $check_admin;
                 header('Location: index.php?act=home');
-                exit; // Kết thúc luồng chạy để đảm bảo chuyển hướng hoạt động
+                exit; 
             } else {
                 $alert = 'Tên đăng nhập hoặc mật khẩu sai!!!';
             }

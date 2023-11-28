@@ -40,8 +40,8 @@
                             <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
                                 <div class="dropdown">
                                     <?php
-                                    if (isset($_SESSION['user_name'])) {
-                                        extract($_SESSION['user_name']);
+                                    if (isset($_SESSION['admin']) ) {
+                                        extract($_SESSION['admin']);
                                         $img = './img/' . $avatar;
                                         if (file_exists($img)) {
                                             $hinh = '<img src=" ' . $img . '" alt="Hình ảnh đại diện" height="40px" style="border-radius:10px;">';

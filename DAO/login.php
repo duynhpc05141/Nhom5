@@ -1,4 +1,5 @@
 <?php 
+
 function check_user($user)
 {
     $sql = "select * from user where user_name='" . $user . "' ";
@@ -9,8 +10,8 @@ function check_user($user)
 function check_admin($user)
 {
     $sql = "select * from user where user_name='" . $user . "'and role_id=1 ";
-    $check_user = pdo_query_one($sql);
-    return $check_user;
+    $check_admin = pdo_query_one($sql);
+    return $check_admin;
 }
 
 function fetch_hashed_password_from_database($user) {

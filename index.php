@@ -20,8 +20,6 @@ if (isset($_GET['act']) && ($_GET['act'] !== "")) {
       if (isset($_POST['login']) && ($_POST['login'])) {
         $user = $_POST['user_name'];
         $password = $_POST['user_password'];
-        // Lấy mật khẩu đã băm từ cơ sở dữ liệu dựa trên tên người dùng
-        // Ví dụ, sử dụng một câu lệnh chuẩn bị
         $dbHashedPassword = fetch_hashed_password_from_database($user);
         if ($dbHashedPassword && password_verify($password, $dbHashedPassword)) {
             $check_user = check_user($user);

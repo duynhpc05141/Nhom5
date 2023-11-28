@@ -13,7 +13,7 @@ $article_exist = article_exist();
 $avg_views = article_count_avg_view_all();
 $comments = count_comment_all();
 
-if (!isset($_SESSION['user_name'])) {
+if (!isset($_SESSION['admin'])) {
     $act = 'login';
 } else {
     if (isset($_GET['act'])) {
@@ -34,7 +34,7 @@ if (!isset($_SESSION['user_name'])) {
             break;
 
         case 'logout':
-            session_unset();
+            unset($_SESSION['admin']);
             header('Location: index.php?act=login');
             break;
             /** 

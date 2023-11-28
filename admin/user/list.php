@@ -30,6 +30,7 @@
         <table class="table table-bordered   text-center table-hover ">
           <thead>
             <tr>
+              <th scope="col">STT</th>
               <th scope="col">Tên khách hàng</th>
               <th scope="col">Ảnh đại diện</th>
               <th scope="col">Email</th>
@@ -59,6 +60,7 @@
               };
               echo ' 
               <tr>  
+                <td>' . $user_id . '</td>
                 <td>' . $user_name . '</td>
                 <td>' . $hinh . '</td>
                 <td>' . $email . '</td>
