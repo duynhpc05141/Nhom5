@@ -7,6 +7,7 @@ include "./DAO/khach-hang.php";
 include "./DAO/article.php";
 include "./DAO/loai.php";
 include "./DAO/binh-luan.php";
+include "./DAO/favourite.php";
 
 
 $list_loai = loai_select_all();
@@ -131,6 +132,7 @@ if (isset($_GET['act']) && ($_GET['act'] !== "")) {
     case 'rankings':
       include "view/rankings.php";
       break;
+    
 
 
     default:
