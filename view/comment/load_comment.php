@@ -1,4 +1,6 @@
 <?php session_start(); ?>
+<script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 <script src="https://kit.fontawesome.com/55a9fa42b8.js" crossorigin="anonymous"></script>
 
@@ -284,8 +286,12 @@ $listComment = comment_select_all_1($article_id);
 
 foreach ($listComment as $item) {
     extract($item);
+    $currentUser = null;
+    if(isset($_SESSION['user_name'])){
+         $currentUser = $_SESSION['user_name']['user_id'];
+    }
+   
 
-    $currentUser = $_SESSION['user_name']['user_id'];
     $isCurrentUser = ($currentUser == $user_id);
 ?>
     <!-- Main Container -->
@@ -320,7 +326,7 @@ foreach ($listComment as $item) {
 
                             <div class="reply-form" style="display: none;">
                                 <form class="form-reply" data-comment-id="<?= $item['comment_id'] ?>" method="post">
-                                    <textarea class="form-control w-100" name="comment_content" cols="30" rows="3" placeholder="@<?= $item['user_name'] ?>"></textarea>
+                                    <textarea class="form-control w-100" name="comment_content" id="comment_content" cols="30" rows="3" placeholder="@<?= $item['user_name'] ?>"></textarea>
                                     <input type="hidden" name="article_id" value="<?= $article_id ?>">
                                     <input type="hidden" name="parent-comment-id" value="<?= $item['comment_id'] ?>">
                                     <input type="submit" class="btn-submit-reply btn-sm mt-1" value="Gửi" name="send" style="background-color: #fc3f00;color: white; border: 1px solid white; ">
@@ -336,7 +342,10 @@ foreach ($listComment as $item) {
                     $replies = getRepliesForComment($comment_id);
                     foreach ($replies as $reply) {
                         extract($reply);
-                        $currentUser = $_SESSION['user_name']['user_id'];
+                        $currentUser = null;
+                        if(isset($_SESSION['user_name'])){
+                             $currentUser = $_SESSION['user_name']['user_id'];
+                        }
                         $isCurrentUser = ($currentUser == $user_id);
                     ?>
                         <li>
@@ -382,6 +391,25 @@ foreach ($listComment as $item) {
 <!-- ... -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 <script>
+$(document).ready(function() {
+    $(".form-reply").submit(function(event) {
+        var commentContent = $(this).find("textarea[name='comment_content']").val().trim();
+        if (commentContent === "") {
+            event.preventDefault();
+            var mes = "Nội dung bình luận không được trống.";
+            Toastify({
+                text: mes,
+                duration: 3000,
+                close: true,
+                gravity: "top",
+                position: "center",
+                backgroundColor: "#fc3f00",
+            }).showToast();
+        }
+    });
+});
+
+
    $(document).ready(function() {
     $(document).on('click', '.btn-reply', function() {
         console.log('Cliked');
