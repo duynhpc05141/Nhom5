@@ -6,6 +6,4 @@ if (isset($_POST['comment_id']) && $_POST['comment_id'] > 0) {
     $comment_id = $_POST['comment_id'];
     comment_delete($comment_id);
 }
-// $listArticle = article_select_all("", 0);
-
 ?>

@@ -99,6 +99,7 @@
          display: none;
       }
    }
+   
 </style>
 
 <body>
@@ -206,15 +207,20 @@
                <div id="comment-form"></div>
                <div id="comment-list"></div>
                <script>
-                  $(document).ready(function() {
-                     $("#comment-form").load("./view/comment/comment_form.php", {
-                        article_id: <?= $article_id ?>
+                  // $(document).ready(function() {
+                  //    $("#comment-form").load("./view/comment/comment_form.php", {
+                  //       article_id: <?= $article_id ?>
 
-                     });
-                     $("#comment-list").load("./view/comment/load_comment.php", {
-                        article_id: <?= $article_id ?>
-                     });
-                  });
+                  //    });
+                  //    $("#comment-list").load("./view/comment/comments_display.php", {
+                  //       article_id: <?= $article_id ?>
+                  //    });
+                  // });
+                  $(document).ready(function() {
+    $("#comment-form").load("./view/comment/comment_form.php?article_id=<?= $article_id ?>");
+    $("#comment-list").load("./view/comment/comments_display.php?article_id=<?= $article_id ?>");
+});
+
                </script>
                <!-- <button id="load-more-comments">Xem thêm bình luận</button> -->
                <div class="">
@@ -265,6 +271,7 @@
    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
    <script>
+// Check favourite
       $(document).ready(function() {
          var articleId = <?= $id ?>;
          var userId = <?= $_SESSION['user_name']['user_id'] ?>;
@@ -293,14 +300,18 @@
             }
          });
       });
-      document.addEventListener("DOMContentLoaded", function() {
-         document.getElementById("printButton").addEventListener("click", function() {
-            document.getElementById("printButton").style.display = "none";
-            window.print();
-            document.getElementById("printButton").style.display = "block";
-         });
-      });
+      //Print
+      $(document).ready(function() {
+   $('#printButton').on('click', function() {
+      $('#printButton').hide();
+      window.print();
+      $('#printButton').show();
+   });
+});
 
+
+
+      //Favourite BTN
       $(document).ready(function() {
          $('.favorite-btn').click(function() {
             var userId = $(this).data('userid');
