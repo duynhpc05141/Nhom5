@@ -154,7 +154,7 @@
                                                 if ($role_id == 0) {
                                                 ?>
                                                 <li>
-                                                    <a class="dropdown-item" href="#">Thông tin</a>
+                                                    <a class="dropdown-item" href="index.php?act=infor-user">Thông tin</a>
                                                 </li>
                                                 <li>
                                                     <a class="dropdown-item" href="index.php?act=user_edit">Cập nhật thông tin</a>
@@ -197,11 +197,11 @@
                                     <div class="search-box">
                                         <form action="#">
                                             <input type="text" placeholder="Search">
-
+                                          
                                         </form>
                                     </div>
                                 </div>
-                                
+                           
                             </div>
                             
                             <!-- Mobile Menu -->

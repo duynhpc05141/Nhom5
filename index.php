@@ -133,7 +133,11 @@ if (isset($_GET['act']) && ($_GET['act'] !== "")) {
     case 'rankings':
       include "view/rankings.php";
       break;
+      case 'infor-user':
+        include "./view/account/infor-user.php";
+        break;
 
+      
 
     default:
 
