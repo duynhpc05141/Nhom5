@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html class="no-js" lang="zxx">
 
@@ -10,6 +11,9 @@
     <link rel="manifest" href="site.webmanifest">
     <link rel="shortcut icon" type="image/x-icon" href="./view/assets/img/icon/l.png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <meta content='width=device-width, initial-scale=1, maximum-scale=1' name='viewport'/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+
     <!-- CSS here -->
     <link rel="stylesheet" href="./view/assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="./view/assets/css/owl.carousel.min.css">
@@ -135,6 +139,7 @@
                             <div class="col-xl-2 col-lg-2 col-md-4">
                                 <div class="header-right-btn f-right d-none d-lg-block">
                                     <div class="dropdown">
+                                        
                                         <?php 
                                         if (isset($_SESSION['user_name'])) {
                                             extract($_SESSION['user_name']);
@@ -145,36 +150,34 @@
                                                 $hinh = '0';
                                               };
                                         ?>
-                                            <div data-bs-toggle="dropdown">
-                                                <?= $hinh ?>
-                                                <?= $user_name ?>
-                                            </div>
-                                            <ul class="dropdown-menu">
-                                                <?php
-                                                if ($role_id == 0) {
-                                                ?>
-                                                <li>
-                                                    <a class="dropdown-item" href="#">Thông tin</a>
-                                                </li>
-                                                <li>
-                                                    <a class="dropdown-item" href="index.php?act=user_edit">Cập nhật thông tin</a>
-                                                </li>
-                                                <li>
-                                                    <a class="dropdown-item" href="index.php?act=forgot-pass">Quên mật khẩu</a>
-                                                </li>
-                                                <?php } ?>
-                                                <?php   
-                                                if ($role_id == 1) {
-                                                ?>
-                                                <li>
-                                                    <a class="dropdown-item" href="index.php?act=forgot-pass">Quản trị</a>
-                                                </li>
-                                                <?php }?>    
-                                                <li>
-                                                    <a class="dropdown-item" href="index.php?act=logout">Đăng xuất</a>
-                                                </li>
-                                            </ul>
-                                            <?php 
+                                        <div data-bs-toggle="dropdown">
+                                            <?= $hinh ?>
+                                            <?= $user_name ?>
+                                        </div>
+                                        <ul class="dropdown-menu">
+                                            <?php
+                                            if ($role_id == 0) {
+                                            ?>
+                                            <li>
+                                                <a class="dropdown-item" href="#">Thông tin</a>
+                                            </li>
+                                            <li>
+                                                <a class="dropdown-item" href="index.php?act=user_edit">Cập nhật thông tin</a>
+                                            </li>
+                                            
+                                            <?php } ?>
+                                            <?php   
+                                            if ($role_id == 1) {
+                                            ?>
+                                            <li>
+                                                <a class="dropdown-item" href="index.php?act=">Quản trị</a>
+                                            </li>
+                                            <?php }?>   
+                                            <li>
+                                                <a class="dropdown-item" href="index.php?act=logout">Đăng xuất</a>
+                                            </li>
+                                        </ul>
+                                        <?php 
                                         }else {?>
                                         <div data-bs-toggle="dropdown">
                                             <i class="fas fa-user"></i>
@@ -187,10 +190,12 @@
                                             <li>
                                                 <a class="dropdown-item" href="index.php?act=register">Đăng Ký</a>
                                             </li>
+                                            <li>
+                                                <a class="dropdown-item" href="index.php?act=forgot-pass">Quên mật khẩu</a>
+                                            </li>
                                         </ul>
                                        <?php }?>
                                     </div>
-                                    
                                 </div>
                                 <div class="header-right-btn f-right d-none d-lg-block">
                                     <i class="fas fa-search special-tag"></i>
