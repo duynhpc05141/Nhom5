@@ -15,46 +15,71 @@
 
        label.error {
         color: red;
+
+       
         }
+        hr {
+            width: 100%;
+        }
+        .infor-user-left{
+            width: 100%;
+            float: left;
+    }
+    .infor-user-right{
+            width: 500px;
+            float: left;
+    }
     </style>
     <div class="container d-flex justify-content-center align-items-center">
         <?php
+
         if(isset($_SESSION['user_name']) && is_array($_SESSION['user_name'])){
         extract($_SESSION['user_name']);
         $img = './img/' . $avatar;
         if (file_exists($img)) {
-            $hinh = '<img src=" ' . $img . '" alt="Hình ảnh đại diện" height="200px" style="border-radius:10px;">';
+            $hinh = '<img src=" ' . $img . '" alt="Hình ảnh đại diện" height="40px" style="border-radius:40px;">';
             } else {
             $hinh = '0';
             };
         }
         ?>
-        <form id="update-form" class="row g-3 mx-auto p-5 shadow mt-3 mb-3" action="index.php?act=user_edit" method="post" enctype="multipart/form-data">
-            <h2 class="text-center">Thông tin người dùng</h2>
-            <div class="col-md-12">
-                <label for="name" class="form-label">Họ Tên</label>
-                <input type="text" class="form-control " id="name" placeholder="Nhập tên đăng nhập"  name="user" value="<?=$user_name?>">
-                
-            </div>
-            <div class="col-md-12">
-            <label for="avatar" class="form-label">Ảnh đại diện</label>
-            <?= $hinh ?>
-            
-          </div>
-            <div class="col-md-12">
+        <form id="update-form" class="row g-3 mx-auto p-5 shadow mt-3 mb-3" action="index.php?act=user_edit"  enctype="multipart/form-data">
+        
+        <div>
+        <h2 class="text-center">Thông tin người dùng</h2>
+            <div class="infor-user-right" >
+                <ul class="col-md-12">
+                    <li>
+                    <label for="avatar" class="form-label">Ảnh đại diện</label>
+                     <?= $hinh ?>
+                    </li>
+                    <hr>
+                    <li>
+                    <label for="name" class="form-label">Họ Tên</label>
+                    <p><?=$user_name?></p>
+                    </li>
+              <hr>
+                <li >
                 <label for="email" class="form-label">Email</label>
-                <input type="email" class="form-control" id="email" placeholder="Nhập email"  name="email" value="<?=$email?>">
-                
-            </div>
-            <div class="col-md-12">
+                <p><?=$email?></p>
+            </li>
+            <hr>
+            <li>
                 <label for="phone" class="form-label">Số điện thoại</label>
-                <input type="number" class="form-control" id="phone" placeholder="Nhập số điện thoại"  name="phone" value="<?=$user_phone?>">
-            </div>
+                <p><?=$user_phone?></p>
+            </li>
+            </ul>
+          </div>
+            
 
             <div class="col-12">
             <a href="index.php?act=user_edit"> <input class="btn btn-primary" type="button" style="width: 100%;"
-                value="Cập nhật thông Tin"></input></a>
+                value="Thay đổi thông Tin"></input></a>
             </div>
+        </div>    
+        
+            
+            
         </form>
     </div>
     <?php

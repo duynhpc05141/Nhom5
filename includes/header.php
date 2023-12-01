@@ -195,12 +195,17 @@
                                 <div class="header-right-btn f-right d-none d-lg-block">
                                     <i class="fas fa-search special-tag"></i>
                                     <div class="search-box">
-                                        <form action="#">
-                                            <input type="text" placeholder="Search">
-                                          
+                                        <form  action="index.php?act=seach-acticle" method="post">
+                                            <input type="text" placeholder="Search" name="kyw">
+                                            <input type="submit" name="timkiem" value="Tiềm kiếm">
                                         </form>
+
+                                    </div>
+                                    <div>
+                                        
                                     </div>
                                 </div>
+                               
                            
                             </div>
                             

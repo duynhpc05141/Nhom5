@@ -7,7 +7,7 @@ include "./DAO/khach-hang.php";
 include "./DAO/article.php";
 include "./DAO/loai.php";
 include "./DAO/binh-luan.php";
-
+include "./DAO/thong-ke.php";
 
 $list_loai = loai_select_all();
       $listArticle = article_select_all_home();
@@ -121,7 +121,9 @@ if (isset($_GET['act']) && ($_GET['act'] !== "")) {
     case 'about':
       include "view/about.php";
       break;
+
     case 'articles':
+     
       $list_loai = loai_select_all();
       $listArticle = article_select_all_home();
       include "view/articles.php";
@@ -136,7 +138,20 @@ if (isset($_GET['act']) && ($_GET['act'] !== "")) {
       case 'infor-user':
         include "./view/account/infor-user.php";
         break;
-
+    case 'seach-acticle':
+      if(isset($_POST['kyw'])&&($_POST['kyw']!="")) {
+        $kyw=$_POST['kyw'];
+        }else {
+          $kyw="";
+        }
+        if(isset($_GET['categoty_id']) && ($_GET['categoty_id']>0)){
+          $categoty_id = $_GET['categoty_id'];
+        }else {
+          $categoty_id=0;
+        }
+       
+        include "./view/search-acticle.php";
+        break;
       
 
     default:
