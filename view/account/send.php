@@ -1,7 +1,4 @@
 <?php
-include "../../modal/pdo.php";
-
-include "../../modal/khach-hang.php";
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
@@ -23,18 +20,18 @@ if (isset($_POST['forgot']) && ($_POST['forgot'])) {
             // $mail->CharSet ='utf-8';
             $mail->Host = 'smtp.gmail.com'; // Set your SMTP server
             $mail->SMTPAuth = true;
-            $mail->Username = 'hieulmpc05108@fpt.edu.vn'; // SMTP username
-            $mail->Password = 'owww ruxa dzol mrwr'; // SMTP password
+            $mail->Username = 'duynhpc05141@fpt.edu.vn'; // SMTP username
+            $mail->Password = 'vuie rizy gves uzfp'; // SMTP password
             $mail->SMTPSecure = 'ssl'; // Enable TLS or SSL
             $mail->Port = "465"; // Adjust the port accordingly (usually 465 for SMTPS)
 
             // Set the sender's email address dynamically
-            $mail->setFrom('hieulmpc05108@fpt.edu.vn', 'Hieu');
+            $mail->setFrom('duynhpc05141@fpt.edu.vn', 'Duy');
             $mail->addAddress($user_email); // Add the recipient's email address
 
             // Content
             $mail->isHTML(true);
-            $mail->Subject = 'Hello';
+            $mail->Subject = 'FastNews';
             $mail->Body = 'New password';
 
 
@@ -44,13 +41,12 @@ if (isset($_POST['forgot']) && ($_POST['forgot'])) {
             customer_forgot($user_email, $new_password);
 
 
-            $mail->Body = "Your new password is: $new_password";
+            $mail->Body = "Mật khẩu mới của bạn là: $new_password";
 
             echo '<script>alert("Mật khẩu đã được gửi qua email.")</script>';
 
             // Send the email
             $mail->send();
-            echo '<script>alert("Email đã được gửi")</script>';
             echo '<script>window.location = "index.php?act=login";</script>';
         } catch (Exception $e) {
             echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";

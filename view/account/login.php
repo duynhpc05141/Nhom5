@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 
@@ -6,6 +7,9 @@
     <link rel="stylesheet" href="css/style.css?php echo time(); ?>">
     <script src="https://kit.fontawesome.com/55a9fa42b8.js" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <meta content='width=device-width, initial-scale=1, maximum-scale=1' name='viewport'/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+
 </head>
 
 <body>
@@ -31,13 +35,6 @@
         }
     </style>
 
-    <?php
-    
-
-
-
-    ?>
-
     <div class="container d-flex justify-content-center align-items-center">
         <form class="row g-3 mx-auto shadow p-5 mt-5 mb-3" action="index.php?act=login" method="post" id="login-form">
             <h2 class="text-center">Đăng nhập</h2>
@@ -55,7 +52,10 @@
             <div class="col-12">
                 <input type="submit" value="Đăng nhập" name="login" class="btn btn-primary col-12 mb-10">
                 <a href="index.php?act=register" class="btn btn-dark col-12 mb-10">Tạo tài khoản</a>
-                <a href="index.php?act=forgot" class="btn text-capitalize col-12 mb-10">Quên mật khẩu?</a>
+                <a href="index.php?act=forgot-pass" class="btn text-capitalize col-12 mb-10">Quên mật khẩu?</a> 
+                <div class="panel panel-default">
+                </div>
+                
             </div>
         </form>
     </div>

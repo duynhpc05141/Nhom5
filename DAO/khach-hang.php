@@ -10,9 +10,16 @@ function user_insert_admin($user, $email, $avatar, $phone,$password ,$role_id){
     $sql = "INSERT INTO user(user_name, email,avatar,user_phone, user_password,role_id) VALUES ( ?, ?,?,?,?,?)";
     pdo_execute($sql, $user, $email, $avatar, $phone,$hashed_password,$role_id);
 }
+
+function user_insert_user($user, $email, $avatar, $phone,$password ,$role_id){
+    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+    $sql = "INSERT INTO user(user_name, email,avatar,user_phone, user_password,role_id) VALUES ( ?, ?,?,?,?,?)";
+    pdo_execute($sql, $user, $email, $avatar, $phone,$hashed_password,$role_id);
+}
 function customer_forgot($user_email, $new_password){
-    $sql = "UPDATE customer SET password = ? WHERE email = ?";
-    pdo_execute($sql, $new_password, $user_email);
+    $hashed_password = password_hash($new_password, PASSWORD_DEFAULT);
+    $sql = "UPDATE user SET user_password = ? WHERE email = ?";
+    pdo_execute($sql, $hashed_password, $user_email);
 }
 
 
@@ -62,7 +69,7 @@ function customer_select_by_id_admin($id){
     return pdo_query_one($sql,$id);
 }
 function customer_check_by_email($user_email){
-    $sql = "SELECT * FROM customer WHERE email='".$user_email."'";
+    $sql = "SELECT * FROM user WHERE email='".$user_email."'";
     return pdo_query_one($sql,$user_email);
 }
 

@@ -9,7 +9,6 @@ include "./DAO/loai.php";
 include "./DAO/binh-luan.php";
 include "./DAO/favourite.php";
 
-
 $list_loai = loai_select_all();
       $listArticle = article_select_all_home();
 if (isset($_GET['act']) && ($_GET['act'] !== "")) {
@@ -54,7 +53,7 @@ if (isset($_GET['act']) && ($_GET['act'] !== "")) {
           $role_id = 0;
           $avatar = save_file('avatar', $target_dir);
           if (!is_username_exists($user)) {
-            user_insert_admin($user, $email, $avatar, $phone,$password ,$role_id);
+            user_insert_user($user, $email, $avatar, $phone,$password ,$role_id);
             $alert = '<div class="alert alert-success" role="alert">
               Đăng ký thành công!
             </div>';
@@ -65,7 +64,7 @@ if (isset($_GET['act']) && ($_GET['act'] !== "")) {
         }
       }
       include './view/account/register.php';
-      break;  
+      break;    
     case 'user_edit':
       $target_dir = "./img/";
       if (isset($_POST['updateAc']) && ($_POST['updateAc'])) {
@@ -134,6 +133,12 @@ if (isset($_GET['act']) && ($_GET['act'] !== "")) {
       break;
     
 
+    case 'forgot-pass':
+      include './view/account/forgot-pass.php';
+      break;
+    case 'send':
+      include './view/account/send.php';
+      break;
 
     default:
 
