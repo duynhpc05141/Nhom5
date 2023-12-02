@@ -99,11 +99,11 @@
                         </div>
                         <div class="trand-right-single d-flex">
                             <div class="trand-right-img">
-                                <img src="./view/assets/img/trending/right3.jpg" alt="">
+                            <img src="./view/assets/img/trending/f.jpg" alt="" width="120px" height="100px">
                             </div>
                             <div class="trand-right-cap">
-                                <span class="color2">Xe</span>
-                                <h4><a href="index.php?act=detail">Dịch vụ gọi xe máy điện Xanh SM Bike đến TP HCM</a></h4>
+                                <span class="color2">Đời sống</span>
+                                <h4><a href="../view/food.html">Hôm nay ăn gì?</a></h4>
                             </div>
                         </div>
                         <div class="trand-right-single d-flex">

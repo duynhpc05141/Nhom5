@@ -9,13 +9,13 @@ $(document).ready(function() {
     });
 
  
-    // Xử lý sự kiện click cho nút ".btn-reply"
+   
 $(".reply-btn").on('click', '.btn-reply', function() {
     let formReply = $(this).closest('.comment-box').find('.reply-form');
     formReply.toggle();
 });
 
-// Xử lý sự kiện click cho nút ".btn-reply-2"
+
 $(".reply-btn").on('click', '.btn-reply-2', function() {
     let formReply = $(this).closest('.comment-box').find('.reply-form');
     formReply.toggle();
@@ -23,7 +23,7 @@ $(".reply-btn").on('click', '.btn-reply-2', function() {
 
 
    
-    $(document).on('submit', '.form-reply', function(e) {
+    $("#comments-container").on('submit', '.form-reply', function(e) {
         e.preventDefault();
         let commentForm = $(this);
         let comment_content = commentForm.find('textarea[name="comment_content"]').val();

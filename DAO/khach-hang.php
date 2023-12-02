@@ -86,9 +86,9 @@ function save_file($fieldname, $target_dir)
     return $file_name;
 }
 
-function check_kh($ten_kh, $mat_khau)
+function check_kh($user)
 {
-    $sql = "select * from khach_hang where ten_kh='" . $ten_kh . "' and mat_khau='" . $mat_khau . "' ";
+    $sql = "select * from user where user_name='" . $user . "' ";
     $check_kh = pdo_query_one($sql);
     return $check_kh;
 }
