@@ -138,49 +138,48 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="section-tittle mb-30">
-                            <h3>Tin mới trong tuần</h3>
+                            <h3>Được xem nhiều nhất</h3>
                         </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-12">
                         <div class="weekly-news-active dot-style d-flex dot-style">
-                            <div class="weekly-single">
+                            <?php foreach($top10 as $item){
+                                extract($item);
+                                $anh = '../img/' . $img;
+                                $image_paths_array = explode(',', $img);
+        
+                                $categoryInfo = loai_select_by_id($category_id);
+                                $anh = '../img/' . $img;
+                                $image_paths_array = explode(',', $img);
+                                $image_html_locations = []; // Khởi tạo mảng chứa thẻ hình ảnh hoặc thông báo
+        
+                                foreach ($image_paths_array as $image_path) {
+                                    $full_image_path = './img/' . trim($image_path);
+        
+                                    if (file_exists($full_image_path)) {
+                                        $image_html_locations[] = '<img class="card-img" src="' . $full_image_path . '" alt="Hình ảnh bài viết" style="max-height: 400px;">';
+                                    } else {
+                                        $image_html_locations[] = 'Chưa có ảnh được chọn';
+                                    }
+                                    
+                                }
+                                $detail="index.php?act=detail&id=".$article_id;
+                                $category="index.php?act=category&id=".$category_id;
+                                echo '
+                                 <div class="weekly-single">
                                 <div class="weekly-img">
-                                    <img src="./view/assets/img/news/weeklyNews2.jpg" alt="">
+                                '.$image_html_locations[0].'
                                 </div>
                                 <div class="weekly-caption">
-                                    <span class="color1">Strike</span>
-                                    <h4><a href="#">Giá điện tăng 4,5% lên hơn 2.000 đồng/kWh từ hôm nay</a></h4>
+                                <a href="'.$category.'"> <span class="color1">'.$category_name.'</span></a>
+                                    <h4><a href="'.$detail.'">'.$article_name.'</a></h4>
                                 </div>
                             </div>
-                            <div class="weekly-single ">
-                                <div class="weekly-img">
-                                    <img src="./view/assets/img/news/weeklyNews1.jpg" alt="">
-                                </div>
-                                <div class="weekly-caption">
-                                    <span class="color1">Đời sống</span>
-                                    <h4><a href="#">Giá điện tăng 4,5% lên hơn 2.000 đồng/kWh từ hôm nay</a></h4>
-                                </div>
-                            </div>
-                            <div class="weekly-single">
-                                <div class="weekly-img">
-                                    <img src="./view/assets/img/news/weeklyNews3.jpg" alt="">
-                                </div>
-                                <div class="weekly-caption">
-                                    <span class="color1">Đời sống</span>
-                                    <h4><a href="#">Giá điện tăng 4,5% lên hơn 2.000 đồng/kWh từ hôm nay</a></h4>
-                                </div>
-                            </div>
-                            <div class="weekly-single">
-                                <div class="weekly-img">
-                                    <img src="./view/assets/img/news/weeklyNews1.jpg" alt="">
-                                </div>
-                                <div class="weekly-caption">
-                                    <span class="color1">Đời sống</span>
-                                    <h4><a href="#">Giá điện tăng 4,5% lên hơn 2.000 đồng/kWh từ hôm nay</a></h4>
-                                </div>
-                            </div>
+                                ';
+                            } ?>
+                           
                         </div>
                     </div>
                 </div>
@@ -196,63 +195,49 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="section-tittle mb-30">
-                            <h3>TIN MỚI</h3>
+                            <h3>Tin mới nhất</h3>
                         </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-12">
                         <div class="weekly2-news-active dot-style d-flex dot-style">
-                            <div class="weekly2-single">
+                        <?php foreach($latest as $new){
+                                extract($new);
+                                $anh = '../img/' . $img;
+                                $image_paths_array = explode(',', $img);
+        
+                                $categoryInfo = loai_select_by_id($category_id);
+                                $anh = '../img/' . $img;
+                                $image_paths_array = explode(',', $img);
+                                $image_html_locations = []; // Khởi tạo mảng chứa thẻ hình ảnh hoặc thông báo
+        
+                                foreach ($image_paths_array as $image_path) {
+                                    $full_image_path = './img/' . trim($image_path);
+        
+                                    if (file_exists($full_image_path)) {
+                                        $image_html_locations[] = '<img class="card-img" src="' . $full_image_path . '" alt="Hình ảnh bài viết" style="max-height: 400px;">';
+                                    } else {
+                                        $image_html_locations[] = 'Chưa có ảnh được chọn';
+                                    }
+                                    
+                                }
+                                $detail="index.php?act=detail&id=".$article_id;
+                                $category="index.php?act=category&id=".$category_id;
+                                echo '
+                                <div class="weekly2-single">
                                 <div class="weekly2-img">
-                                    <img src="./view/assets/img/news/weekly2News1.jpg" alt="">
+                                '.$image_html_locations[0].'
                                 </div>
                                 <div class="weekly2-caption">
-                                    <span class="color1">Corporate</span>
-                                    <p>10/11/2023</p>
-                                    <h4><a href="#">Tin tức trong tuần</a></h4>
+                                <a href="'.$category.'"> <span class="color1">'.$category_name.'</span></a>
+                                    <p>'.$created_at.'</p>
+                                    <h4><a href="'.$detail.'">'.$article_name.'</a></h4>
                                 </div>
                             </div>
-                            <div class="weekly2-single">
-                                <div class="weekly2-img">
-                                    <img src="./view/assets/img/news/weekly2News2.jpg" alt="">
-                                </div>
-                                <div class="weekly2-caption">
-                                    <span class="color1">Corporate</span>
-                                    <p>10/11/2023</p>
-                                    <h4><a href="#">Tin tức trong tuần</a></h4>
-                                </div>
-                            </div>
-                            <div class="weekly2-single">
-                                <div class="weekly2-img">
-                                    <img src="./view/assets/img/news/weekly2News3.jpg" alt="">
-                                </div>
-                                <div class="weekly2-caption">
-                                    <span class="color1">Corporate</span>
-                                    <p>10/11/2023</p>
-                                    <h4><a href="#">Tin tức trong tuần</a></h4>
-                                </div>
-                            </div>
-                            <div class="weekly2-single">
-                                <div class="weekly2-img">
-                                    <img src="./view/assets/img/news/weekly2News4.jpg" alt="">
-                                </div>
-                                <div class="weekly2-caption">
-                                    <span class="color1">Corporate</span>
-                                    <p>10/11/2023</p>
-                                    <h4><a href="#">Tin tức trong tuần</a></h4>
-                                </div>
-                            </div>
-                            <div class="weekly2-single">
-                                <div class="weekly2-img">
-                                    <img src="./view/assets/img/news/weekly2News4.jpg" alt="">
-                                </div>
-                                <div class="weekly2-caption">
-                                    <span class="color1">Corporate</span>
-                                    <p>10/11/2023</p>
-                                    <h4><a href="#">Tin tức trong tuần</a></h4>
-                                </div>
-                            </div>
+                                ';
+                            } ?>
+                          
                         </div>
                     </div>
                 </div>
@@ -321,24 +306,6 @@
     </div>
     <!--Recent Articles End -->
     <!--Start pagination -->
-    <div class="pagination-area pb-45 text-center">
-        <div class="container">
-            <div class="row">
-                <div class="col-xl-12">
-                    <div class="single-wrap d-flex justify-content-center">
-                        <nav aria-label="Page navigation example">
-                            <ul class="pagination justify-content-start">
-                                <li class="page-item"><a class="page-link" href="#"><span class="flaticon-arrow roted"></span></a></li>
-                                <li class="page-item active"><a class="page-link" href="#">01</a></li>
-                                <li class="page-item"><a class="page-link" href="#">02</a></li>
-                                <li class="page-item"><a class="page-link" href="#">03</a></li>
-                                <li class="page-item"><a class="page-link" href="#"><span class="flaticon-arrow right-arrow"></span></a></li>
-                            </ul>
-                        </nav>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+   
     <!-- End pagination  -->
 </main>

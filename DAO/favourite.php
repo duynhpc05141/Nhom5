@@ -18,6 +18,12 @@ function favourite_count($article_id){
     $like = $result[0]['total_favorites'];
     return $like;
 }
-
+function favourite_select_user($user_id){
+    $sql = "SELECT f.fav_id, f.user_id, f.created_at, f.article_id, a.article_name, a.img
+    FROM favourite f
+    JOIN article a ON f.article_id = a.article_id
+    WHERE f.user_id = ".$user_id;
+    return pdo_query($sql);
+}
 
 ?>

@@ -98,7 +98,7 @@
                         </ul>
                     </aside>
 
-
+<!-- 
                     <aside class="single_sidebar_widget instagram_feeds">
                         <h4 class="widget_title">Instagram Feeds</h4>
                         <ul class="instagram_row flex-wrap">
@@ -133,10 +133,10 @@
                                 </a>
                             </li>
                         </ul>
-                    </aside>
+                    </aside> -->
 
 
-                    <aside class="single_sidebar_widget newsletter_widget">
+                    <!-- <aside class="single_sidebar_widget newsletter_widget">
                         <h4 class="widget_title">Newsletter</h4>
 
                         <form action="#">
@@ -145,5 +145,5 @@
                             </div>
                             <button class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn" type="submit">Subscribe</button>
                         </form>
-                    </aside>
+                    </aside> -->
                 </div>

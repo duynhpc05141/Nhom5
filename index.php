@@ -8,9 +8,12 @@ include "./DAO/article.php";
 include "./DAO/loai.php";
 include "./DAO/binh-luan.php";
 include "./DAO/favourite.php";
+include "./DAO/thong-ke.php";
 
+$latest = latest_article();
+$top10 = article_select_top10();
 $list_loai = loai_select_all();
-      $listArticle = article_select_all_home();
+$listArticle = article_select_all_home();
 if (isset($_GET['act']) && ($_GET['act'] !== "")) {
 
   $act = $_GET['act'];
@@ -22,68 +25,70 @@ if (isset($_GET['act']) && ($_GET['act'] !== "")) {
         $password = $_POST['user_password'];
         $dbHashedPassword = fetch_hashed_password_from_database($user);
         if ($dbHashedPassword && password_verify($password, $dbHashedPassword)) {
-            $check_user = check_user($user);
-            if (is_array($check_user)) {
-                $_SESSION['user_name'] = $check_user;
-                ob_end_clean();
-                header('Location: index.php');
-            } 
+          $check_user = check_user($user);
+          if (is_array($check_user)) {
+            $_SESSION['user_name'] = $check_user;
+            ob_end_clean();
+            header('Location: index.php');
+          }
         } else {
-            $alert = '<div class="alert alert-error" role="alert">
+          $alert = '<div class="alert alert-error" role="alert">
             Tên người dùng hoặc mật khẩu không đúng
             </div>';
         }
-    }
-      
+      }
+
       include './view/account/login.php';
       break;
 
     case 'logout':
       session_unset();
       header('Location: index.php');
-      break;  
+      break;
 
     case 'register':
       $target_dir = "./img/";
       if (isset($_POST['register']) && ($_POST['register'])) {
-          $user = $_POST['user'];
-          $password = $_POST['password'];
-          $email = $_POST['email'];
-          $phone = $_POST['phone'];
-          $role_id = 0;
-          $avatar = save_file('avatar', $target_dir);
-          if (!is_username_exists($user)) {
-            user_insert_user($user, $email, $avatar, $phone,$password ,$role_id);
-            $alert = '<div class="alert alert-success" role="alert">
+        $user = $_POST['user'];
+        $password = $_POST['password'];
+        $email = $_POST['email'];
+        $phone = $_POST['phone'];
+        $role_id = 0;
+        $avatar = save_file('avatar', $target_dir);
+        if (!is_username_exists($user)) {
+          user_insert_user($user, $email, $avatar, $phone, $password, $role_id);
+          $alert = '<div class="alert alert-success" role="alert">
               Đăng ký thành công!
             </div>';
         } else {
-            $alert = '<div class="alert alert-danger" role="alert">
+          $alert = '<div class="alert alert-danger" role="alert">
                 Tên người dùng đã tồn tại. Vui lòng chọn tên khác.
               </div>';
         }
       }
       include './view/account/register.php';
-      break;    
+      break;
     case 'user_edit':
       $target_dir = "./img/";
       if (isset($_POST['updateAc']) && ($_POST['updateAc'])) {
-          $id = $_POST['id'];
-          $user = $_POST['user'];
-          $email = $_POST['email'];
-          $img = save_file('avatar', $target_dir);
-          $phone = $_POST['phone'];
-          $role_id =0;
-          user_update_admin($id, $user,  $email, $img, $phone, $role_id);
-          $check_user = check_user($user);
-          $_SESSION['user_name'] = $check_user;
-          $alert = '<div class="alert alert-success" role="alert">
+        $id = $_POST['id'];
+        $user = $_POST['user'];
+        $email = $_POST['email'];
+        $img = save_file('avatar', $target_dir);
+        $phone = $_POST['phone'];
+        $role_id = 0;
+        user_update_admin($id, $user,  $email, $img, $phone, $role_id);
+        $check_user = check_user($user);
+        $_SESSION['user_name'] = $check_user;
+        $alert = '<div class="alert alert-success" role="alert">
               Cập nhật thành công!
             </div>';
       }
       include './view/account/update-account.php';
-      break;  
+      break;
     case 'home':
+      $latest = latest_article();
+      $top10 = article_select_top10();
       $list_loai = loai_select_all();
       $listArticle = article_select_all_home();
       include "./includes/home.php";
@@ -92,15 +97,15 @@ if (isset($_GET['act']) && ($_GET['act'] !== "")) {
       if (isset($_GET['id']) && ($_GET['id'])) {
         $id = $_GET['id'];
         $detail = article_select_by_id($id);
-         $view= article_count_view($id);
-         $comment=count_comment($id);
+        $view = article_count_view($id);
+        $comment = count_comment($id);
         extract($detail);
         $sameKind = article_select_by_loai($id, $category_id);
         include "view/single-blog.php";
-      }else{
+      } else {
         include "./includes/home.php";
       }
-    
+
       break;
     case 'category':
       if (isset($_GET['id']) && ($_GET['id'])) {
@@ -119,7 +124,9 @@ if (isset($_GET['act']) && ($_GET['act'] !== "")) {
     case 'about':
       include "view/about.php";
       break;
+
     case 'articles':
+
       $list_loai = loai_select_all();
       $listArticle = article_select_all_home();
       include "view/articles.php";
@@ -131,13 +138,34 @@ if (isset($_GET['act']) && ($_GET['act'] !== "")) {
     case 'rankings':
       include "view/rankings.php";
       break;
-    
+
+
 
     case 'forgot-pass':
       include './view/account/forgot-pass.php';
       break;
     case 'send':
       include './view/account/send.php';
+      break;
+
+    case 'infor-user':
+      $user_id = $_SESSION['user_name']['user_id'];
+      $favofuser = favourite_select_user($user_id);
+      include "./view/account/infor-user.php";
+      break;
+    case 'seach-acticle':
+      if (isset($_POST['kyw']) && ($_POST['kyw'] != "")) {
+        $kyw = $_POST['kyw'];
+      } else {
+        $kyw = "";
+      }
+      if (isset($_GET['categoty_id']) && ($_GET['categoty_id'] > 0)) {
+        $categoty_id = $_GET['categoty_id'];
+      } else {
+        $categoty_id = 0;
+      }
+
+      include "./view/search-acticle.php";
       break;
 
     default:

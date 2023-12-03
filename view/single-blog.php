@@ -7,6 +7,9 @@
    <title>Document</title>
 </head>
 <style>
+   a{
+      text-decoration: none !important;
+   }
    .heart-container {
       --heart-color: rgb(255, 91, 137);
       position: relative;

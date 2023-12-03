@@ -117,9 +117,15 @@ function article_count_avg_view_all()
 }
 
 
-function product_select_top10()
+function article_select_top10()
 {
-    $sql = "SELECT * FROM product WHERE view > 0 ORDER BY view DESC LIMIT 0, 10";
+    $sql = "SELECT * FROM article WHERE view > 0 ORDER BY view DESC LIMIT 0, 10";
+    return pdo_query($sql);
+}
+
+function latest_article()
+{
+    $sql = "SELECT * FROM article  ORDER BY created_at DESC LIMIT 0, 10";
     return pdo_query($sql);
 }
 

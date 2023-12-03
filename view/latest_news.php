@@ -10,21 +10,21 @@
                 <div class="col-12">
                     <div class="video-items-active">
                         <div class="video-items text-center">
-                            <img src="https://source.unsplash.com/600x900/?tech,street" alt="" width="100%" height="400px">
+                            <img src="./view/assets/img/blog/i1.avif" alt="" width="100%" height="400px">
                         </div>
                         <div class="video-items text-center">
-                            <img src="" alt="">>
+                        <img src="./view/assets/img/blog/i1.avif" alt="" width="100%" height="400px">
                         </div>
                         <div class="video-items text-center">
-                            <img src="" alt="">
+                        <img src="./view/assets/img/blog/i1.avif" alt="" width="100%" height="400px">
 
                         </div>
                         <div class="video-items text-center">
-                            <img src="" alt="">
+                        <img src="./view/assets/img/blog/i1.avif" alt="" width="100%" height="400px">
 
                         </div>
                         <div class="video-items text-center">
-                            <img src="" alt="">
+                        <img src="./view/assets/img/blog/i1.avif" alt="" width="100%" height="400px">
                         </div>
                     </div>
                 </div>
@@ -47,7 +47,7 @@
                     <div class="col-lg-6">
                         <div class="testmonial-nav text-center">
                             <div class="single-video">
-                                <iframe src="https://www.youtube.com/embed/CicQIuG8hBo" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            <img src="./view/assets/img/blog/i1.avif" alt="" width="100%" height="150px">
                                 <div class="video-intro">
                                     <h4>Martinez đưa Inter vào vòng knock-out Champions League</h4>
                                 </div>

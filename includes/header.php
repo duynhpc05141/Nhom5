@@ -52,7 +52,7 @@
                     <div class="container">
                         <div class="col-md-12 ">
                             <div class="row d-flex justify-content-around align-items-center">
-                                <div class="header-info-left">
+                                <!-- <div class="header-info-left">
                                     <ul>
                                         
                                         <li><img src="./view/assets/img/icon/header_icon1.png" alt="">34ºc, Sunny </li>
@@ -77,7 +77,7 @@
                                             </script>
                                         </li>
                                     </ul>
-                                </div>
+                                </div> -->
                                 <div class="header-info-right">
                                     <ul class="header-social">
                                         <li><a href="#"><i class="fab fa-twitter"></i></a></li>
@@ -124,14 +124,14 @@
                                             <li><a href="index.php?act=about">Giới thiệu</a></li>
                                             <li><a href="index.php?act=articles">Tin mới nhất</a></li>
                                             <li><a href="index.php?act=contact">Liên hệ</a></li>
-                                            <li><a href="#">Pages</a>
+                                            <!-- <li><a href="#">Pages</a>
                                                 <ul class="submenu">
                                                     <li><a href="elements.html">Element</a></li>
                                                     <li><a href="blog.html">Blog</a></li>
                                                     <li><a href="single-blog.html">Blog Details</a></li>
                                                     <li><a href="details.html">Categori Details</a></li>
                                                 </ul>
-                                            </li>
+                                            </li> -->
                                         </ul>
                                     </nav>
                                 </div>
@@ -150,34 +150,40 @@
                                                 $hinh = '0';
                                               };
                                         ?>
-                                        <div data-bs-toggle="dropdown">
-                                            <?= $hinh ?>
-                                            <?= $user_name ?>
-                                        </div>
-                                        <ul class="dropdown-menu">
-                                            <?php
-                                            if ($role_id == 0) {
-                                            ?>
-                                            <li>
-                                                <a class="dropdown-item" href="#">Thông tin</a>
-                                            </li>
-                                            <li>
-                                                <a class="dropdown-item" href="index.php?act=user_edit">Cập nhật thông tin</a>
-                                            </li>
-                                            
-                                            <?php } ?>
-                                            <?php   
-                                            if ($role_id == 1) {
-                                            ?>
-                                            <li>
-                                                <a class="dropdown-item" href="index.php?act=">Quản trị</a>
-                                            </li>
-                                            <?php }?>   
-                                            <li>
-                                                <a class="dropdown-item" href="index.php?act=logout">Đăng xuất</a>
-                                            </li>
-                                        </ul>
-                                        <?php 
+
+                                        
+
+                                            <div data-bs-toggle="dropdown">
+                                                <?= $hinh ?>
+                                                <?= $user_name ?>
+                                            </div>
+                                            <ul class="dropdown-menu">
+                                                <?php
+                                                if ($role_id == 0) {
+                                                ?>
+                                                <li>
+                                                    <a class="dropdown-item" href="index.php?act=infor-user">Thông tin</a>
+                                                </li>
+                                                <li>
+                                                    <a class="dropdown-item" href="index.php?act=user_edit">Cập nhật thông tin</a>
+                                                </li>
+                                                <li>
+                                                    <a class="dropdown-item" href="index.php?act=forgot-pass">Quên mật khẩu</a>
+                                                </li>
+                                                <?php } ?>
+                                                <?php   
+                                                if ($role_id == 1) {
+                                                ?>
+                                                <li>
+                                                    <a class="dropdown-item" href="index.php?act=forgot-pass">Quản trị</a>
+                                                </li>
+                                                <?php }?>    
+                                                <li>
+                                                    <a class="dropdown-item" href="index.php?act=logout">Đăng xuất</a>
+                                                </li>
+                                            </ul>
+                                            <?php 
+
                                         }else {?>
                                         <div data-bs-toggle="dropdown">
                                             <i class="fas fa-user"></i>
@@ -200,13 +206,18 @@
                                 <div class="header-right-btn f-right d-none d-lg-block">
                                     <i class="fas fa-search special-tag"></i>
                                     <div class="search-box">
-                                        <form action="#">
-                                            <input type="text" placeholder="Search">
-
+                                        <form  action="index.php?act=seach-acticle" method="post">
+                                            <input type="text" placeholder="Search" name="kyw">
+                                            <input type="submit" name="timkiem" value="Tiềm kiếm">
                                         </form>
+
+                                    </div>
+                                    <div>
+                                        
                                     </div>
                                 </div>
-                                
+                               
+                           
                             </div>
                             
                             <!-- Mobile Menu -->

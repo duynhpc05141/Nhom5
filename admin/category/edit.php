@@ -24,7 +24,7 @@
       <form id="form-category" action="index.php?act=category_update" class="row g-3 mx-auto shadow p-3" method="post">
         <div class="col-md-12">
           <label for="validationCustom02" class="form-label">Tên loại</label>
-          <input type="text" class="form-control" id="validationCustom02" required name="category_name" value="<?php if (isset($category_name) && ($category_name != ""))
+          <input type="text" class="form-control" id="validationCustom02" name="category_name" value="<?php if (isset($category_name) && ($category_name != ""))
             echo $category_name ?>">
             <div class="valid-feedback">
               Hợp lệ
@@ -64,10 +64,10 @@
     $(document).ready(function () {
       $("#form-category").validate({
         rules: {
-          name: "required",
+          category_name: "required",
         },
         messages: {
-          name: "Vui lòng nhập tên danh mục",
+          category_name: "Vui lòng nhập tên danh mục",
         },
         // Xử lý khi biểu mẫu được gửi đi
         submitHandler: function (form) {
