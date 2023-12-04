@@ -27,7 +27,7 @@
         <table class="table table-bordered   text-center table-hover ">
           <thead>
             <tr>
-              <th scope="col">ID</th>
+              <th scope="col">STT</th>
               <th scope="col">Tên danh mục</th>
               <th scope="col">Chức năng</th>
             </tr>

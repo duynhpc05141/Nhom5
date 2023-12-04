@@ -12,7 +12,7 @@
         color: red; /* Định dạng màu chữ của thông báo lỗi thành màu đỏ */
     }
     #customer-form {
-        width: 400px;
+        width: 800px;
         height: 700px;
         border-radius: 15px;
     }
@@ -22,7 +22,7 @@
         <div class="alert alert-light shadow text-center" role="alert">
             <h4>Thêm khách hàng</h4>
         </div>
-        <form id="customer-form" class="row g-3 mx-auto shadow p-3" action="index.php?act=user_add" method="post" enctype="multipart/form-data">
+        <form id="customer-form" class="row g-3 mx-auto shadow p-3 mt-2" action="index.php?act=user_add" method="post" enctype="multipart/form-data">
 
             <div class="col-md-12">
                 <label for="name" class="form-label">Tên khách hàng</label>
