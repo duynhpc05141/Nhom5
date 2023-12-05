@@ -87,6 +87,22 @@ function article_select_by_id($id)
     $sql = "SELECT * FROM article WHERE article_id=?";
     return pdo_query_one($sql, $id);
 }
+
+
+function article_select($keyword) {
+    $sql = "SELECT * FROM article WHERE 1";
+
+    if ($keyword!="") {
+        $sql .= " AND article_name LIKE '%" . $keyword . "%'";
+    }
+
+   
+
+    $sql .= " ORDER BY article_id DESC";
+$listArticle=pdo_query($sql);
+    return $listArticle;
+    
+}
 function article_name_select_by_id($category_id)
 {
     if ($category_id > 0) {
@@ -142,9 +158,9 @@ function  article_select_by_loai($id, $category_id)
     return $listarticle;
 }
 
-function product_select_keyword($keyword)
+function article_select_keyword($keyword)
 {
-    $sql = "SELECT * FROM product hh "
+    $sql = "SELECT * FROM article hh "
         . " JOIN loai lo ON lo.ma_loai=hh.ma_loai "
         . " WHERE ten_hh LIKE ? OR ten_loai LIKE ?";
     return pdo_query($sql, '%' . $keyword . '%', '%' . $keyword . '%');

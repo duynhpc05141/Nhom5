@@ -246,14 +246,14 @@ if (!isset($_SESSION['admin'])) {
                 $phone = $_POST['user_phone'];
                 $role_id = $_POST['role_id'];
                 $avatar = save_file('avatar', $target_dir);
-                if (!is_username_exists($user)) {
+                if (!is_username_exists($user,$email)) {
                     user_insert_admin($user, $email, $avatar, $phone, $password, $role_id);
                     $alert = '<div class="alert alert-success" role="alert">
                     Thêm thành công!
                   </div>';
                 } else {
                     $alert = '<div class="alert alert-danger" role="alert">
-                        Tên người dùng đã tồn tại. Vui lòng chọn tên khác.
+                        Tên hoặc email người dùng đã tồn tại. Vui lòng chọn tên khác.
                       </div>';
                 }
             }
@@ -286,18 +286,21 @@ if (!isset($_SESSION['admin'])) {
                 $phone = $_POST['phone'];
                 $role_id = $_POST['role_id'];
               
-                    user_update_admin($id, $user,  $email, $img, $phone, $role_id);
-                    $alert = '<div class="alert alert-success" role="alert">
-                    Cập nhật thành công!
-                  </div>';
              
-                    $alert = '<div class="alert alert-danger" role="alert">
-                        Tên người dùng đã tồn tại. Vui lòng chọn tên khác.
-                      </div>';
+                if (!check_kh($user) ) {
+                   
+                     
+                  user_update_admin($id, $user, $email, $img, $phone, $role_id);
+                } else {
+                   
+                     $alert = '<div class="alert alert-danger" role="alert">
+                                Tên người dùng đã tồn tại. Vui lòng chọn tên khác.
+                              </div>';
+                }
                 
             }
 
-            $listUser = user_select_all();
+             $listUser = user_select_all();
             include "./user/list.php";
             break;
             /** 

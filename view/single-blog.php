@@ -7,9 +7,10 @@
    <title>Document</title>
 </head>
 <style>
-   a{
+   a {
       text-decoration: none !important;
    }
+
    .heart-container {
       --heart-color: rgb(255, 91, 137);
       position: relative;
@@ -68,12 +69,13 @@
       outline: none;
       background-color: transparent;
       border: none;
-      
+
    }
 
-   .like-count{
+   .like-count {
       margin-left: -110px;
    }
+
    @keyframes keyframes-svg-filled {
       0% {
          transform: scale(0);
@@ -105,7 +107,22 @@
          display: none;
       }
    }
-   
+
+   .article-content {
+      transition: font-size 0.3s ease;
+   }
+
+   .increase-font-size,
+   .decrease-font-size {
+      outline: none !important;
+      background: transparent;
+      border: none;
+      color: grey;
+      margin-right: 5px;
+      font-size: 15px;
+      box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+      padding: 5px;
+   }
 </style>
 
 <body>
@@ -149,58 +166,88 @@
 
                      <?= $image_html_locations[0] ?>
 
-                     <p class="excert">
-                        <?= $article_content ?>
+                     <p class="excert article-content">
+                        <?= strip_tags($article_content) ?>
                      </p>
+
+                     <button class="increase-font-size " title="Tăng"><i class="fa-solid fa-plus"></i></button>
+                     <button class="decrease-font-size " title="Giảm"><i class="fa-solid fa-minus"></i></button>
+
                      <p>
 
                      </p>
-                     
+
 
                   </div>
                </div>
 
                <div class="navigation-top ">
                   <div class="d-sm-flex justify-content-between text-center align-center">
-                     <p class="like-info" >
-                     <span class="align-middle">
-             <button class="favorite-btn" data-userid="<?= $_SESSION['user_name']['user_id']; ?>" data-articleid="<?= $article_id; ?>">
-                        <div class="heart-container" title="Like">
-                           <input type="checkbox" class="checkbox" id="Give-It-An-Id">
-                           <div class="svg-container">
-                              <svg viewBox="0 0 24 24" class="svg-outline" xmlns="http://www.w3.org/2000/svg">
-                                 <path d="M17.5,1.917a6.4,6.4,0,0,0-5.5,3.3,6.4,6.4,0,0,0-5.5-3.3A6.8,6.8,0,0,0,0,8.967c0,4.547,4.786,9.513,8.8,12.88a4.974,4.974,0,0,0,6.4,0C19.214,18.48,24,13.514,24,8.967A6.8,6.8,0,0,0,17.5,1.917Zm-3.585,18.4a2.973,2.973,0,0,1-3.83,0C4.947,16.006,2,11.87,2,8.967a4.8,4.8,0,0,1,4.5-5.05A4.8,4.8,0,0,1,11,8.967a1,1,0,0,0,2,0,4.8,4.8,0,0,1,4.5-5.05A4.8,4.8,0,0,1,22,8.967C22,11.87,19.053,16.006,13.915,20.313Z">
-                                 </path>
-                              </svg>
-                              <svg viewBox="0 0 24 24" class="svg-filled" xmlns="http://www.w3.org/2000/svg">
-                                 <path d="M17.5,1.917a6.4,6.4,0,0,0-5.5,3.3,6.4,6.4,0,0,0-5.5-3.3A6.8,6.8,0,0,0,0,8.967c0,4.547,4.786,9.513,8.8,12.88a4.974,4.974,0,0,0,6.4,0C19.214,18.48,24,13.514,24,8.967A6.8,6.8,0,0,0,17.5,1.917Z">
-                                 </path>
-                              </svg>
-                              <svg class="svg-celebrate" width="100" height="100" xmlns="http://www.w3.org/2000/svg">
-                                 <polygon points="10,10 20,20"></polygon>
-                                 <polygon points="10,50 20,50"></polygon>
-                                 <polygon points="20,80 30,70"></polygon>
-                                 <polygon points="90,10 80,20"></polygon>
-                                 <polygon points="90,50 80,50"></polygon>
-                                 <polygon points="80,80 70,70"></polygon>
-                              </svg>
-                           </div>
-                        </div>
-                     </button>
+                     <p class="like-info">
+                        <span class="align-middle">
+                           <button class="favorite-btn" data-userid="<?= $_SESSION['user_name']['user_id']; ?>" data-articleid="<?= $article_id; ?>">
+                              <div class="heart-container" title="Like">
+                                 <input type="checkbox" class="checkbox" id="Give-It-An-Id">
+                                 <div class="svg-container">
+                                    <svg viewBox="0 0 24 24" class="svg-outline" xmlns="http://www.w3.org/2000/svg">
+                                       <path d="M17.5,1.917a6.4,6.4,0,0,0-5.5,3.3,6.4,6.4,0,0,0-5.5-3.3A6.8,6.8,0,0,0,0,8.967c0,4.547,4.786,9.513,8.8,12.88a4.974,4.974,0,0,0,6.4,0C19.214,18.48,24,13.514,24,8.967A6.8,6.8,0,0,0,17.5,1.917Zm-3.585,18.4a2.973,2.973,0,0,1-3.83,0C4.947,16.006,2,11.87,2,8.967a4.8,4.8,0,0,1,4.5-5.05A4.8,4.8,0,0,1,11,8.967a1,1,0,0,0,2,0,4.8,4.8,0,0,1,4.5-5.05A4.8,4.8,0,0,1,22,8.967C22,11.87,19.053,16.006,13.915,20.313Z">
+                                       </path>
+                                    </svg>
+                                    <svg viewBox="0 0 24 24" class="svg-filled" xmlns="http://www.w3.org/2000/svg">
+                                       <path d="M17.5,1.917a6.4,6.4,0,0,0-5.5,3.3,6.4,6.4,0,0,0-5.5-3.3A6.8,6.8,0,0,0,0,8.967c0,4.547,4.786,9.513,8.8,12.88a4.974,4.974,0,0,0,6.4,0C19.214,18.48,24,13.514,24,8.967A6.8,6.8,0,0,0,17.5,1.917Z">
+                                       </path>
+                                    </svg>
+                                    <svg class="svg-celebrate" width="100" height="100" xmlns="http://www.w3.org/2000/svg">
+                                       <polygon points="10,10 20,20"></polygon>
+                                       <polygon points="10,50 20,50"></polygon>
+                                       <polygon points="20,80 30,70"></polygon>
+                                       <polygon points="90,10 80,20"></polygon>
+                                       <polygon points="90,50 80,50"></polygon>
+                                       <polygon points="80,80 70,70"></polygon>
+                                    </svg>
+                                 </div>
+                              </div>
+                           </button>
 
-                     </span>
+                        </span>
                      <div class="like-count"></div>
-                  </p>
+                     </p>
                      <div class="col-sm-4 text-center my-2 my-sm-0">
                         <!-- <p class="comment-count"><span class="align-middle"><i class="fa fa-comment"></i></span> 06 Comments</p> -->
                      </div>
                      <ul class="social-icons">
-                    
-                        <li> <p id="printButton"><i class="fa-solid fa-print"></i></p></li>
-                        <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                        <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                        <div id="fb-root"></div>
+                        <?php
+                        $url = 'http://localhost/nhom5/index.php?act=detail&id=' . $article_id;
+                        $article_name = $article_name;
+                        $article_content = strip_tags($article_content);
+                        $image_to_share = $image_html_locations[0];
+                        $twitter_text = urlencode($article_name . ' - ' . $article_content . ' ' . $url);
+                        $twitter_image = urlencode($image_to_share);
+                        ?>
+
+                        <li>
+                           <p id="printButton"><i class="fa-solid fa-print"></i></p>
+                        </li>
+                        <li>
+                           <a href="https://www.facebook.com/sharer/sharer.php?u=<?= urlencode($url) ?>" target="_blank">
+                              <i class="fab fa-facebook-f"></i>
+                           </a>
+                        </li>
+
+                        <li>
+                           <a class="twitter-share-button" href="https://twitter.com/intent/tweet?text=<?= $twitter_text ?>&url=<?= $url ?>&media=<?= $twitter_image ?>">
+                              <i class="fab fa-twitter"></i>
+                           </a>
+                        </li>
                         <li><a href="#"><i class="fab fa-dribbble"></i></a></li>
                         <li><a href="#"><i class="fab fa-behance"></i></a></li>
+                        <li>
+                           <a href="https://t.me/share/url?url=<?= urlencode($url) ?>&text=<?= urlencode($article_name) ?>" target="_blank">
+                              <i class="fab fa-telegram"></i>
+                           </a>
+                        </li>
+
                      </ul>
                   </div>
 
@@ -219,10 +266,9 @@
                   //    });
                   // });
                   $(document).ready(function() {
-    $("#comment-form").load("./view/comment/comment_form.php?article_id=<?= $article_id ?>");
-    $("#comment-list").load("./view/comment/comments_display.php?article_id=<?= $article_id ?>");
-});
-
+                     $("#comment-form").load("./view/comment/comment_form.php?article_id=<?= $article_id ?>");
+                     $("#comment-list").load("./view/comment/comments_display.php?article_id=<?= $article_id ?>");
+                  });
                </script>
                <!-- <button id="load-more-comments">Xem thêm bình luận</button> -->
                <div class="">
@@ -273,110 +319,120 @@
    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
    <script>
+      $(document).ready(function() {
+         var currentSize = 16; 
+         $('.increase-font-size').click(function() {
+            currentSize += 1;
+            $('.article-content').css('font-size', currentSize + 'px');
+         });
+
+         $('.decrease-font-size').click(function() {
+            currentSize -= 1;
+            $('.article-content').css('font-size', currentSize + 'px');
+         });
+
+         // Check favourite
+         var articleId = <?= $id ?>;
+         var userId = <?= $_SESSION['user_name']['user_id'] ?>;
+
+         function checkFavorite() {
+            $.ajax({
+               type: 'POST',
+               url: './view/check_favorite.php',
+               data: {
+                  user_id: userId,
+                  article_id: articleId
+               },
+               success: function(response) {
+                  var favoriteBtn = $('.favorite-btn');
+                  var outline = favoriteBtn.find('.svg-outline');
+                  var filled = favoriteBtn.find('.svg-filled');
+                  var celebrate = favoriteBtn.find('.svg-celebrate');
+
+                  if (response === 'favorited') {
+                     favoriteBtn.addClass('favorited');
+                     outline.css('display', 'none');
+                     filled.css('display', 'block');
+                     celebrate.css('display', 'none');
+                     loadLikes();
+                  } else {
+                     favoriteBtn.removeClass('favorited');
+                     outline.css('display', 'block');
+                     filled.css('display', 'none');
+                     celebrate.css('display', 'none');
+                     loadLikes();
+                  }
+               },
+               error: function(xhr, status, error) {
+                  console.error(error);
+               }
+            });
+         }
+
+         // Function to load likes
+         function loadLikes() {
+            $.ajax({
+               type: 'POST',
+               url: './view/count_favorite.php',
+               data: {
+                  article_id: articleId
+               },
+               success: function(response) {
+                  $('.like-count').html(response);
+               },
+               error: function(xhr, status, error) {
+                  console.error(error);
+               }
+            });
+         }
 
 
-$(document).ready(function() {
-    // Check favourite
-    var articleId = <?= $id ?>;
-    var userId = <?= $_SESSION['user_name']['user_id'] ?>;
-    
-    function checkFavorite() {
-        $.ajax({
-            type: 'POST',
-            url: './view/check_favorite.php',
-            data: {
-                user_id: userId,
-                article_id: articleId
-            },
-            success: function(response) {
-                var favoriteBtn = $('.favorite-btn');
-                var outline = favoriteBtn.find('.svg-outline');
-                var filled = favoriteBtn.find('.svg-filled');
-                var celebrate = favoriteBtn.find('.svg-celebrate');
+         checkFavorite();
+         loadLikes();
 
-                if (response === 'favorited') {
-                    favoriteBtn.addClass('favorited');
-                    outline.css('display', 'none');
-                    filled.css('display', 'block');
-                    celebrate.css('display', 'none');
-                    loadLikes();
-                } else {
-                    favoriteBtn.removeClass('favorited');
-                    outline.css('display', 'block');
-                    filled.css('display', 'none');
-                    celebrate.css('display', 'none');
-                    loadLikes();
-                }
-            },
-            error: function(xhr, status, error) {
-                console.error(error);
-            }
-        });
-    }
 
-    // Function to load likes
-    function loadLikes() {
-        $.ajax({
-            type: 'POST',
-            url: './view/count_favorite.php',
-            data: { article_id: articleId },
-            success: function(response) {
-                $('.like-count').html(response);
-            },
-            error: function(xhr, status, error) {
-                console.error(error);
-            }
-        });
-    }
+         $('.favorite-btn').click(function() {
+            var isFavorited = $(this).hasClass('favorited');
+            var button = $(this);
+            var userId = button.data('userid');
+            var articleId = button.data('articleid');
 
-   
-    checkFavorite();
-    loadLikes();
+            $.ajax({
+               type: 'POST',
+               url: './view/process_favorite.php',
+               data: {
+                  user_id: userId,
+                  article_id: articleId,
+                  is_favorited: isFavorited
+               },
+               success: function(response) {
+                  loadLikes();
 
- 
-    $('.favorite-btn').click(function() {
-        var isFavorited = $(this).hasClass('favorited');
-        var button = $(this);
-        var userId = button.data('userid');
-        var articleId = button.data('articleid');
+                  if (isFavorited) {
+                     button.removeClass('favorited');
+                     button.find('.svg-outline').css('display', 'block');
+                     button.find('.svg-filled').css('display', 'none');
+                     button.find('.svg-celebrate').css('display', 'none');
+                  } else {
+                     button.addClass('favorited');
+                     button.find('.svg-outline').css('display', 'none');
+                     button.find('.svg-filled').css('display', 'block');
+                     button.find('.svg-celebrate').css('display', 'none');
+                  }
+               },
+               error: function(xhr, status, error) {
+                  console.error(error);
+               }
+            });
+         });
 
-        $.ajax({
-            type: 'POST',
-            url: './view/process_favorite.php',
-            data: {
-                user_id: userId,
-                article_id: articleId,
-                is_favorited: isFavorited
-            },
-            success: function(response) {
-                loadLikes();
-
-                if (isFavorited) {
-                    button.removeClass('favorited');
-                    button.find('.svg-outline').css('display', 'block');
-                    button.find('.svg-filled').css('display', 'none');
-                    button.find('.svg-celebrate').css('display', 'none');
-                } else {
-                    button.addClass('favorited');
-                    button.find('.svg-outline').css('display', 'none');
-                    button.find('.svg-filled').css('display', 'block');
-                    button.find('.svg-celebrate').css('display', 'none');
-                }
-            },
-            error: function(xhr, status, error) {
-                console.error(error);
-            }
-        });
-    });
-
-    // Print functionality
-    $('#printButton').on('click', function() {
-        $('#printButton').hide();
-        window.print();
-        $('#printButton').show();
-    });
-});
-
+         // Print functionality
+         $('#printButton').on('click', function() {
+            $('#printButton').hide();
+            window.print();
+            $('#printButton').show();
+         });
+      });
    </script>
    <!--================ Blog Area end =================-->
 </body>

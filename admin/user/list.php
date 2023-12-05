@@ -27,6 +27,11 @@
     </div>
     <div class="row justify-content-center ">
       <div class="col-10">
+      <?php
+                if (isset($alert) && ($alert != "")) {
+                    echo $alert;
+                }
+                ?>
         <table class="table table-bordered   text-center table-hover ">
           <thead>
             <tr>

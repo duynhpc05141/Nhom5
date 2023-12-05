@@ -11,7 +11,6 @@
 </style>
     <?php
 
-   
     
     if (is_array($customer)) {
         extract($customer);
@@ -32,22 +31,22 @@
                 <form action="index.php?act=user_update" id="customer-form" class="row g-3 mx-auto shadow p-3 mt-2" method="post" enctype="multipart/form-data">
                     <div class="col-md-12">
                         <label for="validationCustom02" class="form-label">Tên khách hàng</label>
-                        <input type="text" class="form-control" id="name" required name="user" value="<?=$user_name?>">
+                        <input type="text" class="form-control" id="name"  name="user" value="<?=$user_name?>">
                         <span id="name-error" class="text-danger"></span>
                     </div>
                     <div class="col-md-12">
                         <label for="validationCustom02" class="form-label">Email</label>
-                        <input type="email" class="form-control" id="email" name="email" value="<?= isset($email) ? $email : "" ?>">
+                        <input type="email" class="form-control" id="email" name="email" value="<?=$email ?>">
                         <span id="email-error" class="text-danger"></span>
                     </div>
                     <div class="col-md-12">
                         <label for="validationCustom02" class="form-label">Avatar:</label> <br>
                         <?= $hinh ?>
-                        <input type="file" class="form-control"  name="avatar" value="<?= isset($img) ? $img : "" ?>">
+                        <input type="file" class="form-control"  name="avatar" value="<?=$img ?>">
                     </div>
                     <div class="col-md-12">
                         <label for="validationCustom02" class="form-label">Số điện thoại</label>
-                        <input type="number" class="form-control" id="phone" name="phone" value="<?= isset($user_phone) ? $user_phone : "" ?>">
+                        <input type="number" class="form-control" id="phone" name="phone" value="<?=$user_phone?>">
                         <span id="phone-error" class="text-danger"></span>
                     </div>
                     <div class="col-md-12">
@@ -62,14 +61,14 @@
                         </div>
                     </div>
                     <div class="col-12">
-                        <input type="hidden" name="id" value="<?= $user_id ?>">
+                        <input type="hidden" name="id" value="<?=$user_id ?>">
                         <input class="btn btn-primary" type="submit" value="Cập nhật" name="ac-update">
                         <input class="btn btn-primary" type="reset" value="Nhập lại">
                         <a href="index.php?act=user_list"><input class="btn btn-primary" type="button" value="Danh sách"></a>
                     </div>
                 </form>
                 <?php
-                if (isset($alert) && ($alert != "")) {
+                if (isset($alert) && ($alert != "") ) {
                     echo $alert;
                 }
                 ?>
@@ -102,9 +101,7 @@
                     form.submit();
                 }
             });
-        });
-
-        $(document).ready(function() {
+       
         
             $('#customer-form').on('submit', function(e) {
                 var nameValue = $('#name').val();

@@ -9,20 +9,21 @@
 
 <body>
   <style>
-   a{
-    text-decoration: none;
-   }
+    a {
+      text-decoration: none;
+    }
+
     .box {
 
       margin: 0 auto;
-width: 800px;
+      width: 800px;
       color: #efedef;
       font-family: "Roboto", Arial, Helvetica, sans-serif;
       font-size: 16px;
       font-weight: 300;
       letter-spacing: 0.01em;
       line-height: 1.6em;
- 
+
     }
 
     h1 {
@@ -182,7 +183,7 @@ width: 800px;
   }
   ?>
   <div class="box shadow mb-5 mt-5">
-   
+
     <div class="tabs">
       <div class="tab-2">
         <label for="tab2-1">Tài khoản</label>
@@ -209,10 +210,10 @@ width: 800px;
                               <td>Số điện thoại:</td>
                               <td><?= $user_phone ?></td>
                             </tr>
-                            
-                            
-                              <a href="index.php?act=user_edit" class="genric-btn " style="color: #fc3f00;"><i class="fa-regular fa-pen-to-square"></i></a>
-                            
+
+
+                            <a href="index.php?act=user_edit" class="genric-btn " style="color: #fc3f00;"><i class="fa-regular fa-pen-to-square"></i></a>
+
 
                             </td>
                             </tr>
@@ -231,45 +232,43 @@ width: 800px;
         <label for="tab2-2">Bài viết yêu thích</label>
         <input id="tab2-2" name="tabs-two" type="radio">
         <div>
-          <h4>Đã yêu thích</h4>
           <?php
-foreach ($favofuser as $key) {
-  extract($key);
-  $anh = '../img/' . $img;
-  $image_paths_array = explode(',', $img);
+          foreach ($favofuser as $key) {
+            extract($key);
+            $anh = '../img/' . $img;
+            $image_paths_array = explode(',', $img);
 
- 
-  $anh = '../img/' . $img;
-  $image_paths_array = explode(',', $img);
-  $image_html_locations = []; // Khởi tạo mảng chứa thẻ hình ảnh hoặc thông báo
 
-  foreach ($image_paths_array as $image_path) {
-      $full_image_path = './img/' . trim($image_path);
+            $anh = '../img/' . $img;
+            $image_paths_array = explode(',', $img);
+            $image_html_locations = []; // Khởi tạo mảng chứa thẻ hình ảnh hoặc thông báo
 
-      if (file_exists($full_image_path)) {
-          $image_html_locations[] = '<img width=100px src="' . $full_image_path . '" alt="Hình ảnh bài viết">';
-      } else {
-          $image_html_locations[] = 'Chưa có ảnh được chọn';
-      }
-      
-  }
-  $detail="index.php?act=detail&id=".$article_id;
-  echo'
+            foreach ($image_paths_array as $image_path) {
+              $full_image_path = './img/' . trim($image_path);
+
+              if (file_exists($full_image_path)) {
+                $image_html_locations[] = '<img width=100px src="' . $full_image_path . '" alt="Hình ảnh bài viết">';
+              } else {
+                $image_html_locations[] = 'Chưa có ảnh được chọn';
+              }
+            }
+            $detail = "index.php?act=detail&id=" . $article_id;
+            echo '
   <ul class="list-group mb-3 mt-2">
   <a href="' . $detail . '">
   <li class="list-group-item d-flex align-center">
   ' . $image_html_locations[0] . '
   <h5 class="m-lg-2">' . $article_name . '</h5>
-  <p>'.$created_at.'</p>
+  <p>' . $created_at . '</p>
   </li>
   </a>
   </ul>
   
   ';
-}
+          }
 
-?>
-          
+          ?>
+
         </div>
       </div>
     </div>

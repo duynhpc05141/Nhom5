@@ -55,7 +55,7 @@ if (isset($_GET['act']) && ($_GET['act'] !== "")) {
         $phone = $_POST['phone'];
         $role_id = 0;
         $avatar = save_file('avatar', $target_dir);
-        if (!is_username_exists($user)) {
+        if (!is_username_exists($user,$email)) {
           user_insert_user($user, $email, $avatar, $phone, $password, $role_id);
           $alert = '<div class="alert alert-success" role="alert">
               Đăng ký thành công!
@@ -153,19 +153,15 @@ if (isset($_GET['act']) && ($_GET['act'] !== "")) {
       $favofuser = favourite_select_user($user_id);
       include "./view/account/infor-user.php";
       break;
-    case 'seach-acticle':
+    case 'seach':
       if (isset($_POST['kyw']) && ($_POST['kyw'] != "")) {
         $kyw = $_POST['kyw'];
       } else {
         $kyw = "";
       }
-      if (isset($_GET['categoty_id']) && ($_GET['categoty_id'] > 0)) {
-        $categoty_id = $_GET['categoty_id'];
-      } else {
-        $categoty_id = 0;
-      }
+      $search=article_select($kyw);
 
-      include "./view/search-acticle.php";
+      include "./view/search/search.php";
       break;
 
     default:
