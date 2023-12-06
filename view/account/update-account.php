@@ -88,27 +88,24 @@
                     form.submit();
                 }
             });
-        });
-    </script>
-    <script>
-        $(document).ready(function() {
-            // Gắn sự kiện kiểm tra khi người dùng nộp biểu mẫu
+       
+           
             $('#update-form').on('submit', function(e) {
                 var nameValue = $('#name').val();
                 var emailValue = $('#email').val();
                 var passwordValue = $('#validationDefault02').val();
 
                 if (nameValue.trim() === "") {
-                    e.preventDefault(); // Ngăn form nộp đi nếu tên rỗng
+                    e.preventDefault(); 
                     $('#name-error').text('Họ tên không được trống');
                 } else {
                     $('#name-error').text('');
                 }
 
-                // Kiểm tra email hợp lệ
+               
                 var emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
                 if (!emailRegex.test(emailValue) || emailValue.trim() === "") {
-                    e.preventDefault(); // Ngăn form nộp đi nếu email không hợp lệ hoặc rỗng
+                    e.preventDefault(); 
                     $('#email-error').text('Email không hợp lệ');
                 } else {
                     $('#email-error').text('');
@@ -118,14 +115,12 @@
             $('#validationDefault02').on('input', function() {
                 var passwordValue = $(this).val();
 
-                // Kiểm tra mật khẩu đủ dài và đủ mạnh
                 if (passwordValue.length <= 5) {
                     $('#password-error').text('Mật khẩu phải lớn hơn 5 kí tự');
                     $('#password-strength').text('');
                 } else {
                     $('#password-error').text('');
 
-                    // Kiểm tra sự mạnh của mật khẩu
                     var passwordStrength = calculatePasswordStrength(passwordValue);
                     var strengthMessage = '';
                     if (passwordStrength >= 11) {
@@ -144,10 +139,6 @@
             });
 
             function calculatePasswordStrength(password) {
-                // Tính độ mạnh của mật khẩu dựa trên các tiêu chí như độ dài, ký tự đặc biệt, chữ hoa, chữ thường, số, v.v.
-                // Bạn có thể tùy chỉnh logic tính toán độ mạnh mật khẩu ở đây.
-
-                // Dưới đây là một ví dụ đơn giản:
                 var strength = 0;
                 if (password.length >= 8) {
                     strength += 10;

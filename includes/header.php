@@ -40,32 +40,6 @@
                     <div class="container">
                         <div class="col-md-12 ">
                             <div class="row d-flex justify-content-around align-items-center">
-                                <!-- <div class="header-info-left">
-                                    <ul>
-                                        
-                                        <li><img src="./view/assets/img/icon/header_icon1.png" alt="">34ºc, Sunny </li>
-                                        <li id="Date"><img src="./view/assets/img/icon/header_icon1.png" alt="">
-
-                                            <script>
-                                                const date = new Date();
-                                                let day = date.getDate();
-                                                let month = date.getMonth() + 1;
-                                                let year = date.getFullYear();
-                                                let hours = date.getHours();
-                                                let minutes = date.getMinutes();
-                                                let seconds = date.getSeconds();
-
-                                                // Đảm bảo rằng giờ, phút và giây đều có hai chữ số
-                                                hours = (hours < 10) ? `0${hours}` : hours;
-                                                minutes = (minutes < 10) ? `0${minutes}` : minutes;
-                                                seconds = (seconds < 10) ? `0${seconds}` : seconds;
-
-                                                let currentTime = `${day}-${month}-${year} ${hours}:${minutes}:${seconds}`;
-                                                document.getElementById('Date').innerHTML = currentTime;
-                                            </script>
-                                        </li>
-                                    </ul>
-                                </div> -->
                                 <div class="header-info-right">
                                     <ul class="header-social">
                                         <li><a href="#"><i class="fab fa-twitter"></i></a></li>
@@ -112,14 +86,6 @@
                                             <li><a href="index.php?act=about">Giới thiệu</a></li>
                                             <li><a href="index.php?act=articles">Tin mới nhất</a></li>
                                             <li><a href="index.php?act=contact">Liên hệ</a></li>
-                                            <!-- <li><a href="#">Pages</a>
-                                                <ul class="submenu">
-                                                    <li><a href="elements.html">Element</a></li>
-                                                    <li><a href="blog.html">Blog</a></li>
-                                                    <li><a href="single-blog.html">Blog Details</a></li>
-                                                    <li><a href="details.html">Categori Details</a></li>
-                                                </ul>
-                                            </li> -->
                                         </ul>
                                     </nav>
                                 </div>
