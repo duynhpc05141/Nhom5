@@ -91,9 +91,26 @@
                                 </div>
                                 
                             </div>
-                            
-                            <div class="col-xl-4 col-lg-2 col-md-4">
+                            <div class="col-xl-2 col-lg-2 col-md-4">
+                         
+                                    <div class="boxSearch">
+                                        <form action="index.php?act=seach" method="post">
+                                            <input type="text" placeholder="Tìm kiếm" name="kyw" id="nearch">
+                                            <button id="btnsearch" type="submit" name="search" ><i class="fa-solid fa-magnifying-glass text-black"></i></button>
+
+                                        </form>
+
+                                    </div>
+                                    <div>
+
+                                    </div>
+
+                                
+                            </div>
+                            <div class="col-xl-2 col-lg-2 col-md-4">
+                                
                                 <div class="header-right-btn f-right d-none d-lg-block">
+                                    
                                     <div class="dropdown">
                                         <?php
 
@@ -175,21 +192,14 @@
                                         <?php } ?>
                                     </div>
                                 </div>
-                                  
-                                    <div class="boxSearch">
-                                        <form action="index.php?act=seach" method="post">
-                                            <input type="text" placeholder="Tìm kiếm" name="kyw" >
-                                            <button id="btnsearch" type="submit" name="search" ><i class="fa-solid fa-magnifying-glass text-black"></i></button>
-
-                                        </form>
-
-                                    </div>
+                                <div class="header-right-btn f-right d-none d-lg-block">
+                                 
                                     <div>
 
                                     </div>
 
                                 </div>
-
+                            </div>
 
                             </div>
 
