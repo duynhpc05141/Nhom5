@@ -135,15 +135,25 @@ function article_count_avg_view_all()
 
 function article_select_top10()
 {
-    $sql = "SELECT * FROM article WHERE view > 0 ORDER BY view DESC LIMIT 0, 10";
+    $sql = "SELECT a.*, c.category_name 
+            FROM article a
+            LEFT JOIN category c ON a.category_id = c.category_id
+            WHERE a.view > 0 
+            ORDER BY a.view DESC 
+            LIMIT 0, 10";
     return pdo_query($sql);
 }
 
 function latest_article()
 {
-    $sql = "SELECT * FROM article  ORDER BY created_at DESC LIMIT 0, 10";
+    $sql = "SELECT a.*, c.category_name 
+            FROM article a
+            LEFT JOIN category c ON a.category_id = c.category_id
+            ORDER BY a.created_at DESC 
+            LIMIT 0, 10";
     return pdo_query($sql);
 }
+
 
 function product_select_dac_biet()
 {

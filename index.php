@@ -87,10 +87,20 @@ if (isset($_GET['act']) && ($_GET['act'] !== "")) {
       include './view/account/update-account.php';
       break;
     case 'home':
+      if(!isset($_SESSION['user_name'])){
+        $latest = latest_article();
+        $top10 = article_select_top10();
+        $list_loai = loai_select_all();
+        $listArticle = article_select_all_home();
+      }else{
+          $user_id = $_SESSION['user_name']['user_id'];
+      $listRecommended=stactic_favourite_recommended($user_id);
       $latest = latest_article();
       $top10 = article_select_top10();
       $list_loai = loai_select_all();
       $listArticle = article_select_all_home();
+      }
+    
       include "./includes/home.php";
       break;
     case 'detail':

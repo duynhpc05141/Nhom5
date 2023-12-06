@@ -9,6 +9,45 @@
             <div class="row">
                 <div class="col-12">
                     <div class="video-items-active">
+                    <?php 
+foreach ($listRecommended as $re) {
+    extract($re);
+    $anh = '../img/' . $img;
+    $image_paths_array = explode(',', $img);
+
+    $categoryInfo = loai_select_by_id($category_id);
+    $anh = '../img/' . $img;
+    $image_paths_array = explode(',', $img);
+    $image_html_locations = []; // Khởi tạo mảng chứa thẻ hình ảnh hoặc thông báo
+
+    foreach ($image_paths_array as $image_path) {
+        $full_image_path = './img/' . trim($image_path);
+
+        if (file_exists($full_image_path)) {
+            $image_html_locations[] = '<img class="card-img" src="' . $full_image_path . '" alt="Hình ảnh bài viết" style="max-height: 400px;">';
+        } else {
+            $image_html_locations[] = 'Chưa có ảnh được chọn';
+        }
+        
+    }
+    $detail="index.php?act=detail&id=".$article_id;
+    $category="index.php?act=category&id=".$category_id;
+    echo '
+   
+     <div class="single-recent mb-100">
+                                <div class="what-img">
+                                '.$image_html_locations[0].'
+                                </div>
+                                <div class="what-cap">
+                                  <span class="color1">'.$category_name.'</span>
+                                    <h4><a href="'.$detail.'">'.$article_name.'</a></h4>
+                                </div>
+                            </div>
+                           
+    ';
+}
+
+?>
                         <div class="video-items text-center">
                             <img src="./view/assets/img/blog/i1.avif" alt="" width="100%" height="400px">
                         </div>

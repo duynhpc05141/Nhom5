@@ -35,45 +35,43 @@
                         <!-- Trending Bottom -->
                         <div class="trending-bottom">
                             <div class="row">
-                          
-                    <?php
-                  
-                      foreach ($listArticle as $row) {
-                        
-                        extract($row);
-                        $anh = '../img/' . $img;
-                        $image_paths_array = explode(',', $img);
 
-                        $categoryInfo = loai_select_by_id($category_id);
-                        $anh = '../img/' . $img;
-                        $image_paths_array = explode(',', $img);
-                        $image_html_locations = []; // Khởi tạo mảng chứa thẻ hình ảnh hoặc thông báo
+                                <?php
 
-                        foreach ($image_paths_array as $image_path) {
-                            $full_image_path = './img/' . trim($image_path);
+                                foreach ($listArticle as $row) {
 
-                            if (file_exists($full_image_path)) {
-                                $image_html_locations[] = '<img class="card-img" src="' . $full_image_path . '" alt="Hình ảnh bài viết" style="max-height: 400px;">';
-                            } else {
-                                $image_html_locations[] = 'Chưa có ảnh được chọn';
-                            }
-                            
-                        }
-                        $detail="index.php?act=detail&id=".$article_id;
-                        $category="index.php?act=category&id=".$category_id;
-                              echo'  <div class="col-lg-4">
+                                    extract($row);
+                                    $anh = '../img/' . $img;
+                                    $image_paths_array = explode(',', $img);
+
+                                    $categoryInfo = loai_select_by_id($category_id);
+                                    $anh = '../img/' . $img;
+                                    $image_paths_array = explode(',', $img);
+                                    $image_html_locations = []; // Khởi tạo mảng chứa thẻ hình ảnh hoặc thông báo
+
+                                    foreach ($image_paths_array as $image_path) {
+                                        $full_image_path = './img/' . trim($image_path);
+
+                                        if (file_exists($full_image_path)) {
+                                            $image_html_locations[] = '<img class="card-img" src="' . $full_image_path . '" alt="Hình ảnh bài viết" style="max-height: 400px;">';
+                                        } else {
+                                            $image_html_locations[] = 'Chưa có ảnh được chọn';
+                                        }
+                                    }
+                                    $detail = "index.php?act=detail&id=" . $article_id;
+                                    $category = "index.php?act=category&id=" . $category_id;
+                                    echo '  <div class="col-lg-4">
                                     <div class="single-bottom mb-35">
                                         <div class="trend-bottom-img mb-30">
-                                            '.$image_html_locations[0].'
+                                            ' . $image_html_locations[0] . '
                                         </div>
                                         <div class="trend-bottom-cap">
-                                           <a href="'.$category.'"> <span class="color1">'.$category_name.'</span></a>
-                                            <h4><a href="'.$detail.'">'.$article_name.'</a></h4>
+                                           <a href="' . $category . '"> <span class="color1">' . $category_name . '</span></a>
+                                            <h4><a href="' . $detail . '">' . $article_name . '</a></h4>
                                         </div>
                                     </div>
                                 </div>';
-                                
-                    }?>  
+                                } ?>
                             </div>
                         </div>
                     </div>
@@ -99,7 +97,7 @@
                         </div>
                         <div class="trand-right-single d-flex">
                             <div class="trand-right-img">
-                            <img src="./view/assets/img/trending/f.jpg" alt="" width="120px" height="100px">
+                                <img src="./view/assets/img/trending/f.jpg" alt="" width="120px" height="100px">
                             </div>
                             <div class="trand-right-cap">
                                 <span class="color2">Đời sống</span>
@@ -145,41 +143,40 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="weekly-news-active dot-style d-flex dot-style">
-                            <?php foreach($top10 as $item){
+                            <?php foreach ($top10 as $item) {
                                 extract($item);
                                 $anh = '../img/' . $img;
                                 $image_paths_array = explode(',', $img);
-        
+
                                 $categoryInfo = loai_select_by_id($category_id);
                                 $anh = '../img/' . $img;
                                 $image_paths_array = explode(',', $img);
                                 $image_html_locations = []; // Khởi tạo mảng chứa thẻ hình ảnh hoặc thông báo
-        
+
                                 foreach ($image_paths_array as $image_path) {
                                     $full_image_path = './img/' . trim($image_path);
-        
+
                                     if (file_exists($full_image_path)) {
                                         $image_html_locations[] = '<img class="card-img" src="' . $full_image_path . '" alt="Hình ảnh bài viết" style="max-height: 400px;">';
                                     } else {
                                         $image_html_locations[] = 'Chưa có ảnh được chọn';
                                     }
-                                    
                                 }
-                                $detail="index.php?act=detail&id=".$article_id;
-                                $category="index.php?act=category&id=".$category_id;
+                                $detail = "index.php?act=detail&id=" . $article_id;
+                                $category = "index.php?act=category&id=" . $category_id;
                                 echo '
                                  <div class="weekly-single">
                                 <div class="weekly-img">
-                                '.$image_html_locations[0].'
+                                ' . $image_html_locations[0] . '
                                 </div>
                                 <div class="weekly-caption">
-                                <a href="'.$category.'"> <span class="color1">'.$category_name.'</span></a>
-                                    <h4><a href="'.$detail.'">'.$article_name.'</a></h4>
+                                <a href="' . $category . '"> <span class="color1">' . $category_name . '</span></a>
+                                    <h4><a href="' . $detail . '">' . $article_name . '</a></h4>
                                 </div>
                             </div>
                                 ';
                             } ?>
-                           
+
                         </div>
                     </div>
                 </div>
@@ -188,7 +185,7 @@
     </div>
     <!-- End Weekly-News -->
     <!--   Weekly2-News start -->
-    <div class="weekly2-news-area  weekly2-pading gray-bg">
+    <div class="weekly2-news-area  gray-bg p-lg-5">
         <div class="container">
             <div class="weekly2-wrapper">
                 <!-- section Tittle -->
@@ -202,42 +199,41 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="weekly2-news-active dot-style d-flex dot-style">
-                        <?php foreach($latest as $new){
+                            <?php foreach ($latest as $new) {
                                 extract($new);
                                 $anh = '../img/' . $img;
                                 $image_paths_array = explode(',', $img);
-        
+
                                 $categoryInfo = loai_select_by_id($category_id);
                                 $anh = '../img/' . $img;
                                 $image_paths_array = explode(',', $img);
                                 $image_html_locations = []; // Khởi tạo mảng chứa thẻ hình ảnh hoặc thông báo
-        
+
                                 foreach ($image_paths_array as $image_path) {
                                     $full_image_path = './img/' . trim($image_path);
-        
+
                                     if (file_exists($full_image_path)) {
                                         $image_html_locations[] = '<img class="card-img" src="' . $full_image_path . '" alt="Hình ảnh bài viết" style="max-height: 400px;">';
                                     } else {
                                         $image_html_locations[] = 'Chưa có ảnh được chọn';
                                     }
-                                    
                                 }
-                                $detail="index.php?act=detail&id=".$article_id;
-                                $category="index.php?act=category&id=".$category_id;
+                                $detail = "index.php?act=detail&id=" . $article_id;
+                                $category = "index.php?act=category&id=" . $category_id;
                                 echo '
                                 <div class="weekly2-single">
                                 <div class="weekly2-img">
-                                '.$image_html_locations[0].'
+                                ' . $image_html_locations[0] . '
                                 </div>
                                 <div class="weekly2-caption">
-                                <a href="'.$category.'"> <span class="color1">'.$category_name.'</span></a>
-                                    <p>'.$created_at.'</p>
-                                    <h4><a href="'.$detail.'">'.$article_name.'</a></h4>
+                                <a href="' . $category . '"> <span class="color1">' . $category_name . '</span></a>
+                                    <p>' . $created_at . '</p>
+                                    <h4><a href="' . $detail . '">' . $article_name . '</a></h4>
                                 </div>
                             </div>
                                 ';
                             } ?>
-                          
+
                         </div>
                     </div>
                 </div>
@@ -245,7 +241,7 @@
         </div>
     </div>
     <!-- End Weekly-News -->
-   <?php include "view/latest_news.php"; ?>
+    
     <!-- End Start youtube -->
     <!--  Recent Articles start -->
     <div class="recent-articles">
@@ -255,57 +251,64 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="section-tittle mb-30">
-                            <h3>TIN GẦN ĐÂY</h3>
+                            <h3>Có thể bạn thích</h3>
                         </div>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-12">
-                        <div class="recent-active dot-style d-flex dot-style">
-                            <div class="single-recent mb-100">
+                   
+                     
+                         <?php
+                         if (isset($_SESSION['user_name'])) {
+                            foreach ($listRecommended as $re) {
+                                extract($re);
+                                $anh = '../img/' . $img;
+                                $image_paths_array = explode(',', $img);
+
+                                $categoryInfo = loai_select_by_id($category_id);
+                                $anh = '../img/' . $img;
+                                $image_paths_array = explode(',', $img);
+                                $image_html_locations = []; // Khởi tạo mảng chứa thẻ hình ảnh hoặc thông báo
+
+                                foreach ($image_paths_array as $image_path) {
+                                    $full_image_path = './img/' . trim($image_path);
+
+                                    if (file_exists($full_image_path)) {
+                                        $image_html_locations[] = '<img class="card-img" src="' . $full_image_path . '" alt="Hình ảnh bài viết" style="max-height: 400px;">';
+                                    } else {
+                                        $image_html_locations[] = 'Chưa có ảnh được chọn';
+                                    }
+                                }
+                                $detail = "index.php?act=detail&id=" . $article_id;
+                                $category = "index.php?act=category&id=" . $category_id;
+                                echo '
+                                <div class="col-lg-4">
+                                <div class="single-recent mb-100">
                                 <div class="what-img">
-                                    <img src="./view/assets/img/news/recent1.jpg" alt="">
+                                ' . $image_html_locations[0] . '
                                 </div>
                                 <div class="what-cap">
-                                    <span class="color1">Night party</span>
-                                    <h4><a href="#">TIN MỚI CẬP NHẬT</a></h4>
+                                  <span class="color1">' . $category_name . '</span>
+                                    <h4><a href="' . $detail . '">' . $article_name . '</a></h4>
                                 </div>
                             </div>
-                            <div class="single-recent mb-100">
-                                <div class="what-img">
-                                    <img src="./view/assets/img/news/recent2.jpg" alt="">
-                                </div>
-                                <div class="what-cap">
-                                    <span class="color1">Night party</span>
-                                    <h4><a href="#">TIN MỚI CẬP NHẬT</a></h4>
-                                </div>
-                            </div>
-                            <div class="single-recent mb-100">
-                                <div class="what-img">
-                                    <img src="./view/assets/img/news/recent3.jpg" alt="">
-                                </div>
-                                <div class="what-cap">
-                                    <span class="color1">Night party</span>
-                                    <h4><a href="#">TIN MỚI CẬP NHẬT</a></h4>
-                                </div>
-                            </div>
-                            <div class="single-recent mb-100">
-                                <div class="what-img">
-                                    <img src="./view/assets/img/news/recent2.jpg" alt="">
-                                </div>
-                                <div class="what-cap">
-                                    <span class="color1">Night party</span>
-                                    <h4><a href="#">TIN MỚI CẬP NHẬT</a></h4>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                           </div>
+                                ';
+                            }
+                        }
+                            ?>
+
+                    
+                     
+                           
+                        
+                    
                 </div>
             </div>
         </div>
     </div>
     <!--Recent Articles End -->
     <!--Start pagination -->
-   
+
     <!-- End pagination  -->
 </main>
