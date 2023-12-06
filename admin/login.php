@@ -1,6 +1,6 @@
+
 <!DOCTYPE html>
 <html>
-
 <head>
     <title> Login Form</title>
     <link rel="stylesheet" href="css/style.css?php echo time(); ?>">
@@ -8,6 +8,8 @@
     <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <meta content='width=device-width, initial-scale=1, maximum-scale=1' name='viewport'/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 </head>
 
 <body>
@@ -54,10 +56,8 @@
             <div class="col-12">
 
                 <input type="submit" value="Đăng nhập" name="login" class="btn btn-primary col-12 mb-10">
-
             </div>
-
-
+            
         </form>
     </div>
     <?php

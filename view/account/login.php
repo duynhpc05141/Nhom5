@@ -1,4 +1,79 @@
+<?php
 
+//Include Google Client Library for PHP autoload file
+require_once 'vendor/autoload.php';
+
+//Make object of Google API Client for call Google API
+
+$google_client = new Google_Client();
+//Set the OAuth 2.0 Client ID
+$google_client->setClientId('717651947456-krmq3lijnreb97s2lcgotn9la6hdh119.apps.googleusercontent.com');
+
+//Set the OAuth 2.0 Client Secret key
+$google_client->setClientSecret('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');
+
+//Set the OAuth 2.0 Redirect URI
+$google_client->setRedirectUri('http://duan1.com/index.php?act=login');
+
+//
+$google_client->addScope('email');
+$google_client->addScope('profile');
+$google_client->setHttpClient(
+    new \GuzzleHttp\Client([
+        'verify' => false, // Tắt xác minh chứng chỉ SSL (lưu ý: không an toàn)
+    ])
+);
+
+
+if (isset($_GET['code'])) {
+    try {
+        // Lấy thông tin truy cập từ mã xác thực
+        $token = $google_client->fetchAccessTokenWithAuthCode($_GET['code']);
+
+        // Kiểm tra xem có lỗi không
+        if (!isset($token['error'])) {
+            // Đặt thông tin truy cập vào đối tượng Google_Client
+            $google_client->setAccessToken($token['access_token']);
+
+            // Lấy dịch vụ Oauth2 từ đối tượng Google_Client
+            $google_service = new Google_Service_Oauth2($google_client);
+
+            // Lấy thông tin người dùng
+            $data = $google_service->userinfo->get();
+            $name = $data['name'];
+            $email = $data['email'];
+            $avatar = $data['picture'];
+            $target_dir = "../../img/";
+            $imgContent = file_get_contents($avatar);
+            $img = $target_dir.$avatar;
+            file_put_contents($img, $imgContent);
+            $user = new user();
+            $info_user = $user->get_user_google($email);
+            var_dump($data);
+            if ($info_user) {
+                $_SESSION['user_gg'] = $info_user;
+                header('location: http://duan1.com/');
+                
+            }else
+            {
+                $user->insert_google($name,$email,$avatar,null,null,0);
+                $info_user = $user->get_user_google($email);
+                $_SESSION['user_gg'] = $info_user;
+                header('location: http://duan1.com/');
+            }
+        }
+    }  catch (Exception $e) {
+        echo 'Caught exception: ', $e->getMessage(), "\n";
+    }
+}
+
+?>
+
+<?php 
+    // Display Google login button
+    $google_login_btn = '<a href="' . $google_client->createAuthUrl() . '"><img class="col-md-12" src="//www.tutsmake.com/wp-content/uploads/2019/12/google-login-image.png" /></a>';
+
+?>
 <!DOCTYPE html>
 <html>
 
@@ -14,6 +89,9 @@
 
 <body>
     <style>
+        a{
+            text-decoration: none !important;
+        }
         #login-form {
             width: 400px;
         }
@@ -48,12 +126,15 @@
                 <input type="password" class="form-control" id="password" placeholder="Mật khẩu" required name="user_password">
 
             </div>
-
+<a href="index.php?act=forgot-pass" class="text-secondary col-12 mb-10">Quên mật khẩu?</a> 
             <div class="col-12">
                 <input type="submit" value="Đăng nhập" name="login" class="col-12 mb-10 genric-btn danger">
                 <a href="index.php?act=register" class="col-12 mb-10 genric-btn danger-border">Tạo tài khoản</a>
-                <a href="index.php?act=forgot-pass" class="btn col-12 mb-10">Quên mật khẩu?</a> 
+                
                 <div class="panel panel-default">
+                    <?php 
+                    echo $google_login_btn;
+                    ?>
                 </div>
                 
             </div>

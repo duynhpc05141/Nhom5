@@ -1,9 +1,10 @@
 <?php return array(
     'root' => array(
         'name' => '__root__',
-        'pretty_version' => 'dev-main',
-        'version' => 'dev-main',
-        'reference' => 'df039bffe434a1e5e1093c1feb3f024d1ab797dc',
+
+        'pretty_version' => '1.0.0+no-version-set',
+        'version' => '1.0.0.0',
+        'reference' => NULL,
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -11,9 +12,11 @@
     ),
     'versions' => array(
         '__root__' => array(
-            'pretty_version' => 'dev-main',
-            'version' => 'dev-main',
-            'reference' => 'df039bffe434a1e5e1093c1feb3f024d1ab797dc',
+
+            'pretty_version' => '1.0.0+no-version-set',
+            'version' => '1.0.0.0',
+            'reference' => NULL,
+
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
@@ -38,9 +41,11 @@
             'dev_requirement' => false,
         ),
         'google/apiclient-services' => array(
-            'pretty_version' => 'v0.326.1',
-            'version' => '0.326.1.0',
-            'reference' => '4e89c28c499f87eb517679e13356469896a119c6',
+
+            'pretty_version' => 'v0.326.0',
+            'version' => '0.326.0.0',
+            'reference' => '033de899257a294ca82f52fe4296dac011d01f74',
+
             'type' => 'library',
             'install_path' => __DIR__ . '/../google/apiclient-services',
             'aliases' => array(),

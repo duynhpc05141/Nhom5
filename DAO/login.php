@@ -7,6 +7,8 @@ function check_user($user)
     return $check_user;
 }
 
+
+
 function check_admin($user)
 {
     $sql = "select * from user where user_name='" . $user . "'and role_id=1 ";
@@ -42,6 +44,29 @@ function fetch_hashed_password_from_database($user) {
     }
 }
 
+class user
+{  
 
+    function google_checkmail($email)
+{
+    $sql = "select * from user where email='" . $email . "' ";
+    $result = pdo_query_one($sql);
+    return $result;
+}
+function get_user_google($email)
+{
+    $sql = "select * from user where email='" . $email . "' ";
+    $result = pdo_query_one($sql);
+    return $result;
+}
+
+function insert_google($name,$email,$avatar,$user_phone,$user_password,$role_id)
+{
+    $hashed_password = password_hash($user_password, PASSWORD_DEFAULT);
+    $sql = "INSERT INTO user(user_name, email,avatar,user_phone, user_password,role_id) VALUES ( ?, ?,?,?,?,?)";
+    $result = pdo_execute($sql, $name, $email, $avatar, $user_phone,$hashed_password,$role_id);
+    return $result;
+}
+}
 
 ?>

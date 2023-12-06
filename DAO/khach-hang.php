@@ -83,6 +83,8 @@ function exist_param($fieldname): bool
     return array_key_exists($fieldname, $_REQUEST);
 }
 
+
+
 //luu file upload vao thu muc
 function save_file($fieldname, $target_dir)
 {
