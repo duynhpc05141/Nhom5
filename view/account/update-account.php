@@ -9,7 +9,7 @@
 
 <body>
     <style>
-       #login-form{
+       #update-form{
         width: 400px;
        } 
 
@@ -46,14 +46,14 @@
                 <input type="email" class="form-control" id="email" placeholder="Nhập email"  name="email" value="<?=$email?>">
                 <span id="email-error" class="text-danger"></span>
             </div>
-            <div class="col-md-12">
+            <div class="col-md-12 mb-2">
                 <label for="phone" class="form-label">Số điện thoại</label>
                 <input type="number" class="form-control" id="phone" placeholder="Nhập số điện thoại"  name="phone" value="<?=$user_phone?>">
             </div>
 
             <div class="col-12">
                 <input type="hidden" name="id"  value="<?=$user_id?>">
-                <input type="submit" value="Cập nhật" name="updateAc" class="btn btn-primary col-12 mb-10">
+                <input type="submit" value="Cập nhật" name="updateAc" class="genric-btn danger-border col-12 mb-10">
             </div>
         </form>
     </div>

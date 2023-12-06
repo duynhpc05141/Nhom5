@@ -48,8 +48,8 @@
                 <span id="password-strength" class="text-success"></span>
             </div>
             <div class="col-12">
-                <input type="submit" value="Đăng kí" name="register" class="btn btn-primary col-12 mb-10">
-                <a href="index.php?act=login" class="btn btn-dark col-12 mb-10">Đăng nhập</a>
+                <input type="submit" value="Đăng kí" name="register" class="genric-btn danger col-12 mb-10">
+                <a href="index.php?act=login" class="genric-btn danger-border col-12 mb-10">Đăng nhập</a>
             </div>
         </form>
 

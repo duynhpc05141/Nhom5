@@ -50,9 +50,9 @@
             </div>
 
             <div class="col-12">
-                <input type="submit" value="Đăng nhập" name="login" class="btn btn-primary col-12 mb-10">
-                <a href="index.php?act=register" class="btn btn-dark col-12 mb-10">Tạo tài khoản</a>
-                <a href="index.php?act=forgot-pass" class="btn text-capitalize col-12 mb-10">Quên mật khẩu?</a> 
+                <input type="submit" value="Đăng nhập" name="login" class="col-12 mb-10 genric-btn danger">
+                <a href="index.php?act=register" class="col-12 mb-10 genric-btn danger-border">Tạo tài khoản</a>
+                <a href="index.php?act=forgot-pass" class="btn col-12 mb-10">Quên mật khẩu?</a> 
                 <div class="panel panel-default">
                 </div>
                 

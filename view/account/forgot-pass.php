@@ -20,7 +20,7 @@
                 <span id="email-error" class="text-danger"></span>
             </div>
             <div class="col-md-12">
-                <input  type="submit" value="Gửi" name="forgot" class="btn btn-primary col-12">
+                <input  type="submit" value="Gửi" name="forgot" class="genric-btn danger-border col-12">
             </div>
         </form>
     </div>
