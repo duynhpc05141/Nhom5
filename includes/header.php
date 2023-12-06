@@ -139,16 +139,32 @@
                             <div class="col-xl-2 col-lg-2 col-md-4">
                                 <div class="header-right-btn f-right d-none d-lg-block">
                                     <div class="dropdown">
-                                        
                                         <?php 
-                                        if (isset($_SESSION['user_name'])) {
-                                            extract($_SESSION['user_name']);
-                                            $img = './img/' . $avatar;
-                                            if (file_exists($img)) {
-                                                $hinh = '<img src=" ' . $img . '" alt="Hình ảnh đại diện" height="40px" style="border-radius:10px;">';
-                                              } else {
-                                                $hinh = '0';
-                                              };
+                                        
+                                        if (isset($_SESSION['user_gg'])) {
+                                            extract($_SESSION['user_gg']);
+                                            
+                                            $hinh = '<img src=" ' . $avatar . '" alt="Hình ảnh đại diện" height="40px" style="border-radius:20px;">';
+                                        ?>
+                                        <div data-bs-toggle="dropdown">
+                                            <?= $hinh ?>
+                                            <?= $user_name ?>
+                                        </div>
+                                        <ul class="dropdown-menu">  
+                                            <li>
+                                                <a class="dropdown-item" href="index.php?act=logout">Đăng xuất</a>
+                                            </li>
+                                        </ul>
+                                        <?php } 
+                                    
+                                            else if (isset($_SESSION['user_name'])) {
+                                                extract($_SESSION['user_name']);
+                                                $img = './img/' . $avatar;
+                                                if (file_exists($img)) {
+                                                    $hinh = '<img src=" ' . $img . '" alt="Hình ảnh đại diện" height="40px" width="40px" style="border-radius:20px;">';
+                                                } else {
+                                                    $hinh = '0';
+                                                };
                                         ?>
                                         <div data-bs-toggle="dropdown">
                                             <?= $hinh ?>
@@ -172,7 +188,7 @@
                                             <li>
                                                 <a class="dropdown-item" href="index.php?act=">Quản trị</a>
                                             </li>
-                                            <?php }?>   
+                                            <?php }?>  
                                             <li>
                                                 <a class="dropdown-item" href="index.php?act=logout">Đăng xuất</a>
                                             </li>
@@ -197,7 +213,7 @@
                                        <?php }?>
                                     </div>
                                 </div>
-                                <div class="header-right-btn f-right d-none d-lg-block">
+                                <div class="header-right-btn f-right  d-lg-block">
                                     <i class="fas fa-search special-tag"></i>
                                     <div class="search-box">
                                         <form action="#">
