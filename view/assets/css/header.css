@@ -1,0 +1,17 @@
+.boxSearch{
+    position: relative;
+    
+}
+input[type="text"]{
+
+  border-radius: 5px;border: none;box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px; padding: 5px;
+}
+#btnsearch{
+  position: absolute;
+right: 11.5rem;
+top: 0.3rem;
+  outline: none;
+  border: none;
+  color: black;
+  background: transparent;
+}

@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html class="no-js" lang="zxx">
 
@@ -11,7 +10,7 @@
     <link rel="manifest" href="site.webmanifest">
     <link rel="shortcut icon" type="image/x-icon" href="./view/assets/img/icon/l.png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-    <meta content='width=device-width, initial-scale=1, maximum-scale=1' name='viewport'/>
+    <meta content='width=device-width, initial-scale=1, maximum-scale=1' name='viewport' />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 
     <!-- CSS here -->
@@ -27,6 +26,7 @@
     <link rel="stylesheet" href="./view/assets/css/slick.css">
     <link rel="stylesheet" href="./view/assets/css/nice-select.css">
     <link rel="stylesheet" href="./view/assets/css/style.css">
+    <link rel="stylesheet" href="./view/assets/css/header.css">
 </head>
 
 <body>
@@ -73,7 +73,7 @@
                 <div class="header-bottom header-sticky">
                     <div class="container">
                         <div class="row align-items-center">
-                            <div class="col-xl-10 col-lg-10 col-md-12 header-flex">
+                            <div class="col-xl-8 col-lg-10 col-md-12 header-flex">
                                 <!-- sticky -->
                                 <div class="sticky-logo">
                                     <a href="index.html"><img src="assets/img/logo/logo.png" alt=""></a>
@@ -89,40 +89,40 @@
                                         </ul>
                                     </nav>
                                 </div>
+                                
                             </div>
-                            <div class="col-xl-2 col-lg-2 col-md-4">
+                            
+                            <div class="col-xl-4 col-lg-2 col-md-4">
                                 <div class="header-right-btn f-right d-none d-lg-block">
                                     <div class="dropdown">
-                                        <?php 
-                                        
+                                        <?php
+
                                         if (isset($_SESSION['user_gg'])) {
                                             extract($_SESSION['user_gg']);
-                                            
+
                                             $hinh = '<img src=" ' . $avatar . '" alt="Hình ảnh đại diện" height="40px" style="border-radius:20px;">';
                                         ?>
-                                        <div data-bs-toggle="dropdown">
-                                            <?= $hinh ?>
-                                            <?= $user_name ?>
-                                        </div>
-                                        <ul class="dropdown-menu">  
-                                            <li>
-                                                <a class="dropdown-item" href="index.php?act=logout">Đăng xuất</a>
-                                            </li>
-                                        </ul>
-                                        <?php } 
-                                    
-                                            else if (isset($_SESSION['user_name'])) {
-                                                extract($_SESSION['user_name']);
-                                                $img = './img/' . $avatar;
-                                                if (file_exists($img)) {
-                                                    $hinh = '<img src=" ' . $img . '" alt="Hình ảnh đại diện" height="40px" width="40px" style="border-radius:20px;">';
-                                                } else {
-                                                    $hinh = '0';
-                                                };
+                                            <div data-bs-toggle="dropdown">
+                                                <?= $hinh ?>
+                                                <?= $user_name ?>
+                                            </div>
+                                            <ul class="dropdown-menu">
+                                                <li>
+                                                    <a class="dropdown-item" href="index.php?act=logout">Đăng xuất</a>
+                                                </li>
+                                            </ul>
+                                        <?php } else if (isset($_SESSION['user_name'])) {
+                                            extract($_SESSION['user_name']);
+                                            $img = './img/' . $avatar;
+                                            if (file_exists($img)) {
+                                                $hinh = '<img src=" ' . $img . '" alt="Hình ảnh đại diện" height="40px" width="40px" style="border-radius:20px;">';
+                                            } else {
+                                                $hinh = '0';
+                                            };
                                         ?>
 
 
-                                        
+
 
                                             <div data-bs-toggle="dropdown">
                                                 <?= $hinh ?>
@@ -132,69 +132,67 @@
                                                 <?php
                                                 if ($role_id == 0) {
                                                 ?>
-                                                <li>
-                                                    <a class="dropdown-item" href="index.php?act=infor-user">Thông tin</a>
-                                                </li>
-                                                <li>
-                                                    <a class="dropdown-item" href="index.php?act=user_edit">Cập nhật thông tin</a>
-                                                </li>
-                                                <li>
-                                                    <a class="dropdown-item" href="index.php?act=forgot-pass">Quên mật khẩu</a>
-                                                </li>
+                                                    <li>
+                                                        <a class="dropdown-item" href="index.php?act=infor-user">Thông tin</a>
+                                                    </li>
+                                                    <li>
+                                                        <a class="dropdown-item" href="index.php?act=user_edit">Cập nhật thông tin</a>
+                                                    </li>
+                                                    <li>
+                                                        <a class="dropdown-item" href="index.php?act=forgot-pass">Quên mật khẩu</a>
+                                                    </li>
                                                 <?php } ?>
-                                                <?php   
+                                                <?php
                                                 if ($role_id == 1) {
                                                 ?>
-                                                <li>
-                                                    <a class="dropdown-item" href="index.php?act=forgot-pass">Quản trị</a>
-                                                </li>
-                                                <?php }?>    
+                                                    <li>
+                                                        <a class="dropdown-item" href="index.php?act=forgot-pass">Quản trị</a>
+                                                    </li>
+                                                <?php } ?>
                                                 <li>
                                                     <a class="dropdown-item" href="index.php?act=logout">Đăng xuất</a>
                                                 </li>
                                             </ul>
-                                            <?php 
+                                        <?php
 
 
-                                        }else {?>
-                                        <div data-bs-toggle="dropdown">
-                                            <i class="fas fa-user"></i>
-                                        </div>
-                                        
-                                        <ul class="dropdown-menu">
-                                            <li>
-                                                <a class="dropdown-item" href="index.php?act=login">Đăng nhập</a>
-                                            </li>
-                                            <li>
-                                                <a class="dropdown-item" href="index.php?act=register">Đăng Ký</a>
-                                            </li>
-                                            <li>
-                                                <a class="dropdown-item" href="index.php?act=forgot-pass">Quên mật khẩu</a>
-                                            </li>
-                                        </ul>
-                                       <?php }?>
+                                        } else { ?>
+                                            <div data-bs-toggle="dropdown">
+                                                <i class="fas fa-user"></i>
+                                            </div>
+
+                                            <ul class="dropdown-menu">
+                                                <li>
+                                                    <a class="dropdown-item" href="index.php?act=login">Đăng nhập</a>
+                                                </li>
+                                                <li>
+                                                    <a class="dropdown-item" href="index.php?act=register">Đăng Ký</a>
+                                                </li>
+                                                <li>
+                                                    <a class="dropdown-item" href="index.php?act=forgot-pass">Quên mật khẩu</a>
+                                                </li>
+                                            </ul>
+                                        <?php } ?>
                                     </div>
                                 </div>
-                                <div class="header-right-btn f-right  d-lg-block">
-                                    <i class="fas fa-search special-tag"></i>
-                                    <div class="search-box">
-                                        <form  action="index.php?act=seach" method="post">
-                                            <input type="text" placeholder="Search" name="kyw">
-                                            <button type="submit" name="search">C</button>
-                                          
+                                  
+                                    <div class="boxSearch">
+                                        <form action="index.php?act=seach" method="post">
+                                            <input type="text" placeholder="Tìm kiếm" name="kyw" >
+                                            <button id="btnsearch" type="submit" name="search" ><i class="fa-solid fa-magnifying-glass text-black"></i></button>
+
                                         </form>
 
                                     </div>
-                                    
                                     <div>
-                                        
+
                                     </div>
-                                    
+
                                 </div>
-                               
-                           
+
+
                             </div>
-                            
+
                             <!-- Mobile Menu -->
                             <div class="col-12">
                                 <div class="mobile_menu d-block d-md-none"></div>
@@ -206,14 +204,4 @@
         </div>
         <!-- Header End -->
     </header>
-    <style>
-        /* CSS */
-.search-input {
-    padding-left: 25px; /* Khoảng cách để icon không bị che khuất */
-    background-image: url('<svg xmlns="http://www.w3.org/2000/svg" height="16" width="16" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.--><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"/></svg>'); /* Dữ liệu SVG của FontAwesome */
-    background-repeat: no-repeat;
-    background-position: 5px center; /* Vị trí của icon trong input */
-    background-size: 20px; /* Kích thước của icon */
-}
-
-    </style>
+    
