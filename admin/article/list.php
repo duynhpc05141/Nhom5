@@ -10,7 +10,9 @@
         <div class="alert alert-light shadow text-center " role="alert">
             <h4>Danh sách bài viết</h4>
         </div>
-
+<?php  if (!empty($alert)) {
+        echo $alert; 
+    } ?>
         <table class="table table-bordered text-center table-hover">
             <thead>
                 <tr>

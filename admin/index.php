@@ -185,6 +185,12 @@ if (!isset($_SESSION['admin'])) {
                 $name = $_POST['article_name'];
                 $image_paths = array();
                 $file_count = count($_FILES['files']['name']);
+                if (empty($content)) {
+                    $alert = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                Nội dung không được để trống.
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>';
+                } else {
                 if ($file_count > 0) {
                     $allowed_types = array('jpg', 'jpeg', 'png', 'gif');
 
@@ -219,6 +225,7 @@ if (!isset($_SESSION['admin'])) {
                     $image_paths_string = implode(',', $old_image_paths);
                 }
                 article_update($id, $name, $content, $image_paths_string, $category_id);
+            }
             }
 
             $listArticle = article_select_all("", 0);
