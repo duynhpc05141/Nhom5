@@ -390,40 +390,51 @@
          checkFavorite();
          loadLikes();
 
-
          $('.favorite-btn').click(function() {
-            var isFavorited = $(this).hasClass('favorited');
-            var button = $(this);
-            var userId = button.data('userid');
-            var articleId = button.data('articleid');
+    <?php if(isset($_SESSION['user_name']['user_id'])) { ?>
+        var userId = <?= $_SESSION['user_name']['user_id'] ?>;
+    <?php } else { ?>
+        var userId = null;
+    <?php } ?>
 
-            $.ajax({
-               type: 'POST',
-               url: './view/process_favorite.php',
-               data: {
-                  user_id: userId,
-                  article_id: articleId,
-                  is_favorited: isFavorited
-               },
-               success: function(response) {
-                  loadLikes();
+    if (userId === null) {
+       alert('Chưa đăng nhập');
+    } else {
+        var isFavorited = $(this).hasClass('favorited');
+        var button = $(this);
+        var articleId = button.data('articleid');
 
-                  if (isFavorited) {
-                     button.removeClass('favorited');
-                     button.find('.svg-outline').css('display', 'block');
-                     button.find('.svg-filled').css('display', 'none');
-                     button.find('.svg-celebrate').css('display', 'none');
-                  } else {
-                     button.addClass('favorited');
-                     button.find('.svg-outline').css('display', 'none');
-                     button.find('.svg-filled').css('display', 'block');
-                     button.find('.svg-celebrate').css('display', 'none');
-                  }
-               },
-               error: function(xhr, status, error) {
-                  console.error(error);
-               }
-            });
+        $.ajax({
+            type: 'POST',
+            url: './view/process_favorite.php',
+            data: {
+                user_id: userId,
+                article_id: articleId,
+                is_favorited: isFavorited
+            },
+            success: function(response) {
+                loadLikes();
+
+                if (isFavorited) {
+                    button.removeClass('favorited');
+                    button.find('.svg-outline').css('display', 'block');
+                    button.find('.svg-filled').css('display', 'none');
+                    button.find('.svg-celebrate').css('display', 'none');
+                } else {
+                    button.addClass('favorited');
+                    button.find('.svg-outline').css('display', 'none');
+                    button.find('.svg-filled').css('display', 'block');
+                    button.find('.svg-celebrate').css('display', 'none');
+                }
+            },
+            error: function(xhr, status, error) {
+                console.error(error);
+            }
+        });
+    }
+
+
+           
          });
 
          // Print functionality

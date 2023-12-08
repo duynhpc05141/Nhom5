@@ -45,7 +45,7 @@ if (isset($_GET['code'])) {
             $avatar = $data['picture'];
             $target_dir = "../../img/";
             $imgContent = file_get_contents($avatar);
-            $img = $target_dir.$avatar;
+            $img = $target_dir . $avatar;
             file_put_contents($img, $imgContent);
             $user = new user();
             $info_user = $user->get_user_google($email);
@@ -53,25 +53,23 @@ if (isset($_GET['code'])) {
             if ($info_user) {
                 $_SESSION['user_gg'] = $info_user;
                 header('location: http://duan1.com/');
-                
-            }else
-            {
-                $user->insert_google($name,$email,$avatar,null,null,0);
+            } else {
+                $user->insert_google($name, $email, $avatar, null, null, 0);
                 $info_user = $user->get_user_google($email);
                 $_SESSION['user_gg'] = $info_user;
                 header('location: http://duan1.com/');
             }
         }
-    }  catch (Exception $e) {
+    } catch (Exception $e) {
         echo 'Caught exception: ', $e->getMessage(), "\n";
     }
 }
 
 ?>
 
-<?php 
-    // Display Google login button
-    $google_login_btn = '<a href="' . $google_client->createAuthUrl() . '"><img class="col-md-12" src="//www.tutsmake.com/wp-content/uploads/2019/12/google-login-image.png" /></a>';
+<?php
+// Display Google login button
+$google_login_btn = '<a href="' . $google_client->createAuthUrl() . '"><img class="col-md-12" src="//www.tutsmake.com/wp-content/uploads/2019/12/google-login-image.png" /></a>';
 
 ?>
 <!DOCTYPE html>
@@ -82,34 +80,41 @@ if (isset($_GET['code'])) {
     <link rel="stylesheet" href="css/style.css?php echo time(); ?>">
     <script src="https://kit.fontawesome.com/55a9fa42b8.js" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-    <meta content='width=device-width, initial-scale=1, maximum-scale=1' name='viewport'/>
+    <meta content='width=device-width, initial-scale=1, maximum-scale=1' name='viewport' />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 
 <body>
     <style>
-        a{
+        a {
             text-decoration: none !important;
         }
+
         #login-form {
             width: 400px;
+        }
+
+        #error {
+            color: red;
         }
 
         label.error {
             color: red;
         }
-        .text-capitalize:hover{
+
+        .text-capitalize:hover {
             color: #614BC3;
         }
+
         .alert-error {
-        color: #721c24;
-        background-color: #f8d7da;
-        border-color: #f5c6cb;
-        padding: 10px;
-        margin-bottom: 10px;
-        border: 1px solid transparent;
-        border-radius: 4px;
+            color: #721c24;
+            background-color: #f8d7da;
+            border-color: #f5c6cb;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid transparent;
+            border-radius: 4px;
         }
     </style>
 
@@ -126,17 +131,21 @@ if (isset($_GET['code'])) {
                 <input type="password" class="form-control" id="password" placeholder="Mật khẩu" required name="user_password">
 
             </div>
-<a href="index.php?act=forgot-pass" class="text-secondary col-12 mb-10">Quên mật khẩu?</a> 
+            <div class="col-md-12">
+                <div class="g-recaptcha" data-sitekey="6Lc4VCopAAAAAE5k75RW5tMvcI74JTC8vV4_zbLL"></div>
+                <div id="error"></div>
+            </div>
+            <a href="index.php?act=forgot-pass" class="text-secondary col-12 mb-10">Quên mật khẩu?</a>
             <div class="col-12">
-                <input type="submit" value="Đăng nhập" name="login" class="col-12 mb-10 genric-btn danger">
+                <input type="submit" value="Đăng nhập" id="login" name="login" class="col-12 mb-10 genric-btn danger">
                 <a href="index.php?act=register" class="col-12 mb-10 genric-btn danger-border">Tạo tài khoản</a>
-                
+
                 <div class="panel panel-default">
-                    <?php 
+                    <?php
                     echo $google_login_btn;
                     ?>
                 </div>
-                
+
             </div>
         </form>
     </div>
@@ -149,6 +158,13 @@ if (isset($_GET['code'])) {
     <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
     <script>
         $(document).ready(function() {
+            $(document).on('click', '#login', function() {
+                var response = grecaptcha.getResponse();
+                if (response.length == 0) {
+                    $('#error').text('Vui lòng xác nhận bạn không phải là robot');
+                    return false;
+                };
+            });
             $("#login-form").validate({
                 rules: {
                     user_name: "required",
