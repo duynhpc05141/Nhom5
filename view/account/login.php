@@ -132,7 +132,7 @@ $google_login_btn = '<a href="' . $google_client->createAuthUrl() . '"><img clas
 
             </div>
             <div class="col-md-12">
-                <div class="g-recaptcha" data-sitekey="6Lc4VCopAAAAAE5k75RW5tMvcI74JTC8vV4_zbLL"></div>
+                <div class="g-recaptcha" data-sitekey="6LeP4S4pAAAAAH2JzEoxRK4nKe2Vnrr2pp6F6dw2"></div>
                 <div id="error"></div>
             </div>
             <a href="index.php?act=forgot-pass" class="text-secondary col-12 mb-10">Quên mật khẩu?</a>
