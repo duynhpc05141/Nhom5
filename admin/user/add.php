@@ -22,6 +22,11 @@
         <div class="alert alert-light shadow text-center" role="alert">
             <h4>Thêm khách hàng</h4>
         </div>
+        <?php
+    if (isset($alert) && ($alert != "")) {
+        echo $alert;
+    }
+    ?>
         <form id="customer-form" class="row g-3 mx-auto shadow p-3 mt-2" action="index.php?act=user_add" method="post" enctype="multipart/form-data">
 
             <div class="col-md-12">
@@ -72,11 +77,7 @@
             </div>
         </form>
     </div>
-    <?php
-    if (isset($alert) && ($alert != "")) {
-        echo $alert;
-    }
-    ?>
+  
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>

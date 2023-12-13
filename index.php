@@ -55,13 +55,24 @@ if (isset($_GET['act']) && ($_GET['act'] !== "")) {
         $phone = $_POST['phone'];
         $role_id = 0;
         $avatar = save_file('avatar', $target_dir);
-        if (!is_username_exists($user,$email)) {
-      user_insert_user($user, $email, $avatar, $phone, $password, $role_id);
-       
-          $alert = '<div class="alert alert-success" role="alert">Đăng ký thành công!</div>';
-        }else{
-          $alert = '<div class="alert alert-danger" role="alert">Tên hoặc email đã được sử dụng</div>';
-        }
+        $userExists = customer_check_by_user($user);
+$emailExists = customer_check_by_email($email);
+
+if (!$userExists && !$emailExists) {
+    user_insert_user($user, $email, $avatar, $phone, $password, $role_id);
+    $alert = '<div class="alert alert-success" role="alert">Đăng ký thành công!</div>';
+} else {
+    $alert = '';
+
+    if ($userExists) {
+        $alert .= '<div class="alert alert-danger" role="alert">Tên đã được sử dụng</div>';
+    }
+
+    if ($emailExists) {
+        $alert .= '<div class="alert alert-danger" role="alert">Email đã được sử dụng</div>';
+    }
+}
+
       
       }
       include './view/account/register.php';

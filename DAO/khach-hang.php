@@ -95,34 +95,34 @@ function save_file($fieldname, $target_dir)
     return $file_name;
 }
 
-function check_kh($user)
+function check_kh($email)
 {
-    $sql = "SELECT * FROM user WHERE user_name = ?";
-   return pdo_query_one($sql,$user);
+    $sql = "SELECT * FROM user WHERE user_email = ?";
+   return pdo_query_one($sql,$email);
     
 }
     
-function is_username_exists($user, $email)
-{
-    // Kết nối đến cơ sở dữ liệu 
-    $conn = new mysqli("localhost", "root", "mysql", "fastnews");
+// function is_username_exists($user, $email)
+// {
+//     $conn = new mysqli("localhost", "root", "mysql", "fastnews");
 
-    // Kiểm tra kết nối
-    if ($conn->connect_error) {
-        die("Kết nối đến cơ sở dữ liệu thất bại: " . $conn->connect_error);
-    }
+//     if ($conn->connect_error) {
+//         die("Kết nối đến cơ sở dữ liệu thất bại: " . $conn->connect_error);
+//     }
 
-    // Sử dụng câu truy vấn SQL với tham số được bảo vệ để tránh SQL injection
-    $query = "SELECT * FROM user WHERE user_name = ? OR email = ?";
-    $stmt = $conn->prepare($query);
 
-    // Bảo vệ tham số truy vấn
-    $stmt->bind_param("ss", $user, $email);
+//     $query = "SELECT * FROM user WHERE user_name = ? OR email = ?";
+//     $stmt = $conn->prepare($query);
 
-    $stmt->execute();
-    $result = $stmt->get_result();
+  
+//     $stmt->bind_param("ss", $user, $email);
 
-    // Trả về true nếu có ít nhất một dòng dữ liệu trả về (user_name hoặc email đã tồn tại)
-    // Trả về false nếu không có dòng dữ liệu nào trả về (user_name và email chưa tồn tại)
-    return $result->num_rows > 0;
+//     $stmt->execute();
+//     $result = $stmt->get_result();
+
+   
+//     return $result->num_rows > 0;
+// }
+function is_username_exists($user, $email){
+    $sql = "SELECT * FROM user WHERE user_name = ?";
 }

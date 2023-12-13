@@ -253,15 +253,23 @@ if (!isset($_SESSION['admin'])) {
                 $phone = $_POST['user_phone'];
                 $role_id = $_POST['role_id'];
                 $avatar = save_file('avatar', $target_dir);
-                if (!is_username_exists($user,$email)) {
+              
+                $userExists = customer_check_by_user($user);
+                $emailExists = customer_check_by_email($email);
+                
+                if (!$userExists && !$emailExists) {
                     user_insert_admin($user, $email, $avatar, $phone, $password, $role_id);
-                    $alert = '<div class="alert alert-success" role="alert">
-                    Thêm thành công!
-                  </div>';
+                    $alert = '<div class="alert alert-success" role="alert">Đăng ký thành công!</div>';
                 } else {
-                    $alert = '<div class="alert alert-danger" role="alert">
-                        Tên hoặc email người dùng đã tồn tại. Vui lòng chọn tên khác.
-                      </div>';
+                    $alert = '';
+                
+                    if ($userExists) {
+                        $alert .= '<div class="alert alert-danger" role="alert">Tên đã được sử dụng</div>';
+                    }
+                
+                    if ($emailExists) {
+                        $alert .= '<div class="alert alert-danger" role="alert">Email đã được sử dụng</div>';
+                    }
                 }
             }
             include "./user/add.php";
@@ -293,16 +301,22 @@ if (!isset($_SESSION['admin'])) {
                 $phone = $_POST['phone'];
                 $role_id = $_POST['role_id'];
               
-             
-                if (!check_kh($user) ) {
-                   
-                     
-                  user_update_admin($id, $user, $email, $img, $phone, $role_id);
+                $userExists = customer_check_by_user($user);
+                $emailExists = customer_check_by_email($email);
+                
+                if (!$userExists && !$emailExists) {
+                    user_update_admin($id, $user, $email, $img, $phone, $role_id);
+                    $alert = '<div class="alert alert-success" role="alert">Cập nhật thành công!</div>';
                 } else {
-                   
-                     $alert = '<div class="alert alert-danger" role="alert">
-                                Tên người dùng đã tồn tại. Vui lòng chọn tên khác.
-                              </div>';
+                    $alert = '';
+                
+                    if ($userExists) {
+                        $alert .= '<div class="alert alert-danger" role="alert">Tên đã được sử dụng</div>';
+                    }
+                
+                    if ($emailExists) {
+                        $alert .= '<div class="alert alert-danger" role="alert">Email đã được sử dụng</div>';
+                    }
                 }
                 
             }
