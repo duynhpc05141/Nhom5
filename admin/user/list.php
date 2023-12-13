@@ -13,7 +13,7 @@
     margin: 0.5rem 0.5rem;
   }
   .limited-text {
-    max-width: 15ch; /* Số lượng ký tự bạn muốn giới hạn */
+    max-width: 15ch;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -93,94 +93,7 @@
 
 </html>
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-  $(document).ready(function() {
-    // Xóa các mục đã chọn
-    $("#delete-selected").click(function() {
-      // Lấy danh sách các hàng được chọn
-      var selectedRows = $("input[type='checkbox']:checked").closest('tr');
 
-      if (selectedRows.length > 0) {
-        if (confirm("Bạn có chắc chắn muốn xóa các mục đã chọn không?")) {
-          // Thực hiện xóa mục ở đây, ví dụ:
-          selectedRows.remove();
-        }
-      } else {
-        alert("Vui lòng chọn ít nhất một mục để xóa.");
-      }
-    });
 
-    // Chọn tất cả
-    $("#select-all").click(function() {
-      $("input[type='checkbox']").prop('checked', true);
-    });
-
-    // Bỏ chọn tất cả
-    $("#deselect-all").click(function() {
-      $("input[type='checkbox']").prop('checked', false);
-    });
-
-    // Chọn/Deselect tất cả sử dụng checkbox "Chọn tất cả"
-    $("#select-checkbox-all").change(function() {
-      var isChecked = $(this).prop('checked');
-      $("input[type='checkbox']").prop('checked', isChecked);
-    });
-  });
-
-  $("#export-csv").click(function() {
-    // Lấy các hàng của bảng
-    var rows = $("tbody tr");
-
-    // Tạo một mảng để lưu trữ dữ liệu CSV
-    var csvData = [];
-
-    // Thêm tiêu đề cho CSV
-    var headers = ["ID", "Tên", "Ảnh đại diện", "Mật khẩu", "Email", "Địa chỉ", "Số điện thoại", "Vai trò"];
-    csvData.push(headers);
-
-    // Lặp qua từng hàng trong bảng và lấy dữ liệu từ các cột
-    rows.each(function() {
-        var row = $(this);
-        var rowData = [];
-
-        // Lấy dữ liệu từ từng cột
-        row.find("td").each(function() {
-            rowData.push($(this).text());
-        });
-
-        // Thêm dữ liệu của hàng vào mảng CSV
-        csvData.push(rowData);
-    });
-
-    // Tạo dữ liệu CSV bằng cách nối mỗi hàng với dấu phẩy
-    var csvContent = "data:text/csv;charset=utf-8,";
-
-    csvData.forEach(function(row) {
-        var rowStr = row.join(",");
-        csvContent += rowStr + "\n";
-    });
-
-    // Tạo một đối tượng Blob để chứa dữ liệu CSV
-    var blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
-
-    // Tạo URL để tải xuống tệp CSV
-    var url = window.URL.createObjectURL(blob);
-
-    // Tạo một thẻ a ẩn để thực hiện tải xuống
-    var a = document.createElement("a");
-    a.style.display = "none";
-    a.href = url;
-    a.download = "customer_data.csv";
-
-    // Thêm thẻ a vào trang và kích hoạt tải xuống
-    document.body.appendChild(a);
-    a.click();
-
-    // Loại bỏ thẻ a sau khi tải xuống hoàn tất
-    window.URL.revokeObjectURL(url);
-});
-
-</script>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>

@@ -87,7 +87,7 @@
                     email: "required",
                     password: "required",
                     role_id: "required",
-                    phone: "required",
+                  
                   
                 },
                 messages: {
@@ -95,7 +95,7 @@
                     user: "Vui lòng nhập tên khách hàng",
                     password:"Vui lòng nhập mật khẩu",
                     role_id: "Vui lòng nhập vai trò",
-                    phone: ""
+                   
                 },
                 submitHandler: function (form) {
                     form.submit();
@@ -125,22 +125,7 @@
                     $('#email-error').text('');
                 }
             });
-            $(document).ready(function() {
-                var phoneInput = $('#phone');
-                var phoneError = $('#phone-error');
-
-                phoneInput.on('input', function() {
-                    var phoneValue = $(this).val();
-
-                    if (phoneValue.length !== 10) {
-                        phoneError.text('SĐT phải nhập đúng 10 chữ số').css('color', 'red');
-                    } else {
-                        phoneError.text('');
-                    }
-                });
-
-               
-            });
+           
             $('#validationDefault02').on('input', function() {
                 var passwordValue = $(this).val();
 

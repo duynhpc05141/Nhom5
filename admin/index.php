@@ -280,7 +280,12 @@ if (!isset($_SESSION['admin'])) {
             break;
         case 'user_delete':
             if (isset($_GET['user_id']) && ($_GET['user_id'] > 0)) {
-                customer_delete($_GET['user_id']);
+                if($_GET['user_id']===$_SESSION['admin']['user_id']){
+                    $alert = '<div class="alert alert-danger" role="alert">Đây là tài khoản của bạn đang đăng nhập</div>';
+                }else{
+                       customer_delete($_GET['user_id']);
+                }
+             
             }
             $listUser = user_select_all();
             include "./user/list.php";

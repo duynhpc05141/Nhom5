@@ -54,7 +54,7 @@
             </div>
             <div class="col-md-12">
                 <label for="phone" class="form-label">Số điện thoại</label>
-                <input type="number" class="form-control" id="phone" name="user_phone" required>
+                <input type="number" class="form-control" id="phone" name="user_phone" >
                 <span id="phone-error" class="text-danger"></span>
                 
             </div>
@@ -90,14 +90,13 @@
                     user_name: "required",
                     user_password: "required",
                     role_id: "required",
-                    user_phone: "required",
+                   
                   
                 },
                 messages: {
                     user_name: "Vui lòng nhập tên khách hàng",
                     user_password:"Vui lòng nhập mật khẩu",
                     role_id: "Vui lòng nhập vai trò",
-                    user_phone: "SĐT không được để trống!"
                 },
                 // Xử lý khi biểu mẫu được gửi đi
                 submitHandler: function (form) {
@@ -132,22 +131,7 @@
                 }
             });
 
-            $(document).ready(function() {
-                var phoneInput = $('#phone');
-                var phoneError = $('#phone-error');
-
-                phoneInput.on('input', function() {
-                    var phoneValue = $(this).val();
-
-                    if (phoneValue.length !== 10) {
-                        phoneError.text('SĐT phải nhập đúng 10 chữ số').css('color', 'red');
-                    } else {
-                        phoneError.text('');
-                    }
-                });
-
-                // Rest of your form validation logic...
-            });
+         
 
             $('#validationDefault02').on('input', function() {
                 var passwordValue = $(this).val();
