@@ -20,7 +20,7 @@ if (!isset($_SESSION['admin'])) {
         include "header.php";
         $act = $_GET['act'];
     } else {
-       
+
         $act = 'home';
     }
 }
@@ -28,169 +28,169 @@ if (!isset($_SESSION['admin'])) {
 
 
 
-    switch ($act) {
-        case 'login':
-            include 'login.php';
-            break;
+switch ($act) {
+    case 'login':
+        include 'login.php';
+        break;
 
-        case 'logout':
-            unset($_SESSION['admin']);
-            header('Location: index.php?act=login');
-            break;
-            /** 
-             * TODO:Pages 
-             * */
+    case 'logout':
+        unset($_SESSION['admin']);
+        header('Location: index.php?act=login');
+        break;
+        /** 
+         * TODO:Pages 
+         * */
 
-        case 'home':
-            $article_exist = article_exist();
-            $avg_views = article_count_avg_view_all();
-            $comments = count_comment_all();
-         
-            include "home.php";
+    case 'home':
+        $article_exist = article_exist();
+        $avg_views = article_count_avg_view_all();
+        $comments = count_comment_all();
 
-            break;
-            /** 
-             * TODO:Category 
-             * */
-        case 'category_add':
-            if ((isset($_POST['add'])) && ($_POST['add'])) {
-                $ten_loai = $_POST['name'];
-                loai_insert($ten_loai);
-                $alert = '<div class="alert alert-success" role="alert">
+        include "home.php";
+
+        break;
+        /** 
+         * TODO:Category 
+         * */
+    case 'category_add':
+        if ((isset($_POST['add'])) && ($_POST['add'])) {
+            $ten_loai = $_POST['name'];
+            loai_insert($ten_loai);
+            $alert = '<div class="alert alert-success" role="alert">
                 Thêm thành công!
               </div>';
-            }
-            include "./category/add.php";
-            break;
-        case 'category_list':
-            $list_loai = loai_select_all();
-            include "./category/list.php";
-            break;
-        case 'category_delete':
-            try {
-                if (isset($_GET['category_id']) && ($_GET['category_id'] > 0)) {
-                    loai_delete($_GET['category_id']);
-                    $alert = 'Xóa thành công!';
-                }
-            } catch (Exception $e) {
-                $alert = 'không thể xóa!';
-            }
-
-            $list_loai = loai_select_all();
-            include "./category/list.php";
-            break;
-        case 'category_edit':
+        }
+        include "./category/add.php";
+        break;
+    case 'category_list':
+        $list_loai = loai_select_all();
+        include "./category/list.php";
+        break;
+    case 'category_delete':
+        try {
             if (isset($_GET['category_id']) && ($_GET['category_id'] > 0)) {
-                $edit = loai_select_by_id($_GET['category_id']);
+                loai_delete($_GET['category_id']);
+                $alert = 'Xóa thành công!';
             }
-            include "./category/edit.php";
-            break;
+        } catch (Exception $e) {
+            $alert = 'không thể xóa!';
+        }
 
-        case 'category_update':
-            if (isset($_POST['update']) && ($_POST['update'])) {
-                $name = $_POST['category_name'];
-                $id = $_POST['category_id'];
-                loai_update($id, $name);
-            }
-            $list_loai = loai_select_all();
-            include "./category/list.php";
-            break;
-            /** 
-             * TODO: Articles 
-             * */
-        case 'article-add':
-            if (isset($_POST['add']) && ($_POST['add'])) {
-                $category_id = $_POST['category_id'];
-                $content = $_POST['editor1'];
-                $name = $_POST['article_name'];
-                $image_paths = array();
-                $allowed_image_count = 2;
-                if (empty($content)) {
-                    $alert = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+        $list_loai = loai_select_all();
+        include "./category/list.php";
+        break;
+    case 'category_edit':
+        if (isset($_GET['category_id']) && ($_GET['category_id'] > 0)) {
+            $edit = loai_select_by_id($_GET['category_id']);
+        }
+        include "./category/edit.php";
+        break;
+
+    case 'category_update':
+        if (isset($_POST['update']) && ($_POST['update'])) {
+            $name = $_POST['category_name'];
+            $id = $_POST['category_id'];
+            loai_update($id, $name);
+        }
+        $list_loai = loai_select_all();
+        include "./category/list.php";
+        break;
+        /** 
+         * TODO: Articles 
+         * */
+    case 'article-add':
+        if (isset($_POST['add']) && ($_POST['add'])) {
+            $category_id = $_POST['category_id'];
+            $content = $_POST['editor1'];
+            $name = $_POST['article_name'];
+            $image_paths = array();
+            $allowed_image_count = 2;
+            if (empty($content)) {
+                $alert = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
                                 Nội dung không được để trống.
                                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                             </div>';
-                } else {
-                    if (!empty($_FILES['files']['name'][0])) {
-                        $file_count = count($_FILES['files']['name']);
+            } else {
+                if (!empty($_FILES['files']['name'][0])) {
+                    $file_count = count($_FILES['files']['name']);
 
-                        for ($i = 0; $i < min($file_count, $allowed_image_count); $i++) {
-                            $file_name = $_FILES['files']['name'][$i];
-                            $file_tmp = $_FILES['files']['tmp_name'][$i];
-                            $file_error = $_FILES['files']['error'][$i];
+                    for ($i = 0; $i < min($file_count, $allowed_image_count); $i++) {
+                        $file_name = $_FILES['files']['name'][$i];
+                        $file_tmp = $_FILES['files']['tmp_name'][$i];
+                        $file_error = $_FILES['files']['error'][$i];
 
-                            // Kiểm tra loại tệp tin
-                            $allowed_types = array('jpg', 'jpeg', 'png', 'gif');
-                            $file_extension = pathinfo($file_name, PATHINFO_EXTENSION);
-                            if (!in_array(strtolower($file_extension), $allowed_types)) {
-                                echo "File " . $file_name . " is not an image.";
-                                continue;
-                            }
+                        // Kiểm tra loại tệp tin
+                        $allowed_types = array('jpg', 'jpeg', 'png', 'gif');
+                        $file_extension = pathinfo($file_name, PATHINFO_EXTENSION);
+                        if (!in_array(strtolower($file_extension), $allowed_types)) {
+                            echo "File " . $file_name . " is not an image.";
+                            continue;
+                        }
 
 
-                            $target_dir = "../img/";
-                            $target_file = $target_dir . uniqid() . "_" . basename($file_name);
+                        $target_dir = "../img/";
+                        $target_file = $target_dir . uniqid() . "_" . basename($file_name);
 
-                            if (move_uploaded_file($file_tmp, $target_file)) {
+                        if (move_uploaded_file($file_tmp, $target_file)) {
 
-                                $image_paths[] = $target_file;
-                            } else {
+                            $image_paths[] = $target_file;
+                        } else {
 
-                                echo "Sorry, there was an error uploading your file.";
-                            }
+                            echo "Sorry, there was an error uploading your file.";
                         }
                     }
+                }
 
-                    if (!empty($image_paths)) {
-                        $image_paths_string = implode(',', $image_paths);
-                        article_insert_from_editor($name, $content, $image_paths_string, $category_id);
-                    } else {
-                        article_insert_from_editor($name, $content, "", $category_id);
-                    }
+                if (!empty($image_paths)) {
+                    $image_paths_string = implode(',', $image_paths);
+                    article_insert_from_editor($name, $content, $image_paths_string, $category_id);
+                } else {
+                    article_insert_from_editor($name, $content, "", $category_id);
                 }
             }
-            include "article/add.php";
-            break;
-        case 'article-list':
-            if (isset($_POST['go']) && ($_POST['go'])) {
+        }
+        include "article/add.php";
+        break;
+    case 'article-list':
+        if (isset($_POST['go']) && ($_POST['go'])) {
 
-                $category_id = $_POST['category_id'];
-            } else {
+            $category_id = $_POST['category_id'];
+        } else {
 
-                $category_id = 0;
-            };
-            $list_loai = loai_select_all();
-            $listArticle = article_select_all($category_id);
-            include "article/list.php";
-            break;
-        case 'article-delete':
-            if (isset($_GET['id']) && ($_GET['id'] > 0)) {
-                article_delete($_GET['id']);
-            }
-            $listArticle = article_select_all("", 0);
-            include "article/list.php";
-            break;
-        case 'article-edit':
-            if (isset($_GET['id']) && ($_GET['id'] > 0)) {
-                $article = article_select_by_id($_GET['id']);
-            }
-            $list_loai = loai_select_all();
-            include "article/edit.php";
-            break;
-        case 'article-update':
-            if (isset($_POST['update']) && ($_POST['update'])) {
-                $category_id = $_POST['category_id'];
-                $content = $_POST['editor1'];
-                $id = $_POST['article_id'];
-                $name = $_POST['article_name'];
-                $image_paths = array();
-                $file_count = count($_FILES['files']['name']);
-                if (empty($content)) {
-                    $alert = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+            $category_id = 0;
+        };
+        $list_loai = loai_select_all();
+        $listArticle = article_select_all($category_id);
+        include "article/list.php";
+        break;
+    case 'article-delete':
+        if (isset($_GET['id']) && ($_GET['id'] > 0)) {
+            article_delete($_GET['id']);
+        }
+        $listArticle = article_select_all("", 0);
+        include "article/list.php";
+        break;
+    case 'article-edit':
+        if (isset($_GET['id']) && ($_GET['id'] > 0)) {
+            $article = article_select_by_id($_GET['id']);
+        }
+        $list_loai = loai_select_all();
+        include "article/edit.php";
+        break;
+    case 'article-update':
+        if (isset($_POST['update']) && ($_POST['update'])) {
+            $category_id = $_POST['category_id'];
+            $content = $_POST['editor1'];
+            $id = $_POST['article_id'];
+            $name = $_POST['article_name'];
+            $image_paths = array();
+            $file_count = count($_FILES['files']['name']);
+            if (empty($content)) {
+                $alert = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
                                 Nội dung không được để trống.
                                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                             </div>';
-                } else {
+            } else {
                 if ($file_count > 0) {
                     $allowed_types = array('jpg', 'jpeg', 'png', 'gif');
 
@@ -226,155 +226,155 @@ if (!isset($_SESSION['admin'])) {
                 }
                 article_update($id, $name, $content, $image_paths_string, $category_id);
             }
-            }
+        }
 
-            $listArticle = article_select_all("", 0);
-            include "article/list.php";
+        $listArticle = article_select_all("", 0);
+        include "article/list.php";
 
-            break;
-        case 'article-review':
-            if (isset($_GET['id']) && ($_GET['id'])) {
-                $id = $_GET['id'];
+        break;
+    case 'article-review':
+        if (isset($_GET['id']) && ($_GET['id'])) {
+            $id = $_GET['id'];
+        } else {
+            $id = 0;
+        }
+        $reviewArt = article_select_by_id($id);
+        include "article/review.php";
+        break;
+        /** 
+         * TODO: Customer
+         * */
+    case 'user_add':
+        $target_dir = "../img/";
+        if (isset($_POST['addCus']) && ($_POST['addCus'])) {
+            $user = $_POST['user_name'];
+            $password = $_POST['user_password'];
+            $email = $_POST['email'];
+            $phone = $_POST['user_phone'];
+            $role_id = $_POST['role_id'];
+            $avatar = save_file('avatar', $target_dir);
+
+            $userExists = customer_check_by_user($user);
+            $emailExists = customer_check_by_email($email);
+
+            if (!$userExists && !$emailExists) {
+                user_insert_admin($user, $email, $avatar, $phone, $password, $role_id);
+                $alert = '<div class="alert alert-success" role="alert">Đăng ký thành công!</div>';
             } else {
-                $id = 0;
-            }
-            $reviewArt = article_select_by_id($id);
-            include "article/review.php";
-            break;
-            /** 
-             * TODO: Customer
-             * */
-        case 'user_add':
-            $target_dir = "../img/";
-            if (isset($_POST['addCus']) && ($_POST['addCus'])) {
-                $user = $_POST['user_name'];
-                $password = $_POST['user_password'];
-                $email = $_POST['email'];
-                $phone = $_POST['user_phone'];
-                $role_id = $_POST['role_id'];
-                $avatar = save_file('avatar', $target_dir);
-              
-                $userExists = customer_check_by_user($user);
-                $emailExists = customer_check_by_email($email);
-                
-                if (!$userExists && !$emailExists) {
-                    user_insert_admin($user, $email, $avatar, $phone, $password, $role_id);
-                    $alert = '<div class="alert alert-success" role="alert">Đăng ký thành công!</div>';
-                } else {
-                    $alert = '';
-                
-                    if ($userExists) {
-                        $alert .= '<div class="alert alert-danger" role="alert">Tên đã được sử dụng</div>';
-                    }
-                
-                    if ($emailExists) {
-                        $alert .= '<div class="alert alert-danger" role="alert">Email đã được sử dụng</div>';
-                    }
-                }
-            }
-            include "./user/add.php";
-            break;
-        case 'user_list':
-            $listUser = user_select_all();
-            include "./user/list.php";
-            break;
-        case 'user_delete':
-            if (isset($_GET['user_id']) && ($_GET['user_id'] > 0)) {
-                if($_GET['user_id']===$_SESSION['admin']['user_id']){
-                    $alert = '<div class="alert alert-danger" role="alert">Đây là tài khoản của bạn đang đăng nhập</div>';
-                }else{
-                       customer_delete($_GET['user_id']);
-                }
-             
-            }
-            $listUser = user_select_all();
-            include "./user/list.php";
-            break;
-        case 'user_edit':
-            if (isset($_GET['user_id']) && ($_GET['user_id'] > 0)) {
-                $customer = customer_select_by_id_admin($_GET['user_id']);
-            }
-            include "./user/edit.php";
-            break;
-        case 'user_update':
-            $target_dir = "../img/";
-            if (isset($_POST['ac-update']) && ($_POST['ac-update'])) {
-                $id = $_POST['id'];
-                $user = $_POST['user'];
-                $email = $_POST['email'];
-                $img = save_file('avatar', $target_dir);
-                $phone = $_POST['phone'];
-                $role_id = $_POST['role_id'];
-              
-                $userExists = customer_check_by_user($user);
-                $emailExists = customer_check_by_email($email);
-                
-                if (!$userExists && !$emailExists) {
-                    user_update_admin($id, $user, $email, $img, $phone, $role_id);
-                    $alert = '<div class="alert alert-success" role="alert">Cập nhật thành công!</div>';
-                } else {
-                    $alert = '';
-                
-                    if ($userExists) {
-                        $alert .= '<div class="alert alert-danger" role="alert">Tên đã được sử dụng</div>';
-                    }
-                
-                    if ($emailExists) {
-                        $alert .= '<div class="alert alert-danger" role="alert">Email đã được sử dụng</div>';
-                    }
-                }
-                
-            }
+                $alert = '';
 
-             $listUser = user_select_all();
-            include "./user/list.php";
-            break;
-            /** 
-             * TODO: Comment
-             * */
-        case 'comment_list':
-            $list_comment = comment_select_all();
-            include "comment/list.php";
-            break;
-        case 'comment_detail':
-            if (isset($_GET['article_id']) && ($_GET['article_id'] > 0)) {
-                $list_comment = comment_select_by_article($_GET['article_id']);
-            }
+                if ($userExists) {
+                    $alert .= '<div class="alert alert-danger" role="alert">Tên đã được sử dụng</div>';
+                }
 
-            include './comment/detail.php';
-            break;
-        case 'comment_delete':
-            if (isset($_GET['comment_id']) && ($_GET['comment_id'] > 0) && ($_GET['article_id'])) {
-                $article_id = $_GET['article_id'];
-                comment_delete($_GET['comment_id']);
+                if ($emailExists) {
+                    $alert .= '<div class="alert alert-danger" role="alert">Email đã được sử dụng</div>';
+                }
             }
-            $list_comment = comment_select_by_article($article_id);
-            include './comment/detail.php';
-            break;
-            /** 
-             * TODO: Static
-             * */
-        case 'static':
-            $listStatic = stactic_all();
-            include "static/list.php";
-            break;
-        case 'chart':
-            $listStatic = stactic_all();
-            include "static/chart.php";
-            break;
-            /** 
-             * TODO: Favourite
-             * */
-        case 'favourite':
-            $favo = stactic_favourite_articles();
-            include "static/favourite.php";
-            break;
-        case 'chartFavourite':
-            $favo = stactic_favourite_articles();
-            include "static/chartFavourite.php";
-            break;
-    }
- 
+        }
+        include "./user/add.php";
+        break;
+    case 'user_list':
+        $listUser = user_select_all();
+        include "./user/list.php";
+        break;
+    case 'user_delete':
+        if (isset($_GET['user_id']) && ($_GET['user_id'] > 0)) {
+            if ($_GET['user_id'] === $_SESSION['admin']['user_id']) {
+                $alert = '<div class="alert alert-danger" role="alert">Đây là tài khoản của bạn đang đăng nhập</div>';
+            } else {
+                customer_delete($_GET['user_id']);
+            }
+        }
+        $listUser = user_select_all();
+        include "./user/list.php";
+        break;
+    case 'user_edit':
+        if (isset($_GET['user_id']) && ($_GET['user_id'] > 0)) {
+            $customer = customer_select_by_id_admin($_GET['user_id']);
+        }
+        include "./user/edit.php";
+        break;
+    case 'user_update':
+        $target_dir = "../img/";
+        if (isset($_POST['ac-update']) && ($_POST['ac-update'])) {
+            $id = $_POST['id'];
+            $user = $_POST['user'];
+            $email = $_POST['email'];
+            $img = save_file('avatar', $target_dir);
+            $phone = $_POST['phone'];
+            $role_id = $_POST['role_id'];
+
+            $userInfo = customer_select_by_id_admin($id);
+            $userChanged = $userInfo['user_name'] !== $user;
+            $emailChanged = $userInfo['email'] !== $email;
+
+            if (($userChanged && customer_check_by_user($user)) || ($emailChanged && customer_check_by_email($email))) {
+                $alert = '';
+
+                if ($userChanged && customer_check_by_user($user)) {
+                    $alert .= '<div class="alert alert-danger" role="alert">Tên đã được sử dụng</div>';
+                }
+
+                if ($emailChanged && customer_check_by_email($email)) {
+                    $alert .= '<div class="alert alert-danger" role="alert">Email đã được sử dụng</div>';
+                }
+            } else {
+                user_update_admin($id, $user, $email, $img, $phone, $role_id);
+
+                $alert = '<div class="alert alert-success" role="alert">Cập nhật thành công!</div>';
+            }
+        }
+
+        $listUser = user_select_all();
+        include "./user/list.php";
+        break;
+        /** 
+         * TODO: Comment
+         * */
+    case 'comment_list':
+        $list_comment = comment_select_all();
+        include "comment/list.php";
+        break;
+    case 'comment_detail':
+        if (isset($_GET['article_id']) && ($_GET['article_id'] > 0)) {
+            $list_comment = comment_select_by_article($_GET['article_id']);
+        }
+
+        include './comment/detail.php';
+        break;
+    case 'comment_delete':
+        if (isset($_GET['comment_id']) && ($_GET['comment_id'] > 0) && ($_GET['article_id'])) {
+            $article_id = $_GET['article_id'];
+            comment_delete($_GET['comment_id']);
+        }
+        $list_comment = comment_select_by_article($article_id);
+        include './comment/detail.php';
+        break;
+        /** 
+         * TODO: Static
+         * */
+    case 'static':
+        $listStatic = stactic_all();
+        include "static/list.php";
+        break;
+    case 'chart':
+        $listStatic = stactic_all();
+        include "static/chart.php";
+        break;
+        /** 
+         * TODO: Favourite
+         * */
+    case 'favourite':
+        $favo = stactic_favourite_articles();
+        include "static/favourite.php";
+        break;
+    case 'chartFavourite':
+        $favo = stactic_favourite_articles();
+        include "static/chartFavourite.php";
+        break;
+}
+
 
 include "footer.php";
 ?>

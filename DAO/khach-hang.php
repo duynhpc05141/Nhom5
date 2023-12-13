@@ -36,10 +36,7 @@ function user_update_admin($id, $user,  $email, $img, $phone, $role_id) {
     pdo_execute($sql);
     
 }
-function customer_update_user($id, $user, $filename, $password, $email, $address, $phone) {
-    $sql = "UPDATE customer SET user='".$user."', img='".$filename."', password='".$password."', email='".$email."', address='".$address."', phone='".$phone."' WHERE id=".$id;
-    pdo_execute($sql, $id, $user, $filename, $password, $email, $address, $phone);
-}
+
 
 
 
@@ -60,10 +57,6 @@ function user_select_all(){
     return pdo_query($sql);
 }
 
-function customer_select_by_id($user,$password){
-    $sql = "SELECT * FROM customer WHERE user='".$user."' AND password='".$password."'";
-    return pdo_query_one($sql,$user,$password );
-}
 function customer_select_by_id_admin($id){
     $sql = "SELECT * FROM user WHERE user_id= ".$id;
     return pdo_query_one($sql,$id);
@@ -102,27 +95,3 @@ function check_kh($email)
     
 }
     
-// function is_username_exists($user, $email)
-// {
-//     $conn = new mysqli("localhost", "root", "mysql", "fastnews");
-
-//     if ($conn->connect_error) {
-//         die("Kết nối đến cơ sở dữ liệu thất bại: " . $conn->connect_error);
-//     }
-
-
-//     $query = "SELECT * FROM user WHERE user_name = ? OR email = ?";
-//     $stmt = $conn->prepare($query);
-
-  
-//     $stmt->bind_param("ss", $user, $email);
-
-//     $stmt->execute();
-//     $result = $stmt->get_result();
-
-   
-//     return $result->num_rows > 0;
-// }
-function is_username_exists($user, $email){
-    $sql = "SELECT * FROM user WHERE user_name = ?";
-}

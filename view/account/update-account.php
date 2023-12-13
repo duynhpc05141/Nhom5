@@ -9,50 +9,56 @@
 
 <body>
     <style>
-       #update-form{
-        width: 400px;
-       } 
+        #update-form {
+            width: 400px;
+        }
 
-       label.error {
-        color: red;
+        label.error {
+            color: red;
         }
     </style>
     <div class="container d-flex justify-content-center align-items-center">
         <?php
-        if(isset($_SESSION['user_name']) && is_array($_SESSION['user_name'])){
-        extract($_SESSION['user_name']);
-        $img = './img/' . $avatar;
-        if (file_exists($img)) {
-            $hinh = '<img src=" ' . $img . '" alt="Hình ảnh đại diện" height="40px" style="border-radius:10px;">';
+        if (isset($_SESSION['user_name']) && is_array($_SESSION['user_name'])) {
+            extract($_SESSION['user_name']);
+            $img = './img/' . $avatar;
+            if (file_exists($img)) {
+                $hinh = '<img src=" ' . $img . '" alt="Hình ảnh đại diện" height="40px" style="border-radius:10px;">';
             } else {
-            $hinh = '0';
+                $hinh = '0';
             };
         }
         ?>
+
         <form id="update-form" class="row g-3 mx-auto p-5 shadow mt-3 mb-3" action="index.php?act=user_edit" method="post" enctype="multipart/form-data">
             <h2 class="text-center">Cập nhật tài khoản</h2>
+            <?php
+            if (!empty($alert)) {
+                echo $alert;
+            }
+            ?>
             <div class="col-md-12">
                 <label for="name" class="form-label">Họ Tên</label>
-                <input type="text" class="form-control " id="name" placeholder="Nhập tên đăng nhập"  name="user" value="<?=$user_name?>">
+                <input type="text" class="form-control " id="name" placeholder="Nhập tên đăng nhập" name="user" value="<?= $user_name ?>">
                 <span id="name-error" class="text-danger"></span>
             </div>
             <div class="col-md-12">
-            <label for="avatar" class="form-label">Ảnh đại diện</label>
-            <?= $hinh ?>
-            <input type="file" class="form-control" name="avatar">
-          </div>
+                <label for="avatar" class="form-label">Ảnh đại diện</label>
+                <?= $hinh ?>
+                <input type="file" class="form-control" name="avatar">
+            </div>
             <div class="col-md-12">
                 <label for="email" class="form-label">Email</label>
-                <input type="email" class="form-control" id="email" placeholder="Nhập email"  name="email" value="<?=$email?>">
+                <input type="email" class="form-control" id="email" placeholder="Nhập email" name="email" value="<?= $email ?>">
                 <span id="email-error" class="text-danger"></span>
             </div>
             <div class="col-md-12 mb-2">
                 <label for="phone" class="form-label">Số điện thoại</label>
-                <input type="number" class="form-control" id="phone" placeholder="Nhập số điện thoại"  name="phone" value="<?=$user_phone?>">
+                <input type="number" class="form-control" id="phone" placeholder="Nhập số điện thoại" name="phone" value="<?= $user_phone ?>">
             </div>
 
             <div class="col-12">
-                <input type="hidden" name="id"  value="<?=$user_id?>">
+                <input type="hidden" name="id" value="<?= $user_id ?>">
                 <input type="submit" value="Cập nhật" name="updateAc" class="genric-btn danger-border col-12 mb-10">
             </div>
         </form>
@@ -60,14 +66,10 @@
     <?php
     ob_end_flush();
     ?>
-    <?php
-    if (!empty($alert)) {
-        echo $alert; // Hiển thị thông báo thành công nếu có giá trị
-    }
-    ?>
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
-    
+
     <script>
         $(document).ready(function() {
             $("#update-form").validate({
@@ -75,37 +77,37 @@
                     user: "required",
                     password: "required",
                     email: "required",
-                    phone: "required",
+
                 },
                 messages: {
                     user: "Vui lòng nhập tên đăng nhập",
                     password: "Vui lòng nhập mật khẩu",
                     email: "Vui lòng nhập email",
-                    phone: "Vui lòng nhập số điện thoại",
+
                 },
                 submitHandler: function(form) {
 
                     form.submit();
                 }
             });
-       
-           
+
+
             $('#update-form').on('submit', function(e) {
                 var nameValue = $('#name').val();
                 var emailValue = $('#email').val();
                 var passwordValue = $('#validationDefault02').val();
 
                 if (nameValue.trim() === "") {
-                    e.preventDefault(); 
+                    e.preventDefault();
                     $('#name-error').text('Họ tên không được trống');
                 } else {
                     $('#name-error').text('');
                 }
 
-               
+
                 var emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
                 if (!emailRegex.test(emailValue) || emailValue.trim() === "") {
-                    e.preventDefault(); 
+                    e.preventDefault();
                     $('#email-error').text('Email không hợp lệ');
                 } else {
                     $('#email-error').text('');

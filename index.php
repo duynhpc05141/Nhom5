@@ -56,24 +56,22 @@ if (isset($_GET['act']) && ($_GET['act'] !== "")) {
         $role_id = 0;
         $avatar = save_file('avatar', $target_dir);
         $userExists = customer_check_by_user($user);
-$emailExists = customer_check_by_email($email);
+        $emailExists = customer_check_by_email($email);
 
-if (!$userExists && !$emailExists) {
-    user_insert_user($user, $email, $avatar, $phone, $password, $role_id);
-    $alert = '<div class="alert alert-success" role="alert">Đăng ký thành công!</div>';
-} else {
-    $alert = '';
+        if (!$userExists && !$emailExists) {
+          user_insert_user($user, $email, $avatar, $phone, $password, $role_id);
+          $alert = '<div class="alert alert-success" role="alert">Đăng ký thành công!</div>';
+        } else {
+          $alert = '';
 
-    if ($userExists) {
-        $alert .= '<div class="alert alert-danger" role="alert">Tên đã được sử dụng</div>';
-    }
+          if ($userExists) {
+            $alert .= '<div class="alert alert-danger" role="alert">Tên đã được sử dụng</div>';
+          }
 
-    if ($emailExists) {
-        $alert .= '<div class="alert alert-danger" role="alert">Email đã được sử dụng</div>';
-    }
-}
-
-      
+          if ($emailExists) {
+            $alert .= '<div class="alert alert-danger" role="alert">Email đã được sử dụng</div>';
+          }
+        }
       }
       include './view/account/register.php';
       break;
@@ -86,30 +84,43 @@ if (!$userExists && !$emailExists) {
         $img = save_file('avatar', $target_dir);
         $phone = $_POST['phone'];
         $role_id = 0;
-        user_update_admin($id, $user,  $email, $img, $phone, $role_id);
-        $check_user = check_user($user);
-        $_SESSION['user_name'] = $check_user;
-        $alert = '<div class="alert alert-success" role="alert">
-              Cập nhật thành công!
-            </div>';
+        $userInfo = customer_select_by_id_admin($id);
+        $userChanged = $userInfo['user_name'] !== $user;
+        $emailChanged = $userInfo['email'] !== $email;
+
+        if (($userChanged && customer_check_by_user($user)) || ($emailChanged && customer_check_by_email($email))) {
+          $alert = '';
+
+          if ($userChanged && customer_check_by_user($user)) {
+            $alert .= '<div class="alert alert-danger" role="alert">Tên đã được sử dụng</div>';
+          }
+
+          if ($emailChanged && customer_check_by_email($email)) {
+            $alert .= '<div class="alert alert-danger" role="alert">Email đã được sử dụng</div>';
+          }
+        } else {
+
+          user_update_admin($id, $user,  $email, $img, $phone, $role_id);
+          $alert = '<div class="alert alert-success" role="alert">Cập nhật thành công!</div>';
+        }
       }
       include './view/account/update-account.php';
       break;
     case 'home':
-      if(!isset($_SESSION['user_name'])){
+      if (!isset($_SESSION['user_name'])) {
         $latest = latest_article();
         $top10 = article_select_top10();
         $list_loai = loai_select_all();
         $listArticle = article_select_all_home();
-      }else{
-          $user_id = $_SESSION['user_name']['user_id'];
-      $listRecommended=stactic_favourite_recommended($user_id);
-      $latest = latest_article();
-      $top10 = article_select_top10();
-      $list_loai = loai_select_all();
-      $listArticle = article_select_all_home();
+      } else {
+        $user_id = $_SESSION['user_name']['user_id'];
+        $listRecommended = stactic_favourite_recommended($user_id);
+        $latest = latest_article();
+        $top10 = article_select_top10();
+        $list_loai = loai_select_all();
+        $listArticle = article_select_all_home();
       }
-    
+
       include "./includes/home.php";
       break;
     case 'detail':
@@ -178,7 +189,7 @@ if (!$userExists && !$emailExists) {
       } else {
         $kyw = "";
       }
-      $search=article_select($kyw);
+      $search = article_select($kyw);
 
       include "./view/search/search.php";
       break;
