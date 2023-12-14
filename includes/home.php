@@ -106,11 +106,11 @@
                         </div>
                         <div class="trand-right-single d-flex">
                             <div class="trand-right-img">
-                                <img src="./view/assets/img/trending/right4.jpg" alt="">
+                                <img src="./view/assets/img/trending/game.jpg" alt="" width="120px" height="100px">
                             </div>
                             <div class="trand-right-cap">
-                                <span class="color4">Mạo hiểm</span>
-                                <h4><a href="index.php?act=detail">10 ôtô bán nhiều nhất quý III</a></h4>
+                                <span class="color4">Trò chơi</span>
+                                <h4><a href="../view/game/index.html">Chơi ngay</a></h4>
                             </div>
                         </div>
                         <div class="trand-right-single d-flex">
